@@ -1,0 +1,52 @@
+div.menuoverlay(data-ng-click='showMenuToggle(showMenuLeft)',
+                data-ng-show='showMenuLeft')
+
+aside.left-menu(data-ng-show='(isDesktop || showMenuLeft)')
+  nav.menu(data-ng-controller='MenuController')
+    div.hearder(data-ng-if='isMobile')
+      div.logo
+        a.link(data-ng-href='{{systemUri.home()}}', title='Ir para o início')
+          img.image(src='/build/images/default/layout/logo.png', alt='MAS')
+
+    ul.list
+      li.item
+        a.link(data-ng-href='{{systemUri.home()}}', data-selected-menu)
+          svg.icon(viewBox='0 0 48 48')
+            use(xlink:href='/build/images/default/layout/icons.svg#icon-home')
+          span.label Início
+
+      li.item
+        a.link(data-ng-href='{{systemUri.Dashboard()}}',
+                data-selected-menu)
+          svg.icon(viewBox='0 0 48 48')
+            use(xlink:href='/build/images/default/layout/icons.svg#icon-dashboard')
+          span.label Dashboard
+
+        ul.listsubitem
+          li.subitem
+            a.link Sub item 1
+          li.subitem
+            a.link Sub item 2
+
+       li.item
+        a.link(data-ng-href='{{systemUri.equipe()}}',
+                data-selected-menu)
+          svg.icon(viewBox='0 0 48 48')
+            use(xlink:href='/build/images/default/layout/icons.svg#icon-share')
+          span.label Equipe
+
+
+      li.item
+        a.link(data-ng-href='/modulo',
+                data-selected-menu)
+          svg.icon(viewBox='0 0 48 48')
+            use(xlink:href='/build/images/default/layout/icons.svg#icon-modulos')
+          span.label Modulos
+
+
+      li.item
+        a.link(data-ng-href='{{systemUri.configuracoes()}}',
+                data-selected-menu)
+          svg.icon(viewBox='0 0 48 48')
+            use(xlink:href='/build/images/default/layout/icons.svg#icon-build')
+          span.label Configurações

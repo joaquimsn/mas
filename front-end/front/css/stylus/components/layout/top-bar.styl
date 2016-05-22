@@ -1,0 +1,37 @@
+.top-bar
+  height 48px
+  background $primaryColor
+  display flex
+  flex-wrap wrap
+  box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+
+  > .actionmenu
+    width 48px
+
+    > .link
+      height 100%
+      display block
+      text-align center
+      position relative
+      top 12px
+
+      > .icon
+        width 27px
+
+  > .hearder
+    height 32px
+    display flex
+    margin-top 9px
+    > .logo
+      margin-right 40px
+      > .link
+        display block
+          > .image
+            width 90px
+
+    > .search
+      margin-top 4px
+      > .input
+        width 100px
+        @media(min-width: em(800px))
+          width 300px

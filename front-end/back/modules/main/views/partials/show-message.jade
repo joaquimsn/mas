@@ -1,0 +1,17 @@
+div.showmessage-container(data-ng-show="show",
+                          style="display: none;",
+                          data-ng-class="{'_success':nivel === 'info', '_warn':nivel === 'warn', '_error': nivel === 'error'}")
+  div.close(data-ng-click="close()", title="Fechar mensagem")
+    svg.icon(viewBox="0 0 48 48")
+      use(xlink:href="/build/images/default/layout/icons.svg#icon-close")
+  div.container
+    div.nivel(data-ng-if="nivel === 'info'")
+      svg.icon(viewBox="0 0 48 48")
+        use(xlink:href="/build/images/default/layout/icons.svg#icon-message-success")
+    div.nivel(data-ng-if="nivel === 'warn'")
+      svg.icon(viewBox="0 0 48 48")
+        use(xlink:href="/build/images/default/layout/icons.svg#icon-message-warn")
+    div.nivel(data-ng-if="nivel === 'error'")
+      svg.icon(viewBox="0 0 48 48")
+        use(xlink:href="/build/images/default/layout/icons.svg#icon-message-error")
+    div.message(data-ng-bind="text")

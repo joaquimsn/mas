@@ -1,0 +1,8 @@
+extends layout
+
+block body
+  include header
+  section.page-main(ng-cloak)
+    div.content(data-ng-view)
+  include js
+  include footer

@@ -1,0 +1,15 @@
+[ng-cloak].splash {
+  display: block !important;
+  background-color: rgb(43,160,199);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+[ng-cloak] {
+  display: none;
+}
+
+.splash {
+  display: none;
+}

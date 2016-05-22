@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+var http = require('http');
+var app = require('./../app');
+var config = require('./../config/config')();
+
+app.set('port', config.port);
+var server = app.listen(app.get('port'), function() {
+  console.log('site server '+ config.address + ' (' + config.env + ') escutando na porta ' + config.port);
+});
+
+process.on('SIGTERM',  function (err) {
+  process.exit(1);
+});

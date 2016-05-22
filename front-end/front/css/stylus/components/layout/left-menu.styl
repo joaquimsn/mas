@@ -1,0 +1,79 @@
+.left-menu
+  height 100%
+  width 48px
+  left 0
+  top 0
+  display block
+  position fixed
+  background $darkPrimaryColor
+
+  @media(min-width: em(800px))
+    top 48px
+
+  > .menu
+    overflow hidden
+    > .hearder
+      height 48px
+      border-bottom 1px solid #fff
+      > .logo
+        position absolute
+        top 9px
+        left 10px
+        > .link
+          display block
+          > .image
+            width 90px
+
+    > .list
+      > .item
+        height 48px
+        font-family lato regular
+        color $textPrimaryColor
+        position relative
+
+        > .link
+          display block
+          cursor pointer
+          color $textPrimaryColor
+
+          &:hover
+            boder-left 10px solid $accentColor
+            background $accentColor
+            opacity 0.9
+
+          > .icon
+            margin 12px
+            width 24px
+            height 24px
+
+          > .label
+            height 48px
+            line-height 48px
+            margin-left 5px
+            position absolute
+            vertical-align middle
+            font-size 14pt
+
+        > .listsubitem
+          margin-left 30px
+          display none
+
+          > .subitem
+            height 35px
+            line-height 35px
+            vertical-align middle
+            font-size 12pt
+
+            > .link
+              display block
+
+.--expand
+  width 200px
+
+.menuoverlay
+  position absolute
+  background #333
+  opacity 0.7
+  left 200px
+  width 100%
+  height 100%

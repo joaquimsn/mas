@@ -1,0 +1,25 @@
+div(data-ng-controller="HeaderController", ng-cloak)
+
+  header.top-bar(data-menu-scroll, data-core-color, data-route="routeParams")
+    div.actionmenu
+      a.link(data-hide-menu,
+             data-ng-click="showMenuToggle(showMenuLeft)")
+          svg.icon(viewBox="0 0 48 48")
+            use(xlink:href="/build/images/default/layout/icons.svg#icon-menu")
+    div.hearder
+      div.logo
+        a.link(data-ng-href="{{systemUri.home()}}", title="Ir para o início")
+          img.image(src="/build/images/default/layout/logo.png", alt="MAS")
+
+      div.search
+        div.icon
+          svgsvg.icon(viewBox="0 0 48 48")
+            use(xlink:href="/build/images/default/layout/icons.svg#icon-search")
+
+        input.input(type="select")
+
+      div.user
+        div.notification
+        div.userdata
+
+  include menu
