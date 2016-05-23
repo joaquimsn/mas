@@ -3,9 +3,15 @@ module.exports = function (express) {
   var router    = express.Router();
 
   router.get('/system/config/menus', function (req, res) {
-    var menus = '[{}]';
+    var menus = [
+      {
+        nome: 'Home',
+        link: '/',
+        icon: 'icon-home'
+      }
+    ];
 
-    res.json();
+    res.json(menus);
   });
 
   return router;

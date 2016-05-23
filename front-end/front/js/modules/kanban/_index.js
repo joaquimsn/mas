@@ -5,7 +5,8 @@ var bulk              = require('bulk-require');
 
 var kanbanModule = [
   'agileTcc.Kanban.controllers',
-  'agileTcc.Kanban.services'
+  'agileTcc.Kanban.services',
+  'agileTcc.Kanban.factories'
 ];
 
 module.exports = angular.module('agileTcc.Kanban', kanbanModule);

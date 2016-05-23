@@ -16,44 +16,11 @@ function systemUri(SystemUriConfig) {
     courseDetailing: function (core, path) {
       return SystemUriConfig.courseDetailing.replace(':core', core).replace(':path', path);
     },
-    aboutUs: function () {
-      return SystemUriConfig.aboutUs;
+    modulo: function () {
+      return SystemUriConfig.modulo;
     },
-    cores: function () {
-      return SystemUriConfig.cores;
-    },
-    partners: function () {
-      return SystemUriConfig.partners;
-    },
-    teachers: function () {
-      return SystemUriConfig.teachers;
-    },
-    contact: function () {
-      return SystemUriConfig.contact;
-    },
-    register: function () {
-      return SystemUriConfig.register;
-    },
-    sigin: function () {
-      return SystemUriConfig.sigin;
-    },
-    forgetPassword: function () {
-      return SystemUriConfig.forgetPassword;
-    },
-    resetPassword: function (token) {
-      return SystemUriConfig.resetPassword.replace(':token', token);
-    },
-    myCourses: function () {
-      return SystemUriConfig.myCourses;
-    },
-    myAccount: function () {
-      return SystemUriConfig.myAccount;
-    },
-    checkout: function () {
-      return SystemUriConfig.checkout;
-    },
-    payment: function (idordem) {
-      return SystemUriConfig.payment.replace(':idordem', idordem);
+    kanban: function () {
+      return SystemUriConfig.kanban;
     },
     notFound: function () {
       return SystemUriConfig.notFound;

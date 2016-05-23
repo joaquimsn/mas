@@ -2,7 +2,7 @@
 
 var SystemUrlConfig = {
   home:             '/',
-  batata:          '/kanban',
+  kanban:          '/kanban',
   modulo:  '/modulo',
   funcionalidadeCadastro:  '/funcionalidade',
   funcionalidadeVisualizacao:  '/funcionalidade/:id',

@@ -3,6 +3,12 @@ extends layout
 block body
   include header
   section.page-main(ng-cloak)
+    div.page-header
+      div.name Kanban - Modulo
+      div.options
+        div.option Opção 1
+        div.option Opção 2
+
     div.content(data-ng-view)
   include js
   include footer

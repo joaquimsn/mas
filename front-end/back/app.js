@@ -14,6 +14,7 @@ var partials        = require('./modules/expose/partials')(express);
 var api             = {};
 var app             = express();
 api.uriRouter       = require('./modules/main/api/uri.router')(express);
+api.systemConfig       = require('./modules/main/api/system.config')(express);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -32,6 +33,7 @@ app.set('views', path.join(__dirname, '/modules'));
 app.set('view engine', 'jade');
 app.use('/', routes);
 app.use('/api', api.uriRouter);
+app.use('/api', api.systemConfig);
 app.use('/expose', expose);
 app.use('/partials', partials);
 

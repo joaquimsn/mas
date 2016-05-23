@@ -19,7 +19,7 @@ module.exports = function (express) {
     return addresses[0];
   }
 
-  router.get('/system/uri/siteapi', function (req, res) {
+  router.get('/system/uri/api', function (req, res) {
     res.json('http://' + _getIPV4() + ':' + config.api.portSiteApi);
   });
 

@@ -16,7 +16,7 @@ function ModuloController($scope, ModuloService, $location) {
     });
   }
 
-  categoryAreasService.findModulo(findModuloCb);
+  /*categoryAreasService.findModulo(findModuloCb);*/
 }
 
 controllersModule.controller('ModuloController', ModuloController);

@@ -7,7 +7,7 @@ var factoriesModule = require('./_index');
  */
 function requestApiService($http, $location) {
   function requestGetDev (cb, route) {
-    var promisse = $http.get('/api/system/uri/siteapi');
+    var promisse = $http.get('/api/system/uri/api');
     promisse.success(function (uri) {
       cb($http.get(uri + route));
     });
@@ -18,12 +18,12 @@ function requestApiService($http, $location) {
   }
 
   function requestGetProd (cb, route) {
-    var uri = 'http://tg.joaquimsn.com.br/api/site';
+    var uri = 'http://tg.joaquimsn.com.br/api';
     cb($http.get(uri + route));
   }
 
   function requestPostDev (cb, data, route) {
-    var promisse = $http.get('/api/system/uri/siteapi');
+    var promisse = $http.get('/api/system/uri/api');
     promisse.success(function (uri) {
       cb($http.post(uri + route, data));
     });
@@ -34,7 +34,7 @@ function requestApiService($http, $location) {
   }
 
   function requestPostProd (cb, data, route) {
-    var uri = 'http://tg.joaquimsn.com.br/api/site';
+    var uri = 'http://tg.joaquimsn.com.br/api';
     cb($http.post(uri + route, data));
   }
 

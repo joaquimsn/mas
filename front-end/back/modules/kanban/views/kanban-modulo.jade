@@ -1,1 +1,25 @@
-div Kanban
+div Filtros
+
+div.boards(data-ng-model='kanban')
+  div.section(data-ng-repeat='section in kanban.sections')
+    div.header
+      div.title {{section.title}}
+
+    ul.tasks(data-as-sortable="kanbanSortOptions",
+             data-ng-model='section.tasks')
+      li.task(data-ng-repeat='task in section.tasks',
+              data-as-sortable-item)
+        div(data-as-sortable-item-handle)
+          div{{task.name}}
+
+    div.add
+      a.button(data-ng-click='addNewTask(section)')
+        svg.icon(viewBox='0 0 48 48')
+            use(xlink:href='/build/images/default/layout/icons.svg#icon-add')
+    div.footer
+
+div
+  label(for='nomeSecao') Nova Seção
+  input(type='text', id='nomeSecao', data-ng-model='novaSecao.title')
+
+  button(data-ng-click='adicionarNovaSecao(kanban, novaSecao)') Adicionar

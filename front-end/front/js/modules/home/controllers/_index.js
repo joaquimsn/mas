@@ -2,4 +2,4 @@
 
 var angular = require('angular');
 
-module.exports = angular.module('agileTcc.Kanban.controllers', []);
+module.exports = angular.module('agileTcc.Home.controllers', []);

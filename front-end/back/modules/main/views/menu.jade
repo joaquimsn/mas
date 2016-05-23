@@ -29,7 +29,7 @@ aside.left-menu(data-ng-show='(isDesktop || showMenuLeft)')
             a.link Sub item 2
 
        li.item
-        a.link(data-ng-href='{{systemUri.equipe()}}',
+        a.link(data-ng-href='{{systemUri.kanban()}}',
                 data-selected-menu)
           svg.icon(viewBox='0 0 48 48')
             use(xlink:href='/build/images/default/layout/icons.svg#icon-share')
@@ -37,7 +37,7 @@ aside.left-menu(data-ng-show='(isDesktop || showMenuLeft)')
 
 
       li.item
-        a.link(data-ng-href='/modulo',
+        a.link(data-ng-href='{{systemUri.modulo()}}',
                 data-selected-menu)
           svg.icon(viewBox='0 0 48 48')
             use(xlink:href='/build/images/default/layout/icons.svg#icon-modulos')
