@@ -18,7 +18,6 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
-/microservices
 
 # node-waf configuration
 .lock-wscript
@@ -28,6 +27,8 @@ build/Release
 
 # Dependency directory
 /front-end/node_modules
+
+/microservices/business-api/node_modules
 
 # Optional npm cache directory
 .npm
