@@ -1,0 +1,83 @@
+.modulo-container
+  padding 20px
+
+  > .lista
+    > .item
+      height 80px
+      padding 10px
+      border 1px solid $secondaryTextColor
+      border-radius 2px
+      margin-bottom 10px
+      color $primaryTextColor
+
+      > .linha
+        display flex
+        > .textodestaque
+          font-size pt(18px)
+          font-family 'lato light'
+
+        > .indices
+          width 50%
+          > .textosecundario
+            font-size pt(12px)
+            font-family 'lato regular'
+            margin-top 10px
+            display block
+
+        > .equipes
+          width 50%
+          display flex
+          > .label
+            margin-top 5px
+            font-size pt(12px)
+            font-family 'lato regular'
+
+          > .equipe
+            width 30px
+            height 30px
+            margin 0 5px
+            background #777
+            text-align center
+
+            > .letra
+              font-family 'lato regular'
+              font-size pt(18px)
+              color $darkAccentColor
+              display block
+
+  > .moduloForm
+    font-family 'lato light'
+    > .inputcontainer
+      margin 15px 0
+      > .label
+        display block
+        margin-bottom 5px
+      > .input
+        width 50%
+        height 30px
+        font-size pt(16px)
+        color #111
+        padding 5px
+      > .textarea
+        width 50%
+        font-size pt(16px)
+        color #111
+        padding 5px
+
+      > .message-container
+        color $messageError
+
+    > .botoes
+      margin 20px 0
+      > .botaoCadastrar
+        width 150px
+        height 45px
+        border none
+        background $darkAccentColor
+        cursor pointer
+        font-size pt(18px)
+        color $textPrimaryColor
+
+      > .botao_desabilitado
+        cursor auto
+        background #BBB

@@ -1,0 +1,5 @@
+config{
+    "JavaScript": {
+        "javascriptExtraPaths": [node_modules, modules]
+    }
+}

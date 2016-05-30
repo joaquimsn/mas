@@ -2,17 +2,18 @@
 
 var factoriesModule = require('./_index');
 
-function Task(title, status, details) {
-  this.name = title;
+function Tarefa(titulo, status, descricao) {
+  this.nome = titulo;
   this.status =  status;
-  this.details = details;
+  this.descricao = descricao;
 
   return this;
 }
 
-function Section(name) {
-  this.title = name;
+function Secao(nome) {
+  this.nome = nome;
   this.tasks = [];
+
   return this;
 }
 
@@ -22,23 +23,23 @@ function Section(name) {
 function KanbanManipulatorFactory() {
 
   function addSection(kanban, sectionName) {
-    console.log(kanban.sections);
+    console.log(kanban.secoes);
     console.log(kanban);
-    kanban.sections.push(new Section(sectionName));
+    kanban.secoes.push(new Secao(sectionName));
   }
 
-  function addTaskToSection (kanban, section, taskTitle, details) {
-    angular.forEach(kanban.sections, function (sec) {
-      if (sec.title === section.title) {
+  function addTaskToSection (kanban, section, taskTitle, descricao) {
+    angular.forEach(kanban.secoes, function (sec) {
+      if (sec.nome === section.nome) {
         console.log('passei');
-        sec.tasks.push(new Task(taskTitle, section.name, details));
+        sec.tasks.push(new Tarefa(taskTitle, section.nome, descricao));
       }
     });
   }
 
-  function removeTaskFromColumn(kanban, section, task) {
-    angular.forEach(kanban.sections, function (sec) {
-      if (sec.title === section.title) {
+  function removeTaskFromSection(kanban, section, task) {
+    angular.forEach(kanban.secoes, function (sec) {
+      if (sec.nome === section.nome) {
         sec.tasks.splice(sec.tasks.indexOf(task), 1);
       }
     });
@@ -47,7 +48,7 @@ function KanbanManipulatorFactory() {
   return {
     addSection: addSection,
     addTaskToSection: addTaskToSection,
-    removeTaskFromColumn: removeTaskFromColumn
+    removeTaskFromSection: removeTaskFromSection
   };
 }
 

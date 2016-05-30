@@ -6,5 +6,58 @@
     margin-left 48px
 
   > .content
-    padding 20px
     height 100%
+
+.page-header
+  height 70px
+  border-bottom 1px solid $dividerColor
+  box-shadow 0 1px 2px $dividerColor
+  display flex
+  flex-wrap wrap
+
+  > .name
+    width 100%
+    height 40px
+    line-height 40px
+    text-align center
+    color $primaryTextColor
+    vertical-align middle
+    font-family lato light
+    font-size pt(20px)
+
+    @media(min-width: em(800px))
+      width 30%
+      height 70px
+      line-height 70px
+      border-right 1px solid $dividerColor
+
+  > .options
+    width 100%
+    height 30px
+    display flex
+    padding-left 10px
+    border-top 1px solid $dividerColor
+    @media(min-width: em(800px))
+      height 70px
+      width 70%
+
+    > .option
+      margin 0 10px
+      height 30px
+      line-height 30px
+      vertical-align middle
+      font-family lato light
+      font-size pt(14px)
+      @media(min-width: em(800px))
+        height 70px
+        line-height 70px
+
+      > .link
+        display block
+        cursor pointer
+        color $primaryTextColor
+
+        &:hover
+          boder-left 10px solid $accentColor
+          color $accentColor
+          opacity 0.9

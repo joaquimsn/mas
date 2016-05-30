@@ -2,17 +2,57 @@
   'use strict';
   var Service = require('./kanban.service');
 
-  function find(req, res) {
-    Service.find(req, res);
+  function buscarTodos(req, res) {
+    Service.buscarTodos(req, res);
   }
 
-  function saveSection(req, res) {
-    Service.saveSection(req, res);
+  function buscarSecoes(req, res) {
+    Service.buscarSecoes(req, res);
+  }
+
+  function buscarKanbanPorNome(req, res) {
+    Service.buscarKanbanPorNome(req, res);
+  }
+
+  function buscarFuncionalidadesSecao(req, res) {
+    Service.buscarFuncionalidadesSecao(req, res);
+  }
+
+  function adicionarSecao(req, res) {
+    Service.adicionarSecao(req, res);
+  }
+
+  function alterarSecao(req, res) {
+    Service.alterarSecao(req, res);
+  }
+
+  function removerSecao(req, res, next) {
+    Service.removerSecao(req, res, next);
+  }
+
+  function adicionarFuncionalidadeSecao(req, res) {
+    Service.adicionarFuncionalidadeSecao(req, res);
+  }
+
+  function removerFuncionalidadeSecao(req, res, next) {
+    Service.removerFuncionalidadeSecao(req, res, next);
+  }
+
+  function cadastrarKanban(req, res) {
+    Service.cadastrarKanban(req, res);
   }
 
   var controller = {
-    find: find,
-    saveSection: saveSection
+    buscarTodos: buscarTodos,
+    buscarSecoes: buscarSecoes,
+    buscarKanbanPorNome: buscarKanbanPorNome,
+    buscarFuncionalidadesSecao: buscarFuncionalidadesSecao,
+    adicionarSecao: adicionarSecao,
+    alterarSecao: alterarSecao,
+    removerSecao: removerSecao,
+    adicionarFuncionalidadeSecao: adicionarFuncionalidadeSecao,
+    removerFuncionalidadeSecao: removerFuncionalidadeSecao,
+    cadastrarKanban: cadastrarKanban
   };
 
   module.exports = controller;

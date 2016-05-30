@@ -1,16 +1,27 @@
-div Filtros
+div.page-header
+      div.name Kanban - Modulo
+      div.options
+        div.option Opção 1
+        div.option Opção 2
+
+div.filtros
+  div.filtro
+    label(for="ComboModulo") Modulo
+    select(type="select", id="ComboModulo")
+      option(value="1") Modulo 1
+      option(value="2") Modulo 2
 
 div.boards(data-ng-model='kanban')
-  div.section(data-ng-repeat='section in kanban.sections')
+  div.section(data-ng-repeat='section in kanban.secoes')
     div.header
-      div.title {{section.title}}
+      div.title(data-ng-bind='section.nome')
 
     ul.tasks(data-as-sortable="kanbanSortOptions",
-             data-ng-model='section.tasks')
-      li.task(data-ng-repeat='task in section.tasks',
+             data-ng-model='section.funcionalidades')
+      li.task(data-ng-repeat='task in section.funcionalidades',
               data-as-sortable-item)
         div(data-as-sortable-item-handle)
-          div{{task.name}}
+          div(data-ng-bind='task.titulo')
 
     div.add
       a.button(data-ng-click='addNewTask(section)')
@@ -18,8 +29,14 @@ div.boards(data-ng-model='kanban')
             use(xlink:href='/build/images/default/layout/icons.svg#icon-add')
     div.footer
 
-div
-  label(for='nomeSecao') Nova Seção
-  input(type='text', id='nomeSecao', data-ng-model='novaSecao.title')
+div.container-formsecao
+  h3 Cadastrar nova secção
+  div.formsecao
+    div.inputcontainer
+      label.label(for='nomeSecao') Nome
+      input(type='text', id='nomeSecao', data-ng-model='novaSecao.nome')
+    div.inputcontainer
+      label.label(for='ordemSecao') Ordem
+      input(type='number', id='ordemSecao', data-ng-model='novaSecao.ordem')
 
-  button(data-ng-click='adicionarNovaSecao(kanban, novaSecao)') Adicionar
+    button(data-ng-click='adicionarNovaSecao(kanban, novaSecao)') Adicionar

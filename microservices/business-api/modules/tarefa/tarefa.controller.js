@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  var Service = require('./modulos.service');
+  var Service = require('./tarefa.service');
 
   function cadastrar(req, res) {
     Service.cadastrar(req, res);

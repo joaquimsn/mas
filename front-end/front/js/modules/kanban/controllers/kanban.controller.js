@@ -24,10 +24,13 @@ function KanbanController($scope, KanbanService) {
 
   $scope.kanbanSortOptions = {
     itemMoved: function (event) {
+      console.log("ItemMoved");
       console.log(event);
-      event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent.section.name;
+      event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent.section.nome;
+      console.log(event.dest.sortableScope.$parent.section);
     },
     orderChanged: function (event) {
+      console.log("orderChange");
       console.log(event);
     },
     containment: '#board'

@@ -25,6 +25,17 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
       templateUrl: 'expose/modulo/modulo',
       controller: 'ModuloController'
     }).
+    when(SystemUriConfig.moduloCadastro, {
+      templateUrl: 'expose/modulo/modulo-formulario',
+      controller: 'ModuloCadastroController'
+    }).
+    when(SystemUriConfig.moduloAlteracao, {
+      templateUrl: 'expose/modulo/modulo-formulario',
+      controller: 'ModuloAlteracaoController'
+    }).
+    when(SystemUriConfig.notFound, {
+      templateUrl: 'expose/main/404'
+    }).
     otherwise({
       redirectTo: SystemUriConfig.notFound
     });

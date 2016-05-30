@@ -7,7 +7,7 @@ var servicesModule = require('./_index');
  */
 function KanbanService(requestApiService, KanbanManipulatorFactory) {
   this.findKanban = function (cb) {
-    requestApiService.get(cb, '/kanban');
+    requestApiService.get(cb, '/kanban/Modulo');
   };
 
   this.addSection = function(kanban, sectionName) {
@@ -16,7 +16,7 @@ function KanbanService(requestApiService, KanbanManipulatorFactory) {
 
   this.removeTask = function (kanban, section, task) {
     if (confirm('Are You sure to Delete?')) {
-      KanbanManipulatorFactory.removeTaskFromColumn(kanban, section, task);
+      KanbanManipulatorFactory.removeTaskFromSection(kanban, section, task);
     }
   };
 

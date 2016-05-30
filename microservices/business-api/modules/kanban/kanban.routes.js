@@ -2,8 +2,22 @@ module.exports = function (server) {
   'use strict';
   var controller = require('./kanban.controller');
 
-  server.get('/kanban', controller.find);
-  /*server.get('/kanban/sections', controller.findSections);*/
+  /*Listagens*/
+  server.get('/kanban', controller.buscarTodos);
+  server.get('/kanban/:nome', controller.buscarKanbanPorNome);
+  server.get('/kanban/:idKanban/secoes', controller.buscarSecoes);
+  server.get('/kanban/:idKanban/secoes/:idSecao/funcionalidades', controller.buscarFuncionalidadesSecao);
 
-  server.post('/kanban/section', controller.saveSection);
+  /*Cadastros*/
+  server.post('/kanban', controller.cadastrarKanban);
+  server.post('/kanban/:idKanban/secoes', controller.adicionarSecao);
+  server.post('/kanban/:idKanban/secoes/:idSecao/funcionalidades', controller.adicionarFuncionalidadeSecao);
+
+  /*Alterações*/
+  server.put('/kanban/:idKanban/secoes/:idSecao', controller.alterarSecao);
+
+  /*Exclusões*/
+  server.del('/kanban/:idKanban/secoes/:idSecao', controller.removerSecao);
+  server.del('/kanban/:idKanban/secoes/:idSecao/funcionalidades/:idFuncionalidade', controller.removerFuncionalidadeSecao);
+
 };

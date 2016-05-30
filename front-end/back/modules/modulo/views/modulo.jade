@@ -1,1 +1,21 @@
-div Modulo
+div.page-header
+  div.name Modulos
+  div.options
+    div.option
+      a.link(data-ng-href='{{systemUri.modulo()}}') Listagem
+    div.option
+      a.link(data-ng-href='{{systemUri.moduloCadastro()}}') Cadastro
+
+div.modulo-container
+  div.lista
+    div.item(data-ng-repeat='modulo in ::modulos track by $index')
+      div.linha
+        span.textodestaque(data-ng-bind="modulo.nome")
+      div.linha
+        div.indices
+          span.textosecundario funcionalidades 10
+        div.equipes
+          span.label equipe
+          div.equipe(data-ng-repeat='equipe in ::modulo.equipes')
+            span.letra {{equipe.nome.charAt(0)}}
+

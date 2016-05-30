@@ -21,6 +21,7 @@ var requires = [
   'agileTcc.Main',
   'agileTcc.Home',
   'agileTcc.Kanban',
+  'agileTcc.Modulo',
   'agileTcc.Funcionalidade',
   'ngRoute',
   'as.sortable',
@@ -36,4 +37,5 @@ angular.module('agileTcc').config(require('./system.token.interceptor.config'));
 angular.module('agileTcc').run(require('./system.run'));
 angular.module('agileTcc').run(require('./system.route.interceptor.run'));
 angular.module('agileTcc').constant('SystemUriConfig', require('./system.constants'));
+angular.module('agileTcc').constant('ApplicationSettings', require('./system.application.constants'));
 angular.module('agileTcc').constant('layoutSize', require('./system.layoutSize'));

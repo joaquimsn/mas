@@ -1,4 +1,4 @@
-(function () {
+(function() {
   "use strict";
 
   var restify   = require('restify'),
@@ -21,8 +21,11 @@
 
   require('./modules/kanban/kanban.routes')(server);
   require('./modules/modulos/modulos.routes')(server);
+  require('./modules/funcionalidade/funcionalidade.routes')(server);
+  require('./modules/tarefa/tarefa.routes')(server);
 
   server.listen(config.port, function () {
     console.log('api server '+ config.address + ' (' + config.env + ') escutando na porta ' + config.port);
   });
+
 }());

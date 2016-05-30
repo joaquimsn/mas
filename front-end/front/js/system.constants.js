@@ -4,8 +4,10 @@ var SystemUrlConfig = {
   home:             '/',
   kanban:          '/kanban',
   modulo:  '/modulo',
-  funcionalidadeCadastro:  '/funcionalidade',
-  funcionalidadeVisualizacao:  '/funcionalidade/:id',
+  moduloCadastro:  '/modulo/cadastro',
+  moduloAlteracao:  '/modulo/:idModulo',
+  funcionalidade:  '/funcionalidade',
+  funcionalidadeAlteracao:  '/funcionalidade/:id',
   notFound:         '/404'
 };
 

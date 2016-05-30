@@ -5,7 +5,7 @@ var factoriesModule = require('./_index');
 /**
  * @ngInject
  */
-function requestApiService($http, $location) {
+function requestApiService($http, $location, ApplicationSettings) {
   function requestGetDev (cb, route) {
     var promisse = $http.get('/api/system/uri/api');
     promisse.success(function (uri) {

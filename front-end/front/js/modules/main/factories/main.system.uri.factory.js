@@ -7,17 +7,17 @@ function systemUri(SystemUriConfig) {
     home: function () {
       return SystemUriConfig.home;
     },
-    courses: function (core, path) {
-      return SystemUriConfig.courses.replace(':core', core).replace(':path', path);
-    },
-    coursesCategory: function (core) {
-      return SystemUriConfig.coursesCategory.replace(':core', (core) ? core : 'nucleo-educacao');
-    },
-    courseDetailing: function (core, path) {
-      return SystemUriConfig.courseDetailing.replace(':core', core).replace(':path', path);
+    funcionalidade: function () {
+      return SystemUriConfig.funcionalidade;
     },
     modulo: function () {
       return SystemUriConfig.modulo;
+    },
+    moduloCadastro: function () {
+      return SystemUriConfig.moduloCadastro;
+    },
+    moduloAlteracao: function () {
+      return SystemUriConfig.moduloAlteracao;
     },
     kanban: function () {
       return SystemUriConfig.kanban;

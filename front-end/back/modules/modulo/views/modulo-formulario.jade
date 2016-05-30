@@ -1,0 +1,46 @@
+div.page-header
+  div.name Modulos
+  div.options
+    div.option
+      a.link(data-ng-href='{{systemUri.modulo()}}') Listagem
+    div.option
+      a.link(data-ng-href='{{systemUri.moduloCadastro()}}') Cadastro
+
+
+div.modulo-container
+  div.titulo
+    h3 Cadastro de Modulo
+
+  form.moduloForm(name='moduloForm', data-ng-submit='cadastrar(novoModulo)')
+    div.inputcontainer
+      label.label(for='inputNome') Nome
+      input.input(type='text',
+            id='inputNome',
+            name='nome',
+            data-ng-model='novoModulo.nome',
+            ng-minlength="3"
+            ng-maxlength="200"
+            required)
+      div.message-container(data-ng-messages="moduloForm.nome.$error", data-ng-if='moduloForm.nome.$touched && !submitted')
+        div(data-ng-message='required') Nome é obrigatorio
+        div(data-ng-message='minlength') Nome muito pequeno
+        div(data-ng-message='maxlength') Nome muito grande
+
+    div.inputcontainer
+      label.label(for='inputDescricao') Descrição
+      textarea.textarea(id='inputDescricao',
+            name='descricao',
+            data-ng-model='novoModulo.descricao',
+            rows='4',
+            ng-minlength="3",
+            ng-maxlength="600")
+      div.message-container(data-ng-messages="moduloForm.descricao.$error", data-ng-if='moduloForm.descricao.$touched && !submitted')
+        div(data-ng-message='minlength') Descrição muito pequena
+        div(data-ng-message='maxlength') Descrição muito grande
+
+    div.botoes
+      input.botaoCadastrar(type="submit",
+            value="Cadastrar",
+            data-ng-disabled='moduloForm.$invalid',
+            data-ng-class="{'botao_desabilitado': moduloForm.$invalid}")
+
