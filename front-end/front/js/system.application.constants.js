@@ -2,7 +2,8 @@
 
 var ApplicationSettings = {
   baseUrl: 'http://localhost:4000/',
-  env: 'Desenv'
+  env: 'Desenv',
+
 };
 
 module.exports = ApplicationSettings;

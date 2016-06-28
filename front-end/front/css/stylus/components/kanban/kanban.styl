@@ -3,62 +3,63 @@
 
 .boards
   padding 20px
-  display flex
-  overflow-x auto
 
-  > .section
-    height auto
-    width 300px
-    border 1px solid $accentColor
-    margin-left 2px
+  > .sections
+    display flex
+    overflow-x auto
+    > .section
+      height auto
+      width 300px
+      border 1px solid $accentColor
+      margin-left 2px
 
-    > .header
-      height 40px
-      line-height 40px
-      text-align center
-      background $accentColor
-      color $textPrimaryColor
-
-      > .title
-        font-size 16pt
-
-    > .tasks
-      padding 5px
-
-      > .task
-        padding 5px
-        margin-bottom 5px
-        border-radius 2px
-        font-family lato light
-        font-size pt(12px)
-        min-height 30px
-        background $taskColor
-        cursor move
-      &:move
-        box-shadow: 3px 6px 20px rgba(0, 0, 0, 0.4);
-        -webkit-transform: scale(1.12);
-        -moz-transform: scale(1.12);
-        -o-transform: scale(1.12);
-        position: relative;
-        z-index: 1035;
-
-    > .add
-      width 100%
-      height 24px
-      margin-bottom 5px
-      > .button
-        display block
-        width 100%
+      > .header
+        height 40px
+        line-height 40px
         text-align center
-        > .icon
-          margin 0 auto
-          width 24px
-          height 24px
-          background $primaryColor
+        background $accentColor
+        color $textPrimaryColor
 
-    > .footer
-      height 20px
-      background $accentColor
+        > .title
+          font-size 16pt
+
+      > .tasks
+        padding 5px
+
+        > .task
+          padding 5px
+          margin-bottom 5px
+          border-radius 2px
+          font-family lato light
+          font-size pt(12px)
+          min-height 30px
+          background $taskColor
+          cursor move
+        &:move
+          box-shadow: 3px 6px 20px rgba(0, 0, 0, 0.4);
+          -webkit-transform: scale(1.12);
+          -moz-transform: scale(1.12);
+          -o-transform: scale(1.12);
+          position: relative;
+          z-index: 1035;
+
+      > .add
+        width 100%
+        height 24px
+        margin-bottom 5px
+        > .button
+          display block
+          width 100%
+          text-align center
+          > .icon
+            margin 0 auto
+            width 24px
+            height 24px
+            background $primaryColor
+
+      > .footer
+        height 20px
+        background $accentColor
 
 .container-formsecao
   padding 20px

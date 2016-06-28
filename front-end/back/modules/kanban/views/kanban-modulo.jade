@@ -12,22 +12,25 @@ div.filtros
       option(value="2") Modulo 2
 
 div.boards(data-ng-model='kanban')
-  div.section(data-ng-repeat='section in kanban.secoes')
-    div.header
-      div.title(data-ng-bind='section.nome')
+  div.sections(data-as-sortable="secoesSortOptions"
+               data-ng-model='kanban.secoes'
+               is-disabled='true')
+    div.section(data-ng-repeat='section in kanban.secoes', data-as-sortable-item, is-disabled='true')
+      div.header(data-as-sortable-item-handle, is-disabled='true')
+        div.title(data-ng-bind='section.nome')
 
-    ul.tasks(data-as-sortable="kanbanSortOptions",
-             data-ng-model='section.funcionalidades')
-      li.task(data-ng-repeat='task in section.funcionalidades',
-              data-as-sortable-item)
-        div(data-as-sortable-item-handle)
-          div(data-ng-bind='task.titulo')
+      ul.tasks(data-as-sortable="funcionalidadeSortOptions",
+               data-ng-model='section.funcionalidades')
+        li.task(data-ng-repeat='task in section.funcionalidades',
+                data-as-sortable-item)
+          div(data-as-sortable-item-handle)
+            div(data-ng-bind='task.titulo')
 
-    div.add
-      a.button(data-ng-click='addNewTask(section)')
-        svg.icon(viewBox='0 0 48 48')
-            use(xlink:href='/build/images/default/layout/icons.svg#icon-add')
-    div.footer
+      div.add
+        a.button(data-ng-click='addNewTask(section)')
+          svg.icon(viewBox='0 0 48 48')
+              use(xlink:href='/build/images/default/layout/icons.svg#icon-add')
+      div.footer
 
 div.container-formsecao
   h3 Cadastrar nova secção
@@ -40,3 +43,6 @@ div.container-formsecao
       input(type='number', id='ordemSecao', data-ng-model='novaSecao.ordem')
 
     button(data-ng-click='adicionarNovaSecao(kanban, novaSecao)') Adicionar
+
+show-modal(show='false')
+  ng-include(src="'partials/kanban/funcionalidade'")

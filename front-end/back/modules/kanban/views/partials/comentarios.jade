@@ -1,0 +1,18 @@
+div.comentario-container
+  div.form
+    form(action="post" name="formComentario")
+      div.campo
+        label(for="comentario") Escreva seu comentário aqui
+        textarea(name="comentario", cols="30", rows="10"
+                 required)
+
+      div.botoes
+        input(type="submit",
+              disabled="formComentario.$invalid")
+
+  div.historico
+    ul
+      li item 1
+      li item 2
+      li item 3
+      li item 4

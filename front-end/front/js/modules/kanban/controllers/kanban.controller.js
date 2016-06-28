@@ -18,13 +18,27 @@ function KanbanController($scope, KanbanService) {
   }
 
   $scope.adicionarNovaSecao = function(kanban, novo) {
-    KanbanService.addSection(kanban, novo.title);
+    KanbanService.addSection(kanban, novo.nome);
     novo = {};
   };
 
-  $scope.kanbanSortOptions = {
+  $scope.secoesSortOptions = {
     itemMoved: function (event) {
-      console.log("ItemMoved");
+      console.log("Secao movida");
+      console.log(event);
+      //event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent;
+      console.log(event.dest.sortableScope.$parent.section);
+    },
+    orderChanged: function (event) {
+      console.log("orderChange");
+      console.log(event);
+    },
+    containment: '#board'
+  };
+
+  $scope.funcionalidadeSortOptions = {
+    itemMoved: function (event) {
+      console.log("Funcionalidade");
       console.log(event);
       event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent.section.nome;
       console.log(event.dest.sortableScope.$parent.section);

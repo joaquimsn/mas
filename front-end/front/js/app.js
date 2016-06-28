@@ -16,6 +16,10 @@ require('angular-scroll');
 require('angular-messages');
 require('ng-sortable');
 require('angular-i18n/angular-locale_pt-br');
+require('textangular/dist/textAngular-rangy.min');
+require('textangular/dist/textAngular-sanitize.min');
+require('textangular/dist/textAngular');
+require('textangular/dist/textAngularSetup');
 
 var requires = [
   'agileTcc.Main',

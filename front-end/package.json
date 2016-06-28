@@ -91,7 +91,7 @@
     "stream-consume": "^0.1.0",
     "stylus": "^0.53.0",
     "stylus-type-utils": "0.0.3",
-    "textangular": "^1.5.0",
+    "textangular": "^1.5.1",
     "tiny-lr": "^0.2.1",
     "uglifyify": "^3.0.1",
     "vinyl-buffer": "^1.0.0",

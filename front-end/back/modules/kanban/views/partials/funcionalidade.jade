@@ -1,0 +1,20 @@
+div.funcionalidade-container(data-ng-controller='FuncionalidadeController')
+  div.formulario
+    form(action='post' name='formFuncionalidade')
+      div.inputcontainer
+        label.label(for='nome') Nome
+        input.input(type='text', name='nome')
+
+      div.inputcontainer
+        label.label(for='editor') Especificação geral
+        textarea(type="text")
+
+      div.anexos
+        p anexos
+
+  div.opcoes
+    div.campo
+      label(for='selecaoModulo') Modulos
+      select(name='selecaoModulo')
+        option(value="Teste")
+

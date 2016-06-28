@@ -15,7 +15,6 @@ function FuncionalidadeController($scope, FuncionalidadeService) {
       console.log(err);
     });
   }
-  KanbanService.findKanban(findKanbanCb);
 }
 
 controllersModule.controller('FuncionalidadeController', FuncionalidadeController);
