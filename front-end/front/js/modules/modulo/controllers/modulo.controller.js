@@ -16,7 +16,7 @@ function ModuloController($scope, ModuloService) {
     });
   }
 
-  ModuloService.findModulo(findModuloCb);
+  ModuloService.findModulos(findModuloCb);
 }
 
 controllersModule.controller('ModuloController', ModuloController);

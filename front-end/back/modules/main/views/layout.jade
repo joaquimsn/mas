@@ -9,6 +9,14 @@ html(lang="pt-br", data-ng-app="agileTcc")
     link(rel='stylesheet', href='build/css/normalize.css')
     link(rel='stylesheet', href='build/css/loader.css')
     link(rel='stylesheet', href='build/css/index.css')
+    link(rel='stylesheet', href='build/css/text-angular.css')
+    link(rel='stylesheet', href='build/css/ng-sortable.css')
+    link(rel='stylesheet', href='build/css/ng-dialog.css')
+    link(rel='stylesheet', href='build/css/ng-dialog-theme.css')
     link(rel='shortcut icon', href='image/favicon/favicon.ico', type='image/x-icon')
   body(data-device-detector)
-    block body
+    div(data-ng-if='!showLogin')
+      block body
+
+    div(data-ng-if='showLogin')
+      ng-include(src="'/expose/login/login'")

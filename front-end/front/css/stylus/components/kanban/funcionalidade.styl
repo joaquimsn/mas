@@ -1,58 +1,67 @@
-.modal
-  position absolute
-  top 0
-  left 0
-  bottom 0
-  right 0
-  background #777
-  opacity 0.7
-  z-index 11
-
-  > content
-    position relative
-
 .funcionalidade-container
   width 100%
-  display flex
 
-  > .formulario
-    width 75%
+  > .titulo
+    height 30px
+
+  > .container
     font-family 'lato light'
-    > .inputcontainer
-      margin 15px 0
-      > .label
-        display block
-        margin-bottom 5px
-      > .input
-        width 50%
-        height 30px
-        font-size pt(16px)
-        color #111
-        padding 5px
 
-      > .textarea
-        width 50%
-        font-size pt(16px)
-        color #111
-        padding 5px
+    > form
+      display flex
 
-      > .message-container
-        color $messageError
+    > form .formulario
+      width 100%
 
-    > .botoes
-      margin 20px 0
-      > .botaoCadastrar
-        width 150px
-        height 45px
-        border none
-        background $darkAccentColor
-        cursor pointer
-        font-size pt(18px)
-        color $textPrimaryColor
+      > .inputcontainer
+        margin 15px 0
+        > .label
+          display block
 
-      > .botao_desabilitado
-        cursor auto
-        background #BBB
+        > .input
+          width calc(100% - 30px)
+          height 30px
+          font-size pt(16px)
+          color #111
+          padding 5px
 
-   > .opcoes
-    width 75%
+        > textarea
+          width calc(100% - 30px)
+          font-size pt(16px)
+          color #111
+          padding 5px
+
+        > .message-container
+          color $messageError
+
+      > .botoes
+        margin 20px 0
+        > .botaoCadastrar
+          width 150px
+          height 45px
+          border none
+          background $darkAccentColor
+          cursor pointer
+          font-size pt(18px)
+          color $textPrimaryColor
+
+        > .botao_desabilitado
+          cursor auto
+          background #BBB
+
+    > form .opcoes
+      width 25%
+      > .inputcontainer
+        margin 15px 0
+        > .label
+          display block
+
+        > .input
+          width calc(100% - 30px)
+          height 30px
+          font-size pt(16px)
+          color #111
+          padding 5px
+
+        > select
+          width 100%

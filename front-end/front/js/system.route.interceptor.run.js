@@ -3,9 +3,14 @@
 /**
  * @ngInject
  */
-function run($rootScope, AuthService, $location) {
+function run($rootScope, AuthService, $location, SystemUriConfig) {
   $rootScope.$on("$locationChangeStart",function () {
-    /*Todo implementar*/
+
+    if ($location.path().lastIndexOf(SystemUriConfig.login) !== -1) {
+      $rootScope.showLogin = true;
+    } else {
+      $rootScope.showLogin = false;
+    }
   });
 }
 

@@ -5,6 +5,9 @@
  */
 function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
   $routeProvider.
+    when(SystemUriConfig.login, {
+      templateUrl: 'expose/login/login'
+    }).
     when(SystemUriConfig.home, {
       templateUrl: 'expose/home/home',
       controller: 'HomeController'
@@ -13,13 +16,12 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
       templateUrl: 'expose/kanban/kanban-modulo',
       controller: 'KanbanController'
     }).
-    when(SystemUriConfig.funcionalidadeCadastro, {
+    when(SystemUriConfig.funcionalidade, {
       templateUrl: 'expose/funcionalidade/funcionalidade',
       controller: 'FuncionalidadeController'
     }).
     when(SystemUriConfig.funcionalidadeVisualizacao, {
-      templateUrl: 'expose/funcionalidade/funcionalidade',
-      controller: 'FuncionalidadeController'
+      templateUrl: 'expose/funcionalidade/funcionalidade'
     }).
     when(SystemUriConfig.modulo, {
       templateUrl: 'expose/modulo/modulo',

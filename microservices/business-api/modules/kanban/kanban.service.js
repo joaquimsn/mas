@@ -27,13 +27,17 @@
     },
     {
       upsert: true,
-      safe: true
+      safe: true,
+      new: true
     }
     ).exec();
 
     promisse.then(function(kanban) {
       console.log("Seção adicionada com sucesso");
-      res.json(kanban);
+      var secoes = kanban.secoes.filter(function (value) {
+        return value.nome === req.body.nome;
+      });
+      res.json(secoes[0]);
     });
 
     promisse.then(null, function (error) {

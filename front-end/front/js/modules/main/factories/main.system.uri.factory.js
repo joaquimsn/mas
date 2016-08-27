@@ -4,6 +4,9 @@ var factoriesModule = require('./_index');
 
 function systemUri(SystemUriConfig) {
   return {
+    login: function() {
+      return SystemUriConfig.login;
+    },
     home: function () {
       return SystemUriConfig.home;
     },

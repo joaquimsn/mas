@@ -23,11 +23,6 @@ function showModal() {
       scope.close = function () {
         scope.show = false;
       };
-
-      scope.$watch('show', function (newValue) {
-        if (newValue === true) {
-          scope.show = false;
-      });
     }
   };
 }

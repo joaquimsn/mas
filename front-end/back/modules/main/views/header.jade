@@ -11,7 +11,7 @@ div(data-ng-controller="HeaderController", ng-cloak)
         a.link(data-ng-href="{{systemUri.home()}}", title="Ir para o início")
           img.image(src="/build/images/default/layout/logo.png", alt="MAS")
 
-      div.search
+      div.search(data-ng-if='false')
         div.icon
           svgsvg.icon(viewBox="0 0 48 48")
             use(xlink:href="/build/images/default/layout/icons.svg#icon-search")

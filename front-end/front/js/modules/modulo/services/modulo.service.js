@@ -6,7 +6,7 @@ var servicesModule      = require('./_index');
  * @ngInject
  */
 function ModuloService($http, requestApiService) {
-  this.findModulo = function(cb) {
+  this.findModulos = function(cb) {
     requestApiService.get(cb, '/modulos');
   };
 

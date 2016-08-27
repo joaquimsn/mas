@@ -1,0 +1,30 @@
+Adicionar funcção remover kanban
+Adicionar mensagens customizadas
+Priorizar ordem do kanban
+Cores dos para agrupamento das tarefas
+refresh das acções de cadastros
+trocar nome
+
+
+
+
+###Atividade
+inicio
+terminio
+duração em horas
+recurso
+tamnho em pontos planning poker
+status
+ter comentarios
+gera um impedimento
+
+##Parametros do projetos
+Duração de horas
+tamanho
+
+
+// 23-08-2016
+Fluxos para novos vinculos
+Projeto terá kanban
+Modulo terá kanban
+usuario terá projetos

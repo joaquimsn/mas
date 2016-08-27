@@ -24,7 +24,9 @@
   },
   "homepage": "https://joaquimsn.com",
   "dependencies": {
+    "angular-aria": "^1.5.5",
     "angular-i18n": "^1.5.5",
+    "angular-material": "^1.1.0",
     "angular-sanitize": "^1.5.5",
     "body-parser": "^1.15.0",
     "chalk": "^1.1.1",
@@ -85,6 +87,7 @@
     "imagemin-pngcrush": "^4.1.0",
     "install": "^0.5.1",
     "jshint-stylish": "^2.1.0",
+    "ng-dialog": "^0.6.2",
     "ngstorage": "^0.3.10",
     "run-sequence": "^1.1.5",
     "sequencify": "0.0.7",

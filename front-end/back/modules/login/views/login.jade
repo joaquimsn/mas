@@ -1,0 +1,21 @@
+div.login-container(data-ng-controller='LoginController')
+  div.signin(data-ng-hide='showSignup')
+    div.sistema
+      span MAS
+
+    form.form(name='formLogin')
+      div.campo
+        label Usuário
+        input(type='text' data-ng-model='credencial.login' required)
+
+      div.campo
+        label Senha
+        input(type='password' data-ng-model='crendencial.senha')
+
+    div.botoes
+      button.acessar(data-ng-click='acessar(credencial)') Entrar
+
+    div.links
+      a(data-ng-click='criarNovaConta()') criar conta
+
+  div.signup(data-ng-show='showSignup')

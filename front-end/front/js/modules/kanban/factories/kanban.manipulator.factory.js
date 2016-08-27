@@ -2,37 +2,21 @@
 
 var factoriesModule = require('./_index');
 
-function Tarefa(titulo, status, descricao) {
-  this.nome = titulo;
-  this.status =  status;
-  this.descricao = descricao;
-
-  return this;
-}
-
-function Secao(nome) {
-  this.nome = nome;
-  this.tasks = [];
-
-  return this;
-}
-
 /**
  * @ngInject
  */
 function KanbanManipulatorFactory() {
 
-  function addSection(kanban, sectionName) {
+  function addSection(kanban, section) {
     console.log(kanban.secoes);
     console.log(kanban);
-    kanban.secoes.push(new Secao(sectionName));
+    kanban.secoes.push(section);
   }
 
-  function addTaskToSection (kanban, section, taskTitle, descricao) {
+  function addTaskToSection (kanban, section, task) {
     angular.forEach(kanban.secoes, function (sec) {
-      if (sec.nome === section.nome) {
-        console.log('passei');
-        sec.tasks.push(new Tarefa(taskTitle, section.nome, descricao));
+      if (sec._id === sec._id) {
+        sec.funcionalidades.push(task);
       }
     });
   }
@@ -40,7 +24,15 @@ function KanbanManipulatorFactory() {
   function removeTaskFromSection(kanban, section, task) {
     angular.forEach(kanban.secoes, function (sec) {
       if (sec.nome === section.nome) {
-        sec.tasks.splice(sec.tasks.indexOf(task), 1);
+        sec.funcionalidades.splice(sec.funcionalidades.indexOf(task), 1);
+      }
+    });
+  }
+
+  function removeSection(kanban, section) {
+    angular.forEach(kanban.secoes, function (sec, index) {
+      if (sec._id === section._id) {
+        kanban.secoes.splice(index, 1);
       }
     });
   }
@@ -48,7 +40,8 @@ function KanbanManipulatorFactory() {
   return {
     addSection: addSection,
     addTaskToSection: addTaskToSection,
-    removeTaskFromSection: removeTaskFromSection
+    removeTaskFromSection: removeTaskFromSection,
+    removeSection: removeSection
   };
 }
 

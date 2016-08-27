@@ -1,6 +1,7 @@
 'use strict';
 
 var SystemUrlConfig = {
+  login: '/login',
   home:             '/',
   kanban:          '/kanban',
   modulo:  '/modulo',

@@ -2,13 +2,17 @@
   padding 20px
 
 .boards
+  height calc(100% - 200px)
   padding 20px
+  width 100%
+  display flex
+  overflow-y hidden
+  overflow-x auto
 
   > .sections
     display flex
-    overflow-x auto
+    height 100%
     > .section
-      height auto
       width 300px
       border 1px solid $accentColor
       margin-left 2px
@@ -19,12 +23,22 @@
         text-align center
         background $accentColor
         color $textPrimaryColor
+        display flex
 
         > .title
-          font-size 16pt
+          width 90%
+          padding-left 10%
+          font-size pt(20px)
+
+        > .acoes
+          width 10%
+          font-size pt(22px)
 
       > .tasks
         padding 5px
+        height calc(100% - 40px)
+        overflow-y auto
+        overflow-x hidden
 
         > .task
           padding 5px
@@ -35,27 +49,20 @@
           min-height 30px
           background $taskColor
           cursor move
-        &:move
-          box-shadow: 3px 6px 20px rgba(0, 0, 0, 0.4);
-          -webkit-transform: scale(1.12);
-          -moz-transform: scale(1.12);
-          -o-transform: scale(1.12);
-          position: relative;
-          z-index: 1035;
 
-      > .add
-        width 100%
-        height 24px
-        margin-bottom 5px
-        > .button
-          display block
+        > .add
           width 100%
-          text-align center
-          > .icon
-            margin 0 auto
-            width 24px
-            height 24px
-            background $primaryColor
+          height 24px
+          margin-bottom 5px
+          > .button
+            display block
+            width 100%
+            text-align center
+            > .icon
+              margin 0 auto
+              width 24px
+              height 24px
+              background $primaryColor
 
       > .footer
         height 20px
