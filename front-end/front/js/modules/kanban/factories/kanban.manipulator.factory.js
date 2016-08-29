@@ -15,7 +15,7 @@ function KanbanManipulatorFactory() {
 
   function addTaskToSection (kanban, section, task) {
     angular.forEach(kanban.secoes, function (sec) {
-      if (sec._id === sec._id) {
+      if (sec._id === section._id) {
         sec.funcionalidades.push(task);
       }
     });
@@ -23,7 +23,7 @@ function KanbanManipulatorFactory() {
 
   function removeTaskFromSection(kanban, section, task) {
     angular.forEach(kanban.secoes, function (sec) {
-      if (sec.nome === section.nome) {
+      if (sec._id === section._id) {
         sec.funcionalidades.splice(sec.funcionalidades.indexOf(task), 1);
       }
     });

@@ -1,29 +1,40 @@
 div.funcionalidade-container(data-ng-controller='FuncionalidadeController')
   div.titulo
-    p Cadastro Funcionalidade
-  div.formulario
+    span Cadastro Funcionalidade
+
+  div.container
     form(name='formFuncionalidade')
-      div.inputcontainer
-        label.label(for='nome') Nome
-        input.input(type='text',
-                    name='nome',
-                    data-ng-model='novaFuncionalidade.titulo'
-                    required)
+      div.formulario
+        div.inputContainer
+          label.label(for='nome') Nome
+          input.input(type='text',
+                      name='nome',
+                      data-ng-model='novaFuncionalidade.titulo'
+                      required)
 
-      div.inputcontainer
-        label.label(for='editor') Especificação geral
-        textarea(type="text",
-                 name='descricao',
-                 data-ng-model='novaFuncionalidade.descricao')
+        div.inputContainer
+          label.label(for='editor') Especificação geral
+          textarea(type="text"
+                   name='descricao',
+                   data-ng-model='novaFuncionalidade.descricao')
 
-      div.botoes
-        button(data-ng-click='cadastrarFuncionalidade(novaFuncionalidade)') Salvar
-      div.anexos
-        p anexos
+        div.botoes
+          md-button.md-raised.md-primary(data-ng-click='cadastrarParaSecao(novaFuncionalidade)') Salvar
+        div.anexos
+          p anexos
 
-  div.opcoes
-    div.campo
-      label(for='selecaoModulo') Modulos
-      select(name='selecaoModulo')
-        option(value="Teste")
+      div.opcoes
+        div
+          md-input-container.md-block(flex-gt-sm='')
+            label Modulo
+            md-select(ng-model='novaFuncionalidade.modulo')
+              md-option(ng-repeat='modulo in modulosFiltro', ng-value='modulo')
+                | {{modulo.nome}}
+
+        div.opcoes
+          div.inputcontainer
+            label.label(for='selecaoModulo') Modulos
+            select(name='selecaoModulo'
+                  data-ng-options='modulo.nome for modulo in modulosFiltro',
+                  data-ng-model='novaFuncionalidade.modulo')
 

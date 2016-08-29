@@ -19,10 +19,13 @@
   server.use(restify.dateParser());
   server.use(restify.gzipResponse());
 
+  require('./modules/conta/conta.routes')(server);
   require('./modules/kanban/kanban.routes')(server);
   require('./modules/modulos/modulos.routes')(server);
   require('./modules/funcionalidade/funcionalidade.routes')(server);
   require('./modules/tarefa/tarefa.routes')(server);
+  require('./modules/tag/tag.routes')(server);
+  require('./modules/projeto/projeto.routes')(server);
 
   server.listen(config.port, function () {
     console.log('api server '+ config.address + ' (' + config.env + ') escutando na porta ' + config.port);

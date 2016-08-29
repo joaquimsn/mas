@@ -9,6 +9,7 @@ require('./modules/kanban/_index');
 require('./modules/modulo/_index');
 require('./modules/home/_index');
 require('./modules/login/_index');
+require('./modules/usuario/_index');
 
 require('angular-route');
 require('angular-animate');
@@ -28,6 +29,7 @@ var requires = [
   'agileTcc.Modulo',
   'agileTcc.Funcionalidade',
   'agileTcc.Login',
+  'agileTcc.Usuario',
   'ngRoute',
   'as.sortable',
   'ngSanitize',

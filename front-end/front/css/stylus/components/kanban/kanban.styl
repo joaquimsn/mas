@@ -1,15 +1,15 @@
 .filtros
-  padding 20px
+  padding 20px 20px 0 20px
 
 .boards
-  height calc(100% - 200px)
+  height calc(100% - 160px)
   padding 20px
   width 100%
   display flex
   overflow-y hidden
   overflow-x auto
 
-  > .sections
+  > .sections 
     display flex
     height 100%
     > .section
@@ -29,6 +29,11 @@
           width 90%
           padding-left 10%
           font-size pt(20px)
+        
+        > .changeTile
+          width: 90%
+          > input
+            color: $primaryTextColor
 
         > .acoes
           width 10%
@@ -49,6 +54,39 @@
           min-height 30px
           background $taskColor
           cursor move
+
+          > .content
+            div 
+              margin: 5px 0
+            > .titulo
+              font-size: pt(16px)
+              font-family "lato regular"
+
+            > .informacoes
+              font-size: pt(11px)
+              display: flex
+            
+            > .tags
+              display: flex
+              flex-wrap: wrap
+              justify-content: flex-start
+              .tag 
+                color: $textPrimaryColor
+                height: 20px
+                font-size pt(10px)
+                text-align: center
+                line-height: 20px
+                margin-right: 4px
+                margin-bottom: 4px
+                vertical-align: middle
+                background: #f00
+                border-radius: 4px
+                padding: 0px 5px
+            
+            > .usuarios
+              .list
+                display: flex
+                flex-direction: row-reverse
 
         > .add
           width 100%

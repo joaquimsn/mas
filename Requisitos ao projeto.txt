@@ -1,9 +1,6 @@
-Adicionar funcção remover kanban
 Adicionar mensagens customizadas
-Priorizar ordem do kanban
 Cores dos para agrupamento das tarefas
-refresh das acções de cadastros
-trocar nome
+
 
 
 

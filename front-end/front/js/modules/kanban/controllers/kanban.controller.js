@@ -2,13 +2,33 @@
 
 var controllersModule = require('./_index');
 
+function _acaoFuncionalidadeMovida(FuncionalidadeService, funcionalidade, mensagem) {
+  var acao = 'Movida';
+  var evento = {
+    acao : acao,
+    descricao: mensagem
+  };
+
+  FuncionalidadeService.registrarEvento(evento, funcionalidade);
+}
+
+function _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, mensagem) {
+  var acao = 'Prioridade alterada';
+  var evento = {
+    acao : acao,
+    descricao: mensagem
+  };
+  console.log(funcionalidade);
+  console.log(evento);
+  FuncionalidadeService.registrarEvento(evento, funcionalidade);
+}
+
 /**
  * @ngInject
  */
-function KanbanController($scope, KanbanService, ModuloService, ngDialog) {
+function KanbanController($scope, KanbanService, ModuloService, FuncionalidadeService, ngDialog, $mdDialog, orderByFilter) {
   $scope.novaSecao = {nome: ''};
   $scope.moduloFiltroSelecionado;
-  $scope.sectionSelecionada;
 
   function findModulosCb(promisse) {
     promisse.success(function (modulos) {
@@ -19,11 +39,9 @@ function KanbanController($scope, KanbanService, ModuloService, ngDialog) {
     });
   }
 
-  console.log("Kanban controller");
-
   function findKanbanCb(promisse) {
     promisse.success(function (kanban) {
-      console.log(kanban);
+      kanban.secoes = orderByFilter(kanban.secoes, 'ordem');
       $scope.kanban = kanban;
     });
     promisse.error(function (err) {
@@ -42,28 +60,65 @@ function KanbanController($scope, KanbanService, ModuloService, ngDialog) {
     });
   }
 
-  $scope.adicionarNovaSecao = function(kanban, secao) {
+  function adicionarNovaSecao(kanban, secao) {
+    secao.ordem = kanban.secoes.length;
     KanbanService.cadastrarSecao(cadastrarSecaoCb, kanban, secao);
+  }
+
+  $scope.adicionarNovaSecao = adicionarNovaSecao;
+
+  $scope.alterarSecao =  function(secao) {
+    secao.editarToggle = !secao.editarToggle;
+    KanbanService.alterarSecao(function(){}, secao, $scope.kanban);
   };
+
+  function ordernarSecoes(secoes, posicaoStartOrdenacao) {
+    var kanban = $scope.kanban;
+    for (var index = posicaoStartOrdenacao; index < secoes.length; index++) {
+      var secao = secoes[index];
+      console.log(secao);
+      secao.ordem = index;
+      KanbanService.alterarSecao(function(){}, secao, kanban);
+    }
+  }
 
   $scope.secoesSortOptions = {
     containment: '#kanaban-secoes',
     accept: function (sourceItemHandleScope, destSortableScope) {
-       console.log(sourceItemHandleScope);
+       //console.log(sourceItemHandleScope);
        //console.log(destSortableScope);
       return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
     },
     itemMoved: function (event) {
-      console.log("Secao movida");
+      // console.log("Secao movida");
       console.log(event);
       //event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent;
-      console.log(event.dest.sortableScope.$parent.section);
+
+      //console.log(event.dest.sortableScope.$parent.section);
     },
     orderChanged: function (event) {
       console.log("orderChange");
       console.log(event);
-    },
+      var secoes = event.dest.sortableScope.modelValue;
+      var novaPosicao = event.dest.index;
+      var antigaPosicao =  event.source.index;
+
+      if(novaPosicao < antigaPosicao) {
+        ordernarSecoes(secoes, novaPosicao);
+      } else {
+        ordernarSecoes(secoes, antigaPosicao);
+      }
+    }
   };
+
+  function ordernarFuncionalidades(funcionalidades, posicaoStartOrdenacao) {
+    for (var index = posicaoStartOrdenacao; index < funcionalidades.length; index++) {
+      var funcionalidade = funcionalidades[index];
+      console.log(funcionalidade);
+      funcionalidade.ordem = index;
+      FuncionalidadeService.alterar(function(){}, funcionalidade);
+    }
+  }
 
   $scope.funcionalidadeSortOptions = {
     itemMoved: function (event) {
@@ -78,10 +133,35 @@ function KanbanController($scope, KanbanService, ModuloService, ngDialog) {
       // Adiciona para a nova secao
       var secaoNova = event.dest.sortableScope.$parent.section;
       KanbanService.adicionarFuncionalidadeSecao(funcionalidade, $scope.kanban, secaoNova);
+
+      // Ordena a funcionalidades na nova secao
+      var funcionalidades = event.dest.sortableScope.modelValue;
+      var novaPosicao = event.dest.index;
+      ordernarFuncionalidades(funcionalidades, novaPosicao);
+
+      // Registro de evento para o historico
+      var mensagem = 'Funcionalidade movida da seção ' + secaoAnterior.nome  +
+          ' para ' + secaoNova.nome;
+      _acaoFuncionalidadeMovida(FuncionalidadeService, funcionalidade, mensagem);
     },
     orderChanged: function (event) {
       console.log("orderChange");
-      console.log(event);
+
+      var funcionalidades = event.dest.sortableScope.modelValue;
+      var novaPosicao = event.dest.index;
+      var antigaPosicao =  event.source.index;
+      
+      // registro evento de repriorização
+      var funcionalidade = event.source.itemScope.modelValue;
+      var mensagem = 'A prioridade foi alterada de ' + antigaPosicao + ' para ' + novaPosicao;
+
+      _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, mensagem);
+
+      if(novaPosicao < antigaPosicao) {
+        ordernarFuncionalidades(funcionalidades, novaPosicao);
+      } else {
+        ordernarFuncionalidades(funcionalidades, antigaPosicao);
+      }
     }
   };
 
@@ -89,30 +169,104 @@ function KanbanController($scope, KanbanService, ModuloService, ngDialog) {
     KanbanService.removeTask($scope.kanban, $scope.sectionSelecionada, task);
   };
 
-  $scope.addNewTask = function (task) {
+  function addNewTask(task) {
     console.log(task);
     KanbanService.addNewTask($scope.kanban, $scope.sectionSelecionada, task);
+  }
+
+  $scope.addNewTask = addNewTask;
+
+  $scope.orderBy = function(list, field) {
+    list = orderByFilter(list, field);
   };
 
-  $scope.removeSection = function(section) {
+  $scope.removeSection = function(section, event) {
     if(section.funcionalidades && section.funcionalidades.length === 0) {
       KanbanService.removeSection($scope.kanban, section);
     } else {
-      alert('Para remover uma seção é necessário, que ela esteja vazia');
+      $mdDialog.show(
+        $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#kanaban-secoes')))
+          .clickOutsideToClose(true)
+          .title('Atenção')
+          .textContent('Para excluir uma seção é necessário que ela esteja vazia.')
+          .ariaLabel('Dialog')
+          .ok('Ok!')
+          .targetEvent(event)
+      );
     }
-  }
+  };
 
   $scope.openModalTask = function(section) {
     $scope.sectionSelecionada = section;
     ngDialog.open({
       template: 'partials/kanban/funcionalidade',
       scope: $scope,
-      width: '60%'
+      width: '80%'
     });
   };
 
- KanbanService.findKanban(findKanbanCb);
- ModuloService.findModulos(findModulosCb);
+  $scope.abrirModalCadastroFuncionalidade = function(ev, sectionSelecionada) {
+    $mdDialog.show({
+      controller: 'FuncionalidadeCadastroController',
+      templateUrl: 'partials/kanban/funcionalidade',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      preserveScope: true,
+      scope: $scope,
+      locals: {section: sectionSelecionada}, 
+      fullscreen: true // Only for -xs, -sm breakpoints.
+    })
+    .then(function(retorno) {
+     // fallback
+    }, function() {
+      // Modal fechado
+    });
+  };
+
+  $scope.abrirModalEdicaoFuncionalidade = function(ev, funcionalidade) {
+    $mdDialog.show({
+      controller: 'FuncionalidadeEdicaoController',
+      templateUrl: 'partials/kanban/funcionalidade',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true,
+      preserveScope: true,
+      scope: $scope,
+      locals: {funcionalidade: funcionalidade}, 
+      fullscreen: true // Only for -xs, -sm breakpoints.
+    })
+    .then(function(retorno) {
+     // fallback
+    }, function() {
+      // Modal fechado
+    });
+  };
+
+  $scope.closeModalCadastroFuncionalidade =  function() {
+    $mdDialog.cancel();
+  };
+
+  $scope.abrirModalCadastroSecao = function(ev) {
+    var confirm = $mdDialog.prompt()
+      .title('Criar seção')
+      .textContent('Informe o nome para seção.')
+      .placeholder('Nome para seção')
+      .targetEvent(ev)
+      .ok('Criar')
+      .cancel('Cancelar');
+
+    $mdDialog.show(confirm).then(function(result) {
+      var secao = {nome: result};
+      adicionarNovaSecao($scope.kanban, secao);
+    }, function() {
+      // Lançar mensagem de cancelamento
+    });
+  };
+
+  KanbanService.findKanban(findKanbanCb);
+  ModuloService.findModulos(findModulosCb);
 }
 
 controllersModule.controller('KanbanController', KanbanController);

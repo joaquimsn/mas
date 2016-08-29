@@ -1,48 +1,69 @@
 div.page-header
       div.name Kanban - Modulo
-      div.options(data-ng-hide='true')
-        div.option Opção 1
-        div.option Opção 2
+      div.options()
+        div.option 
+          md-button.md-warn(ng-click="abrirModalCadastroSecao($event)") Nova seção
 
 div.filtros
-  div.filtro
-    label(for="ComboModulo") Modulo
-    select(type="select", id="ComboModulo"
-           data-ng-options='modulo.nome for modulo in modulosFiltro'
-           data-ng-model='moduloFiltroSelecionado')
-
+  div.filtro(layout-gt-sm="row")
+    md-input-container.md-block(flex-gt-sm='40')
+      label Modulo
+      md-select(ng-model='moduloFiltroSelecionado')
+        md-option(ng-repeat='modulo in modulosFiltro', ng-value='modulo')
+          | {{modulo.nome}}
+        
 div.boards(data-ng-model='kanban')
   div.sections(id="kanaban-secoes",
                data-as-sortable="secoesSortOptions",
                data-ng-model='kanban.secoes')
-    div.section(data-ng-repeat='section in kanban.secoes',
+    div.section(data-ng-repeat="section in kanban.secoes",
                 data-as-sortable-item,
                 is-disabled='false')
       div.header(data-as-sortable-item-handle)
-        div.title(data-ng-bind='section.nome')
+        div.title(data-ng-bind='section.nome' data-ng-click='section.editarToggle = !section.editarToggle' data-ng-hide='section.editarToggle')
+        div.changeTile(data-ng-show='section.editarToggle')
+          input(type='text' data-ng-model='section.nome' jsn-out="alterarSecao(section)")
         div.acoes
-          a(data-ng-click='removeSection(section)') &times
+          a(data-ng-click='removeSection(section, $event)') &times
 
       ul.tasks(data-as-sortable="funcionalidadeSortOptions",
                data-ng-model='section.funcionalidades')
         li.task(data-ng-repeat='task in section.funcionalidades',
                 data-as-sortable-item,
-                data-as-sortable-item-handle)
-          div
-            div(data-ng-bind='task.titulo')
+                data-ng-click='abrirModalEdicaoFuncionalidade($event, task)')
+          div.content(data-as-sortable-item-handle)
+            div.titulo
+              span(data-ng-bind='task.titulo')
+            div.informacoes
+              span 23/04/2016
+              span 24/05/2016
+            div.tags
+              span.tag Importante
+              span.tag Outra
+              span.tag Outra
+              span.tag Outra
+              span.tag Outra
+              span.tag Outra
+              
+            div.usuarios
+              ul.list
+                li.usuario 
+                  i.material-icons.md-36 account_box
+                li.usuario 
+                  i.material-icons.md-36 account_box
+
 
         div.add
-          a.button(data-ng-click='openModalTask(section)')
+          a.button(data-ng-click='abrirModalCadastroFuncionalidade($event, section)')
             svg.icon(viewBox='0 0 48 48')
                 use(xlink:href='/build/images/default/layout/icons.svg#icon-add')
       div.footer
 
-    div.container-formsecao
+    div.container-formsecao(ng-hide='true')
       h3 Cadastrar seção
       button(data-ng-click="toggleNovaSecao = !toggleNovaSecao") Nova
       div.formsecao(data-ng-show='toggleNovaSecao')
         div.inputcontainer
-          label.label(for='nomeSecao') Nome
-          input(type='text', id='nomeSecao',
+          input(type='text',
                 data-ng-model='novaSecao.nome'
                 data-jsn-enter='adicionarNovaSecao(kanban, novaSecao)')

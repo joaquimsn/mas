@@ -5,7 +5,11 @@ module.exports = {
   titulo:           {type: String, required: true, min: 3, max: 200},
   descricao:        {type: String, default: ''},
   severidade:       {type: Number, default: ''},
+  ordem:            {type: Number, default: 0},
   tags:             [{type: String}],
+  dataInicio:       {type: Date, default: Date.now},
+  dataFim:          {type: Date, default: Date.now},
+  duracao:          {type: Number},
   responsaveis:     [
     {
       nome:   {type: String, default: ''},
@@ -15,9 +19,10 @@ module.exports = {
   ],
   historicos:       [
     {
-      acao:     {type: String, required: true, default: ''},
-      data:     {type: Date, default: Date.now},
-      usuario:  {tyepe: Schema.Types.ObjectId}
+      acao:      {type: String, required: true, default: ''},
+      descricao: {type: String},
+      data:      {type: Date, default: Date.now},
+      usuario:   {tyepe: Schema.Types.ObjectId}
     }
   ],
   tarefas: [

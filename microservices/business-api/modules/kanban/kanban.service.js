@@ -1,6 +1,7 @@
 (function () {
   'use strict';
   var Kanban    = require('./kanban.model');
+  var kanbanUtil = require('./kanban.util');
 
   function cadastrarKanban(req, res) {
     var model = new Kanban(req.body);
@@ -189,6 +190,10 @@
       console.log("consultando kanban");
 
       if(kanban.length > 0) {
+        for (var index = 0; index < kanban[0].secoes.length; index++) {
+          var secao = kanban[0].secoes[index];
+          kanban[0].secoes[index].funcionalidades = secao.funcionalidades.sort(kanbanUtil.compararOrdem); 
+        }
         res.json(kanban[0]);
       } else {
         res.json('[]');

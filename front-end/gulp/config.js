@@ -8,7 +8,7 @@ module.exports = {
 
   'watch': {
     'scripts' : ['front/js/modules/*.js', 'front/js/moules/**/*.js'],
-    'styles' : ['front/css/stylus/*.styl', 'front/css/stylus/**/**/*.styl', 'front/css/dist/*.css'],
+    'styles' : ['front/css/stylus/*.styl', 'front/css/stylus/**/**/*.styl'],
     'image' : ['front/image/**/**/*'],
     'views' : ['back/modules/**/views/*.jade', 'back/modules/**/views/partials/*.jade']
   },

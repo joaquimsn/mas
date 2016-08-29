@@ -1,33 +1,87 @@
-div.funcionalidade-container(data-ng-controller='FuncionalidadeController')
-  div.titulo
-    span Cadastro Funcionalidade
+md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
+  md-toolbar.md-toolbar-tools
+    h2 Funcionalidade
+    md-button.md-icon-button(ng-click='closeModalCadastroFuncionalidade()')
+      md-icon &times
 
-  div.container
-    form(name='formFuncionalidade')
-      div.formulario
-        div.inputcontainer
-          label.label(for='nome') Nome
-          input.input(type='text',
-                      name='nome',
-                      data-ng-model='novaFuncionalidade.titulo'
-                      required)
+  md-dialog-content(layout='row')
+    div.funcionalidade
+      div.container
+        form(name='formFuncionalidade')
+          div.formulario
+            div.inputContainer
+              label.label(for='nome') Nome
+              input.input(type='text',
+                          name='nome',
+                          data-ng-model='novaFuncionalidade.titulo'
+                          required)
 
-        div.inputcontainer
-          label.label(for='editor') Especificação geral
-          textarea(type="text"
-                   name='descricao',
-                   data-ng-model='novaFuncionalidade.descricao')
+            div.inputContainer
+              label.label(for='editor') Especificação geral
+              textarea(type="text"
+                      name='descricao',
+                      data-ng-model='novaFuncionalidade.descricao')
 
-        div.botoes
-          button(data-ng-click='cadastrarParaSecao(novaFuncionalidade)') Salvar
+            div.botoes
+            
+            div.anexos
 
-        div.anexos
-          p anexos
+            div.comentarios(ng-show='edicao')
+              div.header
+                i.material-icons.md-24 speaker_notes
+                span Comentário
+              div.inputContainer
+                textarea(type="text"
+                        rows='5'
+                        data-ng-model='comentario')
+              div.botoes
+                md-button.md-raised.md-primary(data-ng-click='adicionarComentario(comentario, novaFuncionalidade)') Salvar
+            
+            div.historico(ng-show='edicao')
+              div.header
+                i.material-icons.md-24 subject 
+                span Historico
+              ul.list
+                li.item(data-ng-repeat='historico in ::historicos track by $index')
+                  div.acao
+                    span(data-ng-bind='historico.acao')
+                  div.descricao(data-ng-bind='historico.descricao')
+                  div.data
+                    span {{(historico.data | date:'dd/MM/yyyy')}}
+                  div.divider
+             
 
-      div.opcoes
-        div.inputcontainer
-          label.label(for='selecaoModulo') Modulos
-          select(name='selecaoModulo'
-                 data-ng-options='modulo.nome for modulo in modulosFiltro',
-                 data-ng-model='novaFuncionalidade.modulo')
 
+          div.opcoes
+            div
+            md-input-container.data(flex-gt-sm='')
+              label Data início
+              md-datepicker(ng-model='novaFuncionalidade.dataInicio')
+            
+            md-input-container.data(flex-gt-sm='')
+              label Data fim
+              md-datepicker(ng-model='novaFuncionalidade.dataFim')
+
+            md-input-container.md-block.left15(flex-gt-sm='')
+              label Modulo 
+              md-select(ng-model='novaFuncionalidade.modulo')
+                md-option(ng-repeat='modulo in modulosFiltro', ng-value='{{modulo}}')
+                  | {{modulo.nome}}
+            
+            md-content.md-padding.autocomplete.usuarioChip(layout='column', ng-controller='UsuarioSearchController')
+              md-contact-chips(ng-model='usuarios', 
+                               md-contacts='querySearch($query)', 
+                               md-contact-name='nome', 
+                               md-contact-image='imagem', 
+                               md-require-match='true',
+                               filter-selected='true',
+                               placeholder='Adicione um usuário',
+                               secondary-placeholder='Adicionar usuário')
+
+
+
+            
+  md-dialog-actions(layout='row')
+    md-button(ng-click="closeModalCadastroFuncionalidade()")
+      | Cancelar
+    md-button.md-primary(data-ng-click='cadastrarParaSecao(novaFuncionalidade) && closeModalCadastroFuncionalidade()') Salvar

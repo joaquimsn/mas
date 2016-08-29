@@ -9,5 +9,6 @@ var server = app.listen(app.get('port'), function() {
 });
 
 process.on('SIGTERM',  function (err) {
+  console.log(err);
   process.exit(1);
 });

@@ -23,7 +23,7 @@ function KanbanService(requestApiService, KanbanManipulatorFactory) {
   this.removeSection = function(kanban, section) {
     function callback(promise) {
       promise.success(function (funcionalidade) {
-        console.log("Funcionalidade removida da base");
+        console.log("Seção removida da base");
       });
       promise.error(function (err) {
         console.error(err);
@@ -42,6 +42,10 @@ function KanbanService(requestApiService, KanbanManipulatorFactory) {
     requestApiService.post(callback, section, '/kanban/'+ kanban._id +'/secoes');
   };
 
+  this.alterarSecao = function(callback, secao, kanban) {
+    requestApiService.putNo(callback, secao, '/kanban/'+ kanban._id +'/secoes/' + secao._id);
+  };
+
   this.removerFuncionalidadeSecao = function(funcionalidade, kanban, secao) {
     function cb(promise) {
       promise.success(function (funcionalidade) {
@@ -56,7 +60,7 @@ function KanbanService(requestApiService, KanbanManipulatorFactory) {
     var idSecao = secao._id;
     requestApiService.del(cb, '/kanban/' + idKanban + '/secoes/' + idSecao
       +'/funcionalidades/' + funcionalidade._id);
-  }
+  };
 
   this.adicionarFuncionalidadeSecao = function(funcionalidade, kanban, secao) {
     function cb(promise) {

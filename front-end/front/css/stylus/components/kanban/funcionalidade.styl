@@ -1,67 +1,121 @@
-.funcionalidade-container
-  width 100%
+.funcionalidade-dialog
+  width: 100%
 
-  > .titulo
-    height 30px
+  .funcionalidade
+    width 100%
+    padding 0 20px
 
-  > .container
-    font-family 'lato light'
+    > .titulo
+      height 30px
 
-    > form
-      display flex
-
-    > form .formulario
+    > .container
       width 100%
+      font-family 'lato light'
 
-      > .inputcontainer
-        margin 15px 0
-        > .label
-          display block
+      > form
+        display flex
 
-        > .input
-          width calc(100% - 30px)
+      > form .formulario
+        width 75%
+
+        .inputContainer
+          margin 15px 0
+          > .label
+            display block
+            margin-bottom 10px
+
+          > .input
+            width calc(100% - 30px)
+            height 30px
+            font-size pt(12px)
+            color $primaryTextColor
+            padding 5px
+
+          > textarea
+            width calc(100% - 30px)
+            font-size pt(12px)
+            color $primaryTextColor
+            padding 5px
+
+          > .message-container
+            color $messageError
+        
+        > .comentarios
+          margin-top: 40px
+          > .header
+            font-size: pt(24)px
+            height: 30px  
+            > i
+              vertical-align: middle
+              line-height: 30px
+              color: #512DA8
+            > span 
+              vertical-align: middle
+              line-height: 30px
+          > .botoes
+            display: flex
+            flex-direction: row-reverse
+            padding: 0 20px
+
+        > .historico
+          > .header
+            font-size: pt(24)px
+            height: 30px  
+            > i
+              vertical-align: middle
+              line-height: 30px
+              color: #512DA8
+            > span 
+              vertical-align: middle
+              line-height: 30px
+          
+          > .list
+            margin: 10px 0
+            padding: 10px
+            > .item
+              div 
+                margin: 4px 0
+              > .acao
+                font-family: 'lato regular'
+              > .descricao
+                font-size pt(12px)
+              > .data
+                font-size pt(10px)
+              > .divider
+                margin: 10px 20px 10px 0 
+                border-bottom: 1px solid $dividerColor
+          
+           
+            
+
+      > form .opcoes
+        width 25%
+        border-left 1px  solid $dividerColor
+        
+        > .data
           height 30px
-          font-size pt(16px)
-          color #111
-          padding 5px
 
-        > textarea
-          width calc(100% - 30px)
-          font-size pt(16px)
-          color #111
-          padding 5px
+        > .left15
+          margin-left: 15px
 
-        > .message-container
-          color $messageError
+        > .inputContainer
+          margin 15px 0
+          > .label
+            display block
 
-      > .botoes
-        margin 20px 0
-        > .botaoCadastrar
-          width 150px
-          height 45px
-          border none
-          background $darkAccentColor
-          cursor pointer
-          font-size pt(18px)
-          color $textPrimaryColor
+          > .input
+            width calc(100% - 30px)
+            height 30px
+            font-size pt(16px)
+            color #111
+            padding 5px
 
-        > .botao_desabilitado
-          cursor auto
-          background #BBB
-
-    > form .opcoes
-      width 25%
-      > .inputcontainer
-        margin 15px 0
-        > .label
-          display block
-
-        > .input
-          width calc(100% - 30px)
-          height 30px
-          font-size pt(16px)
-          color #111
-          padding 5px
-
-        > select
-          width 100%
+          > select
+            width 100%
+        
+        .usuarioChip
+          md-content
+            &.autocomplete
+              min-height 250px
+              input
+                min-width 400px

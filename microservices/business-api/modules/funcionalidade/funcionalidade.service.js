@@ -93,13 +93,13 @@
       res.json(error);
     });
   }
-
+  
   function adicionarHistorico(req, res) {
     var promisse = Funcionalidades.findByIdAndUpdate(
     {
       _id: req.params.idFuncionalidade
     }, {
-      $push: {historicos: req.body}
+      $push: {'historicos': req.body}
     },
     {
       upsert: true,
@@ -107,9 +107,9 @@
     }
     ).exec();
 
-    promisse.then(function(kanban) {
+    promisse.then(function(funcionalidade) {
       console.log("Historico adicionado com sucesso");
-      res.json(kanban);
+      res.json(funcionalidade);
     });
 
     promisse.then(null, function (error) {
@@ -132,9 +132,9 @@
     }
     ).exec();
 
-    promisse.then(function(kanban) {
+    promisse.then(function(funcionalidade) {
       console.log("Comentario adicionado com sucesso");
-      res.json(kanban);
+      res.json(funcionalidade);
     });
 
     promisse.then(null, function (error) {
@@ -157,9 +157,9 @@
     }
     ).exec();
 
-    promisse.then(function(kanban) {
+    promisse.then(function(funcionalidade) {
       console.log("Tarefa adicionada com sucesso");
-      res.json(kanban);
+      res.json(funcionalidade);
     });
 
     promisse.then(null, function (error) {
