@@ -40,7 +40,33 @@
     });
 
     promisse.then(null, function (error) {
-      console.log("Erro ao buscarTodos: " + error)
+      console.log("Erro ao buscarTodos: ", error)
+      res.status(500);
+      res.json(error);
+    });
+  }
+
+  function adicionarProjeto(req, res) {
+    var promisse = Conta.update(
+    {
+      _id: req.params.idConta
+    }, {
+      $push: {'projetos': req.body._id}
+    },
+    {
+      upsert: true,
+      safe: true,
+      new:true
+    }
+    ).exec();
+
+    promisse.then(function(conta) {
+      console.log("Projeto adicionado na conta com sucesso");
+      res.json(conta);
+    });
+
+    promisse.then(null, function (error) {
+      console.error("Erro ao adicionarProjeto na conta", error);
       res.status(500);
       res.json(error);
     });
@@ -53,7 +79,7 @@
       res.json(modulo);
     });
     promisse.then(null, function (error) {
-      console.log("Erro ao buscarPorId: " + error);
+      console.log("Erro ao buscarPorId: ", error);
       res.status(500);
       res.json(error);
     });
@@ -72,14 +98,14 @@
     });
 
     promisse.then(null, function (error) {
-       console.log("Erro ao cadastrar modulo: " + error);
+       console.log("Erro ao cadastrar modulo: ", error);
       res.status(500);
       res.json(error);
     });
   }
 
   function alterar(req, res) {
-    var query = {_id: req.params.id};
+    var query = {_id: req.params.idConta};
     var model = req.body;
     delete model._id;
 
@@ -89,7 +115,7 @@
       res.json(modulo);
     });
     promisse.then(null, function (error) {
-      console.log("Erro ao alterar o modulo: " + error);
+      console.log("Erro ao alterar o modulo: ", error);
       res.json(error);
     });
   }
@@ -97,6 +123,7 @@
   var service = {
     cadastrar: cadastrar,
     alterar: alterar,
+    adicionarProjeto: adicionarProjeto,
     buscarTodos: buscarTodos,
     buscarPorId: buscarPorId,
     login: login

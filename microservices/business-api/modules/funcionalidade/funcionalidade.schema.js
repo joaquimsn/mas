@@ -46,6 +46,7 @@ module.exports = {
     }
   ],
   dataCadastro:       {type: Date, default: Date.now},
+  kanban: {type: Schema.Types.ObjectId, ref: 'Kanbans'},
   status:             {
     codigo : {type: Number},
     display: {type: String}

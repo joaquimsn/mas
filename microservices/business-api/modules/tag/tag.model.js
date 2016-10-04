@@ -1,8 +1,8 @@
 'use strict';
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema,
-    moduloSchema = require('./tag.schema');
+    tagSchema = require('./tag.schema');
 
-var Tag = new Schema(moduloSchema);
+var Tag = new Schema(tagSchema);
 
 module.exports = mongoose.model('Tag', Tag);

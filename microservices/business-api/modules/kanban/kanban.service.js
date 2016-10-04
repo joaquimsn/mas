@@ -13,7 +13,7 @@
     });
 
     promisse.then(null, function (error) {
-      console.log("Falha ao cadastrar o kanban" + error);
+      console.log("Falha ao cadastrar o kanban", error);
       res.status(500);
       res.json(error);
     });
@@ -42,7 +42,7 @@
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao adicionarSecao" + error);
+      console.error("Erro ao adicionarSecao", error);
       res.status(500);
       res.json(error);
     });
@@ -68,7 +68,7 @@
       res.json(kanban);
     });
     promisse.then(null, function (error) {
-      console.error("Erro ao alterar a secao: " + error);
+      console.error("Erro ao alterar a secao: ", error);
       res.json(error);
     });
   }
@@ -89,7 +89,7 @@
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao removerSecao" + error);
+      console.error("Erro ao removerSecao", error);
       res.status(500);
       res.json(error);
     });
@@ -115,7 +115,7 @@
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao adicionarFuncionalidadeSecao" + error);
+      console.error("Erro ao adicionarFuncionalidadeSecao", error);
       res.status(500);
       res.json(error);
     });
@@ -141,7 +141,7 @@
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao removerFuncionalidadeSecao" + error);
+      console.error("Erro ao removerFuncionalidadeSecao", error);
       res.status(500);
       res.json(error);
     });
@@ -157,7 +157,7 @@
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao buscarTodos: " + error);
+      console.error("Erro ao buscarTodos: ", error);
       res.status(500);
       res.json(error);
     });

@@ -6,7 +6,9 @@ module.exports = function (server) {
   server.get('/contas/:id', controller.buscarPorId);
 
   server.post('/contas', controller.cadastrar);
-  server.put('/contas/:id', controller.alterar);
+  server.put('/contas/:idConta', controller.alterar);
+
+  server.put('/contas/:idConta/projetos', controller.adicionarProjeto);
 
   server.post('/contas/autorizacao', controller.requestToken);
 };
