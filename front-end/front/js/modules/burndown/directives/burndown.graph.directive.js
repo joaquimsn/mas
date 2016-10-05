@@ -2,7 +2,7 @@
 
 var servicesModule = require('./_index');
 
-function Controller() {
+function controller() {
   this.buscarUsuarioDisponivelParaProjeto = function(cb) {
     
     cb({});
@@ -13,15 +13,23 @@ function Controller() {
  * @ngInject
  */
 function chartBurndown() {
-  $(function(){
+  return {
+    restrict: 'E',
+    templateUrl: 'partials/main/burndown',
+    scope: {
+    },
+    controller: controller,
+    link: function (scope, element) {
+			  initChart();
+    }
+  };
+}
 
-    initChart();
-
-});
+  
 
 function initChart() {
   
-	var lineDataActual = [{
+var lineDataActual = [{
 		'x': 0,
 		'y': 200
 	}, {
@@ -41,7 +49,7 @@ function initChart() {
 		'y': 30
 	}];
 
-	var svg = d3.select("#visualisation"),
+	var svg = d3.select("#burndownChart"),
 		width = 1000,
 		height = 500,
 		margins = {
@@ -86,14 +94,14 @@ function initChart() {
 		return d3.svg.axis()
 			.scale(xRange)
 			 .orient("bottom")
-			.tickSubdivide(true)
+			.tickSubdivide(true);
 	}
 	
 	function make_y_axis() {        
 		return d3.svg.axis()
 			.scale(yRange)
 			.orient("left")
-			.tickSubdivide(true)
+			.tickSubdivide(true);
 	}
 	
 	
@@ -103,7 +111,7 @@ function initChart() {
         .call(make_x_axis()
             .tickSize((-height) + (margins.top + margins.bottom), 0, 0)
             .tickFormat("")
-        )
+        );
 
     svg.append("g")         
         .attr("class", "grid")
@@ -166,7 +174,6 @@ function initChart() {
 		.attr("dy", ".75em")
 		.attr("transform", "rotate(-90)")
 		.text("Pontos");
-}
 }
 
 servicesModule.directive('chartBurndown', chartBurndown);

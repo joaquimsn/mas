@@ -1,0 +1,58 @@
+include ./../main/header
+
+    tr
+        td#templateUpperBody(valign='top')
+            table.mcnTextBlock(border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+              tbody.mcnTextBlockOuter
+                tr
+                  td.mcnTextBlockInner(valign='top')
+                    table.mcnTextContentContainer(align='left', border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+                      tr
+                        td.mcnTextContent(valign='top', style='padding: 9px 18px;color: #776F6F;font-size: 28px;text-align: center') Atualiza&ccedil;&atilde;o
+        tr
+          td#templateColumns(valign='top')
+            //if gte mso 9
+              table(align='center', border='0', cellspacing='0', cellpadding='0', width='600', style='width:600px;')
+                tr
+                  td(align='center', valign='top', width='200', style='width:200px;')
+            table.columnWrapper(align='left', border='0', cellpadding='0', cellspacing='0', width='200')
+              tr
+                td.columnContainer(valign='top')
+            //if gte mso 9
+              td(align='center', valign='top', width='200', style='width:200px;')
+            table.columnWrapper(align='left', border='0', cellpadding='0', cellspacing='0', width='200')
+              tr
+                td.columnContainer(valign='top')
+            //if gte mso 9
+              td(align='center', valign='top', width='200', style='width:200px;')
+            table.columnWrapper(align='left', border='0', cellpadding='0', cellspacing='0', width='200')
+              tr
+                td.columnContainer(valign='top')
+            //if gte mso 9
+        tr
+          td#templateLowerBody(valign='top')
+            table.mcnTextBlock(border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+              tbody.mcnTextBlockOuter
+                tr
+                  td.mcnTextBlockInner(valign='top')
+                    table.mcnTextContentContainer(align='left', border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+                      tr
+                        td.mcnTextContent(valign='top', style='padding: 9px 18px; text-align: left')
+                          | Ol&aacute;, #{name}
+                          br
+                          br
+                          | Seus dados cadastrais foram atualizados com sucesso, caso n&atilde;o tenha feito essa altera&ccedil;&atilde;o entre em contato conosco pelo email contato@teste.com.br&nbsp;
+                          br
+            table.mcnTextBlock(border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+              tbody.mcnTextBlockOuter
+                tr
+                  td.mcnTextBlockInner(valign='top')
+                    table.mcnTextContentContainer(align='left', border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+                      tr
+                        td.mcnTextContent(valign='top', style='padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px')
+                          em Atenciosamente,
+                          br
+                          | Equipe MAS
+
+
+    include ./../main/footer

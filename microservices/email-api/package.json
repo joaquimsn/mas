@@ -1,0 +1,26 @@
+{
+  "name": "email-api",
+  "version": "0.0.1",
+  "description": "Microservice for email delivery",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index",
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+  },
+  "keywords": [
+    "email",
+    "microservice"
+  ],
+  "author": "Joaquim Neto",
+  "license": "ISC",
+  "dependencies": {
+    "email-templates": "^2.4.1",
+    "jade": "^1.11.0",
+    "nodemailer": "^2.5.0",
+    "restify": "^4.0.4",
+    "stylus": "^0.54.2"
+  }
+}

@@ -1,0 +1,88 @@
+include ./../main/header
+
+    tr
+        td#templateUpperBody(valign='top')
+            table.mcnTextBlock(border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+              tbody.mcnTextBlockOuter
+                tr
+                  td.mcnTextBlockInner(valign='top')
+                    table.mcnTextContentContainer(align='left', border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+                      tr
+                        td.mcnTextContent(valign='top', style='padding:9px 18px;color:#776F6F;font-size:28px;text-align:center') Altera&ccedil;&atilde;o de senha
+        tr
+          td#templateColumns(valign='top')
+            //if gte mso 9
+              table(align='center', border='0', cellspacing='0', cellpadding='0', width='600', style='width:600px;')
+                tr
+                  td(align='center', valign='top', width='200', style='width:200px;')
+            table.columnWrapper(align='left', border='0', cellpadding='0', cellspacing='0', width='200')
+              tr
+                td.columnContainer(valign='top')
+            //if gte mso 9
+              td(align='center', valign='top', width='200', style='width:200px;')
+            table.columnWrapper(align='left', border='0', cellpadding='0', cellspacing='0', width='200')
+              tr
+                td.columnContainer(valign='top')
+            //if gte mso 9
+              td(align='center', valign='top', width='200', style='width:200px;')
+            table.columnWrapper(align='left', border='0', cellpadding='0', cellspacing='0', width='200')
+              tr
+                td.columnContainer(valign='top')
+            //if gte mso 9
+        tr
+          td#templateLowerBody(valign='top')
+            table.mcnTextBlock(border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+              tbody.mcnTextBlockOuter
+                tr
+                  td.mcnTextBlockInner(valign='top')
+                    table.mcnTextContentContainer(align='left', border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+                      tr
+                        td.mcnTextContent(valign='top', style='padding:9px 18px;text-align:center')
+                          | Ol&aacute;, #{name}
+                          br
+                          br
+                          | Clique no bot&atilde;o abaixo para alterar a sua&nbsp;senha,
+                          br
+            table.mcnButtonBlock(border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+              tbody.mcnButtonBlockOuter
+                tr
+                  td.mcnButtonBlockInner(style='padding-top:0;padding-right:18px;padding-bottom:18px;padding-left:18px', valign='top', align='center')
+                    table.mcnButtonContentContainer(border='0', cellpadding='0', cellspacing='0', style='border-collapse:separate!important;border:2px solid #923600;border-radius:3px;background-color:#FFF')
+                      tr
+                        td.mcnButtonContent(align='center', valign='middle', style='font-family:Arial;font-size:16px;padding:20px')
+                          a.mcnButton(title='Clique aqui para alterar a senha', href='#{url}', target='_blank', style='font-weight:700;letter-spacing:normal;line-height:100%;text-align:center;text-decoration:none;color:#9B3A00') Redefina sua senha
+            table.mcnTextBlock(border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+              tbody.mcnTextBlockOuter
+                tr
+                  td.mcnTextBlockInner(valign='top')
+                    table.mcnTextContentContainer(align='left', border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+                      tr
+                        td.mcnTextContent(valign='top', style='padding:9px 18px;text-align:center')
+                          | Essa solicita&ccedil;&atilde;o &eacute;
+                          strong &nbsp;v&aacute;lida por 2 horas
+                          | , caso o bot&atilde;o
+                          br
+                          | n&atilde;o funcione copie e cole esse link #{url} no seu navegador.
+            table.mcnTextBlock(border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+              tbody.mcnTextBlockOuter
+                tr
+                  td.mcnTextBlockInner(valign='top')
+                    table.mcnTextContentContainer(align='left', border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+                      tr
+                        td.mcnTextContent(valign='top', style='padding-top:9px;padding-right:18px;padding-bottom:9px;padding-left:18px')
+                          p
+                            br
+                            | Se voc&ecirc; n&atilde;o solicitou a redefini&ccedil;&atilde;o de&nbsp;senha&nbsp;ou se acredita que recebeu esta mensagem por engano, entre em contato com nossa equipe de Suporte agora mesmo pelo email suporte@teste.com.br. Se voc&ecirc; n&atilde;o tomar nenhuma medida, n&atilde;o se preocupe. Ningu&eacute;m poder&aacute; alterar sua&nbsp;senha&nbsp;se n&atilde;o tiver acesso a este email.
+            table.mcnTextBlock(border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+              tbody.mcnTextBlockOuter
+                tr
+                  td.mcnTextBlockInner(valign='top')
+                    table.mcnTextContentContainer(align='left', border='0', cellpadding='0', cellspacing='0', width='100%', style='min-width:100%')
+                      tr
+                        td.mcnTextContent(valign='top', style='padding-top:9px;padding-right:18px;padding-bottom:9px;padding-left:18px')
+                          em Atenciosamente,
+                          br
+                          | Equipe MAS
+
+
+    include ./../main/footer
