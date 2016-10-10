@@ -10,30 +10,56 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.home, {
       templateUrl: 'expose/home/home',
-      controller: 'HomeController'
     }).
-    when(SystemUriConfig.kanban, {
+    when(SystemUriConfig.projeto, {
+      templateUrl: 'expose/projeto/projeto',
+    }).
+    when(SystemUriConfig.projetoCadastro, {
+      templateUrl: 'expose/projeto/projeto-formulario',
+    }).
+    when(SystemUriConfig.projetoAlteracao, {
+      templateUrl: 'expose/projeto/projeto-formulario',
+    }).
+    when(SystemUriConfig.equipe, {
+      templateUrl: 'expose/equipe/equipe',
+    }).
+    when(SystemUriConfig.configuracao, {
+      templateUrl: 'expose/configuracao/configuracao',
+    }).
+    when(SystemUriConfig.gestaoProjetoDashboard, {
+      templateUrl: 'expose/dashboard/dashboard',
+    }).
+    when(SystemUriConfig.gestaoProjetoKanbanModulo, {
       templateUrl: 'expose/kanban/kanban-modulo',
       controller: 'KanbanController'
     }).
-    when(SystemUriConfig.funcionalidade, {
-      templateUrl: 'expose/funcionalidade/funcionalidade',
-      controller: 'FuncionalidadeController'
-    }).
-    when(SystemUriConfig.funcionalidadeVisualizacao, {
-      templateUrl: 'expose/funcionalidade/funcionalidade'
-    }).
-    when(SystemUriConfig.modulo, {
+    // when(SystemUriConfig.funcionalidade, {
+    //   templateUrl: 'expose/funcionalidade/funcionalidade',
+    //   controller: 'FuncionalidadeController'
+    // }).
+    // when(SystemUriConfig.funcionalidadeVisualizacao, {
+    //   templateUrl: 'expose/funcionalidade/funcionalidade'
+    // }).
+    when(SystemUriConfig.gestaoProjetoModulo, {
       templateUrl: 'expose/modulo/modulo',
       controller: 'ModuloController'
     }).
-    when(SystemUriConfig.moduloCadastro, {
+    when(SystemUriConfig.gestaoProjetoModuloCadastro, {
       templateUrl: 'expose/modulo/modulo-formulario',
       controller: 'ModuloCadastroController'
     }).
-    when(SystemUriConfig.moduloAlteracao, {
+    when(SystemUriConfig.gestaoProjetoModuloAlteracao, {
       templateUrl: 'expose/modulo/modulo-formulario',
       controller: 'ModuloAlteracaoController'
+    }).
+    when(SystemUriConfig.gestaoProjetoTag, {
+      templateUrl: 'expose/tag/tag',
+    }).
+    when(SystemUriConfig.gestaoProjetoTagCadastro, {
+      templateUrl: 'expose/tag/tag-formulario',
+    }).
+    when(SystemUriConfig.gestaoProjetoTagAlteracao, {
+      templateUrl: 'expose/tag/tag-formulario',
     }).
     when(SystemUriConfig.notFound, {
       templateUrl: 'expose/main/404'

@@ -21,17 +21,40 @@
   > .hearder
     height 32px
     display flex
+    width: calc(100% - 48px);
+    align-content: space-between
     margin-top 9px
     > .logo
+      width: 50%
       margin-right 40px
       > .link
         display block
-          > .image
-            width 90px
+        > .image
+          width: 90px
+          height: 32px
 
     > .search
       margin-top 4px
+      width: 40%;
       > .input
         width 100px
         @media(min-width: em(800px))
           width 300px
+    
+    > .user
+      width: 50%
+      color $textPrimaryColor
+      display: flex
+      flex-direction: row-reverse
+      > .userdata 
+        text-align: end
+        height: 32px
+        margin-right: 20px
+        line-height: 32px
+        vertical-align: middle
+
+        > .sair 
+          font-size: pt(12px)
+          margin-left: 10px
+          background: none
+          border: none

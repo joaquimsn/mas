@@ -1,3 +1,17 @@
+Fazer layout login
+Cadastro usuario
+Cadastro por email e envio da senha via email
+Criar projeto e gerar kanban
+Criar modolo e gerar kanban
+Tag
+Equipe
+Lista os membros das equipe nas funcionalidadea
+
+
+
+
+
+
 Adicionar mensagens customizadas
 Cores dos para agrupamento das tarefas
 

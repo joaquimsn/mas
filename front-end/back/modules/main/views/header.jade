@@ -18,8 +18,9 @@ div(data-ng-controller="HeaderController", ng-cloak)
 
         input.input(type="select")
 
-      div.user
-        div.notification
+      div.user(data-ng-controller='UsuarioSessaoController as mv')
         div.userdata
+          span(data-ng-bind='::mv.usuarioLogado.nome')
+          button.sair(data-ng-click='mv.sair()') Sair
 
   include menu

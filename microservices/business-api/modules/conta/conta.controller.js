@@ -22,6 +22,10 @@
     Service.buscarPorId(req, res);
   }
 
+  function buscarProjetos(req, res) {
+    Service.buscarProjetos(req, res);
+  }
+
   function requestToken(req, res) {
     Service.login(req, res);
   }
@@ -32,6 +36,7 @@
     adicionarProjeto: adicionarProjeto,
     buscarTodos: buscarTodos,
     buscarPorId: buscarPorId,
+    buscarProjetos: buscarProjetos,
     requestToken: requestToken
   };
 

@@ -2,6 +2,7 @@
   'use strict';
 
   var Projeto = require('./projeto.model');
+  var KanbanService = require('./../kanban/kanban.service');
 
   function buscarTodos (req, res) {
     var promisse = Projeto.find().exec();
@@ -11,20 +12,20 @@
     });
 
     promisse.then(null, function (error) {
-      console.log("Erro ao buscarTodos: " + error);
+      console.log("Projeto Erro ao buscarTodos: ", error);
       res.status(500);
       res.json(error);
     });
   }
 
   function buscarPorId(req, res) {
-    var promisse = Projeto.findOne({'_id' : req.params.id}).exec();
+    var promisse = Projeto.findOne({'_id' : req.params.idProjeto}).exec();
 
     promisse.then(function (projeto) {
       res.json(projeto);
     });
     promisse.then(null, function (error) {
-      console.log("Erro ao buscarPorId: " + error);
+      console.log("Projeto Erro ao buscarPorId: ", error);
       res.status(500);
       res.json(error);
     });
@@ -41,27 +42,34 @@
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao buscar as secoes do kanaban: " + req.params.idKanban);
-      console.error(error);
+      console.error("Erro ao buscar as modulos do Projeto id:" + req.params.idProjeto, error);
       res.status(500);
       res.json(error);
     });
   }
 
   function cadastrar(req, res) {
-    var model = new Projeto(req.body);
+    var projeto = req.body;
 
-    var promisse = model.save();
+    function cadastrarProjetoCb(kanban) {
+      projeto.kanban = kanban;
+      console.log('Projeto para cadastro', projeto);
+      var model = new Projeto(projeto);
 
-    promisse.then(function(projeto) {
-      res.json(projeto);
-    });
+      var promisse = model.save();
 
-    promisse.then(null, function (error) {
-       console.log("Erro ao cadastrar projeto: " + error);
-      res.status(500);
-      res.json(error);
-    });
+      promisse.then(function(projeto) {
+        res.json(projeto);
+      });
+
+      promisse.then(null, function (error) {
+        console.log("Erro ao cadastrar projeto: ", error);
+        res.status(500);
+        res.json(error);
+      });
+    }
+
+    KanbanService.kanbanDefault(cadastrarProjetoCb);
   }
 
   function adicionarModulo(req, res) {
@@ -87,14 +95,14 @@
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao adicionarSecao" + error);
+      console.error("Erro ao adicionarModulo idProjeto: " +  req.params.idProjeto, error);
       res.status(500);
       res.json(error);
     });
   }
 
   function alterar(req, res) {
-    var query = {_id: req.params.id};
+    var query = {_id: req.params.idProjeto};
     var model = req.body;
     delete model._id;
 
@@ -104,7 +112,7 @@
       res.json(projeto);
     });
     promisse.then(null, function (error) {
-      console.log("Erro ao alterar o projeto: " + error);
+      console.log("Erro ao alterar o projeto: ", error);
       res.json(error);
     });
   }

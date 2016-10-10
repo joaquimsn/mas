@@ -5,17 +5,13 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function HomeController($scope, HomeService) {
-  function findHomeCb(promisse) {
-    promisse.success(function (home) {
-      $scope.home = home;
-    });
-    promisse.error(function (err) {
-      console.log('Erro ao buscar');
-      console.log(err);
-    });
+function HomeController(HomeService, AcessoService) {
+  var mv = this;
+
+  function init() {
+    AcessoService.salvarModoVisao({tipo: 'geral'});
   }
- /* HomeService.findHome(findHomeCb);*/
+  init();
 }
 
 controllersModule.controller('HomeController', HomeController);

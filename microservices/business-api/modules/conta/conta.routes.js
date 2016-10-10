@@ -4,6 +4,8 @@ module.exports = function (server) {
 
   server.get('/contas', controller.buscarTodos);
   server.get('/contas/:id', controller.buscarPorId);
+  server.get('/contas/:idConta/projetos', controller.buscarProjetos);
+
 
   server.post('/contas', controller.cadastrar);
   server.put('/contas/:idConta', controller.alterar);

@@ -32,7 +32,7 @@ function KanbanService(requestApiService, KanbanManipulatorFactory) {
     }
 
     requestApiService.del(callback, '/kanban/'+ kanban._id +'/secoes/' + section._id);
-  }
+  };
 
   this.addNewTask = function (kanban, section, task) {
     KanbanManipulatorFactory.addTaskToSection(kanban, section, task);
@@ -59,7 +59,7 @@ function KanbanService(requestApiService, KanbanManipulatorFactory) {
     var idKanban = kanban._id;
     var idSecao = secao._id;
     requestApiService.del(cb, '/kanban/' + idKanban + '/secoes/' + idSecao
-      +'/funcionalidades/' + funcionalidade._id);
+      + '/funcionalidades/' + funcionalidade._id);
   };
 
   this.adicionarFuncionalidadeSecao = function(funcionalidade, kanban, secao) {
@@ -75,8 +75,8 @@ function KanbanService(requestApiService, KanbanManipulatorFactory) {
     var idKanban = kanban._id;
     var idSecao = secao._id;
     requestApiService.post(cb, funcionalidade, '/kanban/' + idKanban + '/secoes/' + idSecao
-      +'/funcionalidades');
-  }
+      + '/funcionalidades');
+  };
 }
 
 servicesModule.service('KanbanService', KanbanService);

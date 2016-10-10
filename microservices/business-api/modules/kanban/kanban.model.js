@@ -6,4 +6,4 @@ var mongoose        = require('mongoose'),
 
 var KanbanSchema = new Schema(kanbanSchema);
 
-module.exports = mongoose.model('Kanban', KanbanSchema);
+module.exports = mongoose.model('Kanbans', KanbanSchema);

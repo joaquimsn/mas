@@ -40,7 +40,30 @@
     });
 
     promisse.then(null, function (error) {
-      console.log("Erro ao buscarTodos: ", error)
+      console.log("Erro ao buscarTodos: ", error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
+  function buscarProjetos(req, res) {
+    var promisse = Conta.findById({_id: req.params.idConta})
+                         .populate('projetos.projeto')
+                         .exec();
+
+    promisse.then(function (conta) {
+      console.log("consultando projetos da conta", conta);
+      var projetos = conta.projetos;
+
+      if(projetos.length > 0) {
+        res.json(projetos);
+      } else {
+        res.json('[]');
+      }
+    });
+
+    promisse.then(null, function (error) {
+      console.error("Erro ao buscar os projetos da conta id: " + req.idConta, error);
       res.status(500);
       res.json(error);
     });
@@ -51,7 +74,7 @@
     {
       _id: req.params.idConta
     }, {
-      $push: {'projetos': req.body._id}
+      $push: {'projetos': req.body}
     },
     {
       upsert: true,
@@ -88,17 +111,17 @@
   function cadastrar(req, res) {
     var conta =  req.body;
     conta.senha = bcrypt.hashSync(conta.senha);
-    
+    console.log('Conta para cadastro', conta);
     var model = new Conta(conta);
 
     var promisse = model.save();
 
-    promisse.then(function(modulo) {
-      res.json(modulo);
+    promisse.then(function(conta) {
+      res.json(conta);
     });
 
     promisse.then(null, function (error) {
-       console.log("Erro ao cadastrar modulo: ", error);
+       console.log("Erro ao cadastrar conta: ", error);
       res.status(500);
       res.json(error);
     });
@@ -111,11 +134,11 @@
 
     var promisse = Conta.update(query, model);
 
-    promisse.then(function (modulo) {
-      res.json(modulo);
+    promisse.then(function (conta) {
+      res.json(conta);
     });
     promisse.then(null, function (error) {
-      console.log("Erro ao alterar o modulo: ", error);
+      console.log("Erro ao alterar o conta: ", error);
       res.json(error);
     });
   }
@@ -126,6 +149,7 @@
     adicionarProjeto: adicionarProjeto,
     buscarTodos: buscarTodos,
     buscarPorId: buscarPorId,
+    buscarProjetos: buscarProjetos,
     login: login
   };
 

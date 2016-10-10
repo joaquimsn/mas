@@ -5,4 +5,4 @@ var mongoose = require('mongoose'),
 
 var ProjetoSchema = new Schema(projetoSchema);
 
-module.exports = mongoose.model('Projeto', ProjetoSchema);
+module.exports = mongoose.model('Projetos', ProjetoSchema);

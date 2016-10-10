@@ -3,6 +3,38 @@
   var Kanban    = require('./kanban.model');
   var kanbanUtil = require('./kanban.util');
 
+  function KanbanObject() {
+    return {
+      nome: 'default',
+      quantidadeSecoes:   2,
+      secoes: [
+        {
+          nome: 'ToDo',
+          ordem: 0
+        },
+        {
+          nome: 'Done',
+          ordem:            1,
+          estadoFinal:      true
+        }
+      ]
+    };
+  }
+
+  function cadastrarKanbanDefault(callback) {
+    var model = new Kanban(new KanbanObject());
+
+    var promisse = model.save();
+
+    promisse.then(function(kanban) {
+     callback(kanban);
+    });
+
+    promisse.then(null, function (error) {
+      console.log("Falha ao cadastrar o kanban Default", error);
+    });
+  }
+
   function cadastrarKanban(req, res) {
     var model = new Kanban(req.body);
 
@@ -174,7 +206,7 @@
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao buscar as secoes do kanaban: " + req.params.idKanban);
+      console.error("Erro ao buscar as secoes do kanban: " + req.params.idKanban);
       console.error(error);
       res.status(500);
       res.json(error);
@@ -235,6 +267,7 @@
   }
 
   var service = {
+    kanbanDefault: cadastrarKanbanDefault,
     buscarTodos: buscarTodos,
     buscarSecoes: buscarSecoes,
     buscarKanbanPorNome: buscarKanbanPorNome,

@@ -10,6 +10,8 @@ require('./modules/modulo/_index');
 require('./modules/home/_index');
 require('./modules/login/_index');
 require('./modules/usuario/_index');
+require('./modules/email/_index');
+require('./modules/acesso/_index');
 
 require('angular-route');
 require('angular-animate');
@@ -30,6 +32,8 @@ var requires = [
   'agileTcc.Funcionalidade',
   'agileTcc.Login',
   'agileTcc.Usuario',
+  'agileTcc.Email',
+  'agileTcc.Acesso',
   'ngRoute',
   'as.sortable',
   'ngSanitize',

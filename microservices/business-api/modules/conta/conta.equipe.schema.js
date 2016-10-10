@@ -4,8 +4,8 @@ var mongoose  = require('mongoose'),
 
 module.exports = {
   nome:           {type: String, required: true, min: 3, max: 200},
-  projeto: {type: Schema.Types.ObjectId, ref: 'Projetos'},
-  acessos: {type: Schema.Types.ObjectId, ref: 'Acessos'},
-  membros: [{type: Schema.Types.ObjectId, ref: 'Contas'}],
+  projetos:       [{type: Schema.Types.ObjectId, ref: 'Projetos'}],
+  acessos:        {type: Schema.Types.ObjectId, ref: 'Acessos'},
+  membros:        [{type: Schema.Types.ObjectId, ref: 'Usuarios'}],
   ativo:          {type: Boolean, default: true}
 };

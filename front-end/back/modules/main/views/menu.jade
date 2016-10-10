@@ -8,45 +8,15 @@ aside.left-menu(data-ng-show='(isDesktop || showMenuLeft)')
         a.link(data-ng-href='{{systemUri.home()}}', title='Ir para o início')
           img.image(src='/build/images/default/layout/logo.png', alt='MAS')
 
-    ul.list
-      li.item
-        a.link(data-ng-href='{{systemUri.home()}}', data-selected-menu)
+    ul.list(data-ng-controller='AcessoMenuController as mv')
+      li.item(data-ng-repeat='menu in mv.menus track by $index')
+        a.link(data-ng-href='{{menu.url}}', data-selected-menu)
           svg.icon(viewBox='0 0 48 48')
-            use(xlink:href='/build/images/default/layout/icons.svg#icon-home')
-          span.label Início
-
-      li.item
-        a.link(data-ng-href='{{systemUri.Dashboard()}}',
-                data-selected-menu)
-          svg.icon(viewBox='0 0 48 48')
-            use(xlink:href='/build/images/default/layout/icons.svg#icon-dashboard')
-          span.label Dashboard
-
+            use(xlink:href='{{"/build/images/default/layout/icons.svg#" + menu.icon}}')
+          span.label(data-ng-bind='menu.nome')
+        
         ul.listsubitem
           li.subitem
             a.link Sub item 1
           li.subitem
             a.link Sub item 2
-
-       li.item
-        a.link(data-ng-href='{{systemUri.kanban()}}',
-                data-selected-menu)
-          svg.icon(viewBox='0 0 48 48')
-            use(xlink:href='/build/images/default/layout/icons.svg#icon-share')
-          span.label Equipe
-
-
-      li.item
-        a.link(data-ng-href='{{systemUri.modulo()}}',
-                data-selected-menu)
-          svg.icon(viewBox='0 0 48 48')
-            use(xlink:href='/build/images/default/layout/icons.svg#icon-modulos')
-          span.label Modulos
-
-
-      li.item
-        a.link(data-ng-href='{{systemUri.configuracoes()}}',
-                data-selected-menu)
-          svg.icon(viewBox='0 0 48 48')
-            use(xlink:href='/build/images/default/layout/icons.svg#icon-build')
-          span.label Configurações

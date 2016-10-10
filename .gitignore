@@ -29,6 +29,7 @@ build/Release
 /front-end/node_modules
 
 /microservices/business-api/node_modules
+/microservices/email-api/node_modules
 
 # Optional npm cache directory
 .npm
