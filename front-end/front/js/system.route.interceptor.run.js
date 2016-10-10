@@ -3,7 +3,7 @@
 /**
  * @ngInject
  */
-function run($rootScope, AuthService, $location, systemUri) {
+function run($rootScope, AuthService, AcessoService, $location, systemUri) {
   function verifyPermission() {
     if (AuthService.userAuthenticated()) {
       $rootScope.showLogin = false;
@@ -14,7 +14,9 @@ function run($rootScope, AuthService, $location, systemUri) {
   }
   
   function verifyAccess() {
-    // Verificar acesso as rotas
+    if($location.path.startsWith('/gestao-projeto/') && AcessoService.isModoVisaoGeral) {
+      $location.path(systemUri.home());
+    }
   }
 
   function init() {

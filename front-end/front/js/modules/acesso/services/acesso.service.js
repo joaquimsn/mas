@@ -48,7 +48,7 @@ function menusProjeto() {
     {
       nome: 'Kanban',
       url: '/gestao-projeto/kanban-modulo',
-      icon: '',
+      icon: 'icon-kanban',
       submenus: []
     },
     {
@@ -60,7 +60,7 @@ function menusProjeto() {
     {
       nome: 'Tags',
       url: '/gestao-projeto/tags',
-      icon: '',
+      icon: 'icon-tag',
       submenus: []
     }
   ];

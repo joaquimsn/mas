@@ -8,12 +8,10 @@ var controllersModule = require('./_index');
 function ModuloCadastroController($scope, ModuloService) {
   function cadastroCb(promisse) {
     promisse.success(function (modulo) {
-      console.log(modulo);
-      alert('Modulo cadastrado com sucesso');
+      console.log('Modulo cadastrado com sucesso', modulo);
       delete $scope.novoModulo;
     });
     promisse.error(function (err) {
-      alert('Falha ao cadastrar o modulo');
       console.log('Erro ao buscar');
       console.log(err);
     });
@@ -21,7 +19,7 @@ function ModuloCadastroController($scope, ModuloService) {
 
   $scope.cadastrar = function(modulo) {
     ModuloService.cadastrar(cadastroCb, modulo);
-  }
+  };
 }
 
 controllersModule.controller('ModuloCadastroController', ModuloCadastroController);

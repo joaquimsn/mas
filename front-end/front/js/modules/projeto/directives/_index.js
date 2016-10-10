@@ -2,4 +2,4 @@
 
 var angular = require('angular');
 
-module.exports = angular.module('agileTcc.Modulo.directives', []);
+module.exports = angular.module('agileTcc.Projeto.directives', []);

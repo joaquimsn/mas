@@ -1,0 +1,57 @@
+div.page-header
+  div.name Projetos
+  div.options
+    div.option
+      a.link(data-ng-href='{{systemUri.projeto()}}') Listagem
+    div.option
+      a.link(data-ng-href='{{systemUri.projetoCadastro()}}') Cadastro
+
+
+div.projeto-container
+  div.titulo
+    h3 Cadastro de Projeto
+
+  form.projetoForm(name='projetoForm', data-ng-submit='cadastrar(novoProjeto)')
+    div.inputcontainer
+      label.label(for='inputNome') Nome
+      input.input(type='text',
+            id='inputNome',
+            name='nome',
+            data-ng-model='novoProjeto.nome',
+            ng-minlength="3"
+            ng-maxlength="200"
+            required)
+      div.message-container(data-ng-messages="projetoForm.nome.$error", data-ng-if='projetoForm.nome.$touched && !submitted')
+        div(data-ng-message='required') Nome é obrigatorio
+        div(data-ng-message='minlength') Nome muito pequeno
+        div(data-ng-message='maxlength') Nome muito grande
+
+    div.inputcontainer
+      label.label(for='inputDescricao') Descrição
+      textarea.textarea(id='inputDescricao',
+            name='descricao',
+            data-ng-model='novoProjeto.descricao',
+            rows='4',
+            ng-minlength="3",
+            ng-maxlength="600")
+      div.message-container(data-ng-messages="projetoForm.descricao.$error", data-ng-if='projetoForm.descricao.$touched && !submitted')
+        div(data-ng-message='minlength') Descrição muito pequena
+        div(data-ng-message='maxlength') Descrição muito grande
+
+    div.inputcontainer
+      label.label(for='inputDescricao') Repositorio
+      select.combobox(id='inputDescricao',
+            name='repositorio',
+            data-ng-model='novoProjeto.repositorio'
+             data-ng-options="repositorios.nome for repositorio in repositoriosGit track by $index")
+        option(value="" label='Selecione')  
+
+      div.message-container(data-ng-messages="projetoForm.repositorio.$error", data-ng-if='projetoForm.repositorio.$touched && !submitted')
+        div(ng-messages-include="partials/main/messages-validation")
+      
+    div.botoes
+      input.botaoCadastrar(type="submit",
+            value="Cadastrar",
+            data-ng-disabled='projetoForm.$invalid',
+            data-ng-class="{'botao_desabilitado': projetoForm.$invalid}")
+

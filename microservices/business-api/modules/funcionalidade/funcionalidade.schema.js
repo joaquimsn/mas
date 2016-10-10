@@ -7,8 +7,8 @@ module.exports = {
   severidade:       {type: Number, default: ''},
   ordem:            {type: Number, default: 0},
   tags:             [{type: String}],
-  dataInicio:       {type: Date, default: Date.now},
-  dataFim:          {type: Date, default: Date.now},
+  dataInicio:       {type: Date},
+  dataFim:          {type: Date},
   duracao:          {type: Number},
   responsaveis:     [
     {

@@ -1,0 +1,23 @@
+<div data-ng-switch="nivel" data-ng-show="show">
+  <div class="alert alert-success margbottom5" role="alert" data-ng-switch-when="success">
+    <button type="button" class="close" data-ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span data-ng-bind="text"></span>
+
+  </div>
+
+  <div class="alert alert-info margbottom5" role="alert" data-ng-switch-when="info">
+    <button type="button" class="close" data-ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span data-ng-bind="text"></span>
+  </div>
+
+  <div class="alert alert-warning margbottom5" role="alert" data-ng-switch-when="warn">
+    <button type="button" class="close" data-ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span data-ng-bind="text"></span>
+
+  </div>
+
+  <div class="alert alert-danger margbottom5" role="alert" data-ng-switch-when="error">
+    <button type="button" class="close" data-ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span data-ng-bind="text"></span>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+div.page-header
+  div.name Projetos
+  div.options
+    div.option
+      a.link(data-ng-href='{{systemUri.projeto()}}') Listagem
+    div.option
+      a.link(data-ng-href='{{systemUri.projetoCadastro()}}') Cadastro
+
+div.projeto-container
+  div.lista
+    div.item(data-ng-repeat='projeto in ::projetos track by $index' data-ng-click='abrirKanban(projeto)')
+      div.linha
+        span.textodestaque(data-ng-bind="projeto.nome")
+      div.linha
+        div.indices
+          span.textosecundario Modulos {{projeto.modulos.length}}
+        div.projeto.repositorioGitpe
+            span.label {{projeto.repositorioGit}}
+

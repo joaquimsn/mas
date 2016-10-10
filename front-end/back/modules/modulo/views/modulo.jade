@@ -13,7 +13,7 @@ div.modulo-container
         span.textodestaque(data-ng-bind="modulo.nome")
       div.linha
         div.indices
-          span.textosecundario funcionalidades 10
+          span.textosecundario funcionalidades {{modulo.funcionalidades.lenfth}}
         div.equipes
           span.label equipe
           div.equipe(data-ng-repeat='equipe in ::modulo.equipes')
