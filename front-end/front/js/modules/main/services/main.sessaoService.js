@@ -28,7 +28,7 @@ function SessaoService($window) {
     $window.sessionStorage.projetoSelecionado = JSON.stringify(projeto);
   };
 
-  this.getPorjeto = function() {
+  this.getProjeto = function() {
     var projeto = JSON.parse($window.sessionStorage.projetoSelecionado || {});
     return projeto;
   };

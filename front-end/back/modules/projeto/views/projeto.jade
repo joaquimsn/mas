@@ -8,9 +8,9 @@ div.page-header
 
 div.projeto-container
   div.lista
-    div.item(data-ng-repeat='projeto in ::projetos track by $index' data-ng-click='abrirKanban(projeto)')
+    div.item(data-ng-repeat='contaProjeto in ::projetos track by $index' data-ng-click='abrirKanban(contaProjeto.projeto)')
       div.linha
-        span.textodestaque(data-ng-bind="projeto.nome")
+        span.textodestaque(data-ng-bind="contaProjeto.projeto.nome")
       div.linha
         div.indices
           span.textosecundario Modulos {{projeto.modulos.length}}

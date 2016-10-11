@@ -10,10 +10,11 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.home, {
       templateUrl: 'expose/home/home',
+      controller: 'HomeController'
     }).
     when(SystemUriConfig.projeto, {
       templateUrl: 'expose/projeto/projeto',
-      ontroller: 'ProjetoController'
+      controller: 'ProjetoController'
     }).
     when(SystemUriConfig.projetoCadastro, {
       templateUrl: 'expose/projeto/projeto-formulario',

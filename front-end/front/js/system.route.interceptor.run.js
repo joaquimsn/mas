@@ -16,7 +16,7 @@ function run($rootScope, AuthService, AcessoService, $location, systemUri) {
   function verifyAccess() { 
     var path = $location.path(); 
     if(path.startsWith('/gestao-projeto/') && AcessoService.isModoVisaoGeral) {
-      $location.path(systemUri.home());
+      //$location.path(systemUri.home());
     }
   }
 

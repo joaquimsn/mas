@@ -7,8 +7,10 @@ var servicesModule = require('./_index');
  */
 function LoginService(requestApiService, SessaoService, AuthService) {
   this.autenticar = function(callback, credencial) {
+    console.log('credencial', credencial);
     function autenticaoCb(promise) {
       promise.success(function (conta) {
+        console.log("usuario", conta);
         AuthService.storeToken(conta._id);
         SessaoService.storeUsuario(conta);
 

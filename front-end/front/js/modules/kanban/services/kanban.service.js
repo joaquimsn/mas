@@ -7,7 +7,7 @@ var servicesModule = require('./_index');
  */
 function KanbanService(requestApiService, KanbanManipulatorFactory, SessaoService) {
   this.findKanban = function (cb) {
-    requestApiService.get(cb, '/kanban/' + SessaoService.getProjeto.kanban);
+    requestApiService.get(cb, '/kanban/' + SessaoService.getProjeto().kanban);
   };
 
   this.addSection = function(kanban, section) {

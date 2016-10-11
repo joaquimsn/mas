@@ -12,6 +12,7 @@ function AuthService($window) {
 
   this.logout = function () {
     delete $window.sessionStorage.token;
+    delete $window.sessionStorage.usuario;
   };
 
   this.token = function () {

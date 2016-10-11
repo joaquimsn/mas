@@ -5,9 +5,11 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function ModuloCadastroController($scope, ModuloService, globalMessage) {
+function ProjetoCadastroController($scope, ProjetoService, globalMessage, SessaoService, ContaService) {
   function cadastroCb(promisse) {
     promisse.success(function (projeto) {
+      ContaService.adicionarProjeto(projeto, SessaoService.getUsuario()._id);
+      
       globalMessage.info("Projeto cadastrado com sucesso");
       delete $scope.novoProjeto;
     });
@@ -16,10 +18,10 @@ function ModuloCadastroController($scope, ModuloService, globalMessage) {
       console.log(err);
     });
   }
-
+  
   $scope.cadastrar = function(modulo) {
-    ModuloService.cadastrar(cadastroCb, modulo);
+    ProjetoService.cadastrar(cadastroCb, modulo);
   };
 }
 
-controllersModule.controller('ModuloCadastroController', ModuloCadastroController);
+controllersModule.controller('ProjetoCadastroController', ProjetoCadastroController);

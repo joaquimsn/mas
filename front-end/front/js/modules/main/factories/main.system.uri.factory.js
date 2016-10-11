@@ -14,16 +14,25 @@ function systemUri(SystemUriConfig) {
       return SystemUriConfig.funcionalidade;
     },
     modulo: function () {
-      return SystemUriConfig.modulo;
+      return SystemUriConfig.gestaoProjetoModulo;
     },
     moduloCadastro: function () {
-      return SystemUriConfig.moduloCadastro;
+      return SystemUriConfig.gestaoProjetoModuloCadastro;
     },
     moduloAlteracao: function () {
-      return SystemUriConfig.moduloAlteracao;
+      return SystemUriConfig.gestaoProjetoModuloAlteracao;
+    },
+    projeto: function () {
+      return SystemUriConfig.projeto;
+    },
+    projetoCadastro: function () {
+      return SystemUriConfig.projetoCadastro;
+    },
+    projetoAlteracao: function () {
+      return SystemUriConfig.projetoAlteracao;
     },
     kanban: function () {
-      return SystemUriConfig.kanban;
+      return SystemUriConfig.gestaoProjetoKanbanModulo;
     },
     notFound: function () {
       return SystemUriConfig.notFound;

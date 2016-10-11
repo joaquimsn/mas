@@ -2,6 +2,13 @@
 
 var servicesModule = require('./_index');
 
+function VinculoProjeto(projeto) {
+  return {
+      proprio: true,
+      projeto: projeto
+    };
+}
+
 /**
  * @ngInject
  */
@@ -19,7 +26,14 @@ function ContaService(requestApiService) {
   };
 
   this.adicionarProjeto = function(projeto, id) {
-    requestApiService.putNo({}, projeto, '/contas/' + id + 'projetos');
+    function retornoCb(data) {
+      console.log('Adicionado projeto a conta', data);
+    }
+
+    console.log('Projeto recem cadastrado', projeto);
+    var vinculo = new VinculoProjeto(projeto);
+    console.log('Vinculo projeto', vinculo);
+    requestApiService.putNo(retornoCb, vinculo, '/contas/' + id + '/projetos');
   };
 }
 

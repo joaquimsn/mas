@@ -5,5 +5,9 @@ block body
   section.page-main(ng-cloak)
 
     div.content(data-ng-view)
+    
+    show-message(data-show="globalMessage.show",
+             data-nivel="globalMessage.nivel",
+             data-text="globalMessage.text")
   include js
   include footer

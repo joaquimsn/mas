@@ -5,9 +5,10 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function ProjetoController($scope, ProjetoService, SessaoService, AcessoService) {
+function ProjetoController($scope, $location, systemUri, ProjetoService, SessaoService, AcessoService) {
   function buscarProjetosUsuarioCb(promisse) {
     promisse.success(function (projetos) {
+      console.log('Projetos', projetos);
       $scope.projetos = projetos;
     });
     promisse.error(function (err) {
@@ -18,8 +19,10 @@ function ProjetoController($scope, ProjetoService, SessaoService, AcessoService)
 
   $scope.abrirKanban = function(projeto) {
     if(projeto) {
+      console.log('Projeto Para abrir',projeto);
       SessaoService.storeProjeto(projeto);
       AcessoService.salvarModoVisao({tipo: 'projeto'});
+      $location.path(systemUri.kanban());
     }
   };
 

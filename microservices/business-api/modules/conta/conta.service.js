@@ -84,7 +84,7 @@
     ).exec();
 
     promisse.then(function(conta) {
-      console.log("Projeto adicionado na conta com sucesso");
+      console.log("Projeto adicionado na conta com sucesso", conta);
       res.json(conta);
     });
 
