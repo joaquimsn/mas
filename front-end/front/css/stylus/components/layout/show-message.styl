@@ -1,0 +1,76 @@
+.showmessage-container
+  width 100%
+  padding 20px
+  position fixed
+  bottom 0
+  left 0
+  z-index 30
+  opacity .9
+  visibility visible
+  transition all .5s linear
+  @media (min-width: em(600px))
+    padding 20px
+
+  > .close
+    position absolute
+    top 20px
+    right 20px
+    color #FFF
+    > .icon
+      width 20px
+      height 20px
+      fill #FFF
+      margin 0 auto
+      &:hover
+        cursor pointer
+
+  > .container
+    @media (min-width: em(600px))
+      width 100%
+      display flex
+      justify-content center
+
+    > .nivel
+      width 48px
+      height 48px
+      color #FFF
+      position relative
+      margin 0 auto
+      @media (min-width: em(600px))
+        margin 0
+        width 10%
+
+      > .icon
+        width 80px
+        height 80px
+        fill #FFF
+        margin 0 auto
+        @media (min-width: em(600px))
+          position absolute
+          right 0
+          top 6px
+
+    > .message
+      color #FFF
+      text-align center
+      @media (min-width: em(600px))
+        font-size em(20px)
+        height 60px
+        line-height 60px
+
+.showmessage-container.ng-hide
+  padding 0
+  opacity 0
+  visibility hidden
+  transition-property all
+  transition-duration 1s
+  transition-timing-function cubic-bezier(0, 1, 0.5, 1)
+
+._success
+  background $messageInfo
+
+._warn
+  background $messageWarn
+
+._error
+  background $messageError

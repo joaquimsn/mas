@@ -4,7 +4,7 @@ module.exports = function (server) {
 
   /*Listagens*/
   server.get('/kanban', controller.buscarTodos);
-  server.get('/kanban/:nome', controller.buscarKanbanPorNome);
+  server.get('/kanban/:idKanban', controller.buscarKanbanPorId);
   server.get('/kanban/:idKanban/secoes', controller.buscarSecoes);
   server.get('/kanban/:idKanban/secoes/:idSecao/funcionalidades', controller.buscarFuncionalidadesSecao);
 
@@ -19,5 +19,4 @@ module.exports = function (server) {
   /*Exclusões*/
   server.del('/kanban/:idKanban/secoes/:idSecao', controller.removerSecao);
   server.del('/kanban/:idKanban/secoes/:idSecao/funcionalidades/:idFuncionalidade', controller.removerFuncionalidadeSecao);
-
 };

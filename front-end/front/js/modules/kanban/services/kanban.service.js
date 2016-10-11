@@ -5,9 +5,9 @@ var servicesModule = require('./_index');
 /**
  * @ngInject
  */
-function KanbanService(requestApiService, KanbanManipulatorFactory) {
+function KanbanService(requestApiService, KanbanManipulatorFactory, SessaoService) {
   this.findKanban = function (cb) {
-    requestApiService.get(cb, '/kanban/Modulo');
+    requestApiService.get(cb, '/kanban/' + SessaoService.getProjeto.kanban);
   };
 
   this.addSection = function(kanban, section) {

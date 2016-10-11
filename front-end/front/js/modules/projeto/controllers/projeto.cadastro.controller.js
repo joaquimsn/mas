@@ -5,14 +5,14 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function ModuloCadastroController($scope, ModuloService) {
+function ModuloCadastroController($scope, ModuloService, globalMessage) {
   function cadastroCb(promisse) {
-    promisse.success(function (modulo) {
-      console.log('Modulo cadastrado com sucesso', modulo);
-      delete $scope.novoModulo;
+    promisse.success(function (projeto) {
+      globalMessage.info("Projeto cadastrado com sucesso");
+      delete $scope.novoProjeto;
     });
     promisse.error(function (err) {
-      console.log('Erro ao buscar');
+      globalMessage.error("Não foi possível cadastrar o Porjeto tente novamente.");
       console.log(err);
     });
   }

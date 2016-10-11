@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function LoginController($scope, LoginService, ContaService, $window, $location, systemUri) {
+function LoginController($scope, LoginService, ContaService, globalMessage, emailBuilder, $window, $location, systemUri) {
   $scope.acessar = function(credencial) {
     LoginService.autenticar(function() {
       $location.path(systemUri.home());
@@ -21,8 +21,10 @@ function LoginController($scope, LoginService, ContaService, $window, $location,
   };
 
   $scope.cadastrarConta = function(conta) {
-    function cadastrarCb() {
-      console.log('Cadastro realizado com sucesso');
+    function cadastrarCb(conta) {
+      $scope.cadastroSucesso = true;
+      globalMessage.info('Cadastro realizado com sucesso');
+      //emailBuilder.buildRegisterConfirmation(conta);
     }
 
     ContaService.cadastrar(cadastrarCb, conta);

@@ -66,7 +66,9 @@
   }
 
   function buscarPorId(req, res) {
-    var promisse = Funcionalidades.findOne({'_id' : req.params.idFuncionalidade}).exec();
+    var promisse = Funcionalidades.findOne({'_id' : req.params.idFuncionalidade})
+                                  .populate('tags')
+                                  .exec();
 
     promisse.then(function (funcionalidade) {
       res.json(funcionalidade);

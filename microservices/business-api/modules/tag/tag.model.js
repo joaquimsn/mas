@@ -5,4 +5,4 @@ var mongoose = require('mongoose'),
 
 var Tag = new Schema(tagSchema);
 
-module.exports = mongoose.model('Tag', Tag);
+module.exports = mongoose.model('Tags', Tag);

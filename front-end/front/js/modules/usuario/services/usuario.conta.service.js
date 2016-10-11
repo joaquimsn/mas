@@ -17,6 +17,10 @@ function ContaService(requestApiService) {
   this.buscarPorId = function(callback, id) {
     requestApiService.getNo(callback, '/contas/' + id);
   };
+
+  this.adicionarProjeto = function(projeto, id) {
+    requestApiService.putNo({}, projeto, '/contas/' + id + 'projetos');
+  };
 }
 
 servicesModule.service('ContaService', ContaService);

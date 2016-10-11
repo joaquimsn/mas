@@ -30,7 +30,7 @@ function KanbanController($scope, KanbanService, ModuloService, FuncionalidadeSe
   $scope.novaSecao = {nome: ''};
   $scope.moduloFiltroSelecionado;
 
-  function findModulosCb(promisse) {
+  function buscarModuloCb(promisse) {
     promisse.success(function (modulos) {
       $scope.modulosFiltro = modulos;
     });
@@ -39,7 +39,7 @@ function KanbanController($scope, KanbanService, ModuloService, FuncionalidadeSe
     });
   }
 
-  function findKanbanCb(promisse) {
+  function buscarKanbanCb(promisse) {
     promisse.success(function (kanban) {
       kanban.secoes = orderByFilter(kanban.secoes, 'ordem');
       $scope.kanban = kanban;
@@ -265,8 +265,8 @@ function KanbanController($scope, KanbanService, ModuloService, FuncionalidadeSe
     });
   };
 
-  KanbanService.findKanban(findKanbanCb);
-  ModuloService.findModulos(findModulosCb);
+  KanbanService.findKanban(buscarKanbanCb);
+  ModuloService.findModulos(buscarModuloCb);
 }
 
 controllersModule.controller('KanbanController', KanbanController);

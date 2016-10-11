@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService, ModuloService) {
+function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService, ModuloService, TagService) {
   $scope.sectionSelecionada = section;
   function cadastroCb(funcionalidade) {
     console.log(funcionalidade);
@@ -31,7 +31,12 @@ function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService
     FuncionalidadeService.cadastrar(cadastroCb, funcionalidade);
   };
 
+  function buscarTagsCb(tags) {
+    $scope.tags = tags;
+  }
+
   ModuloService.findModulos(findModulosCb);
+  TagService.buscarTodas(buscarTagsCb);
 }
 
 controllersModule.controller('FuncionalidadeCadastroController', FuncionalidadeCadastroController);

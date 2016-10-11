@@ -213,8 +213,8 @@
     });
   }
 
-  function buscarKanbanPorNome(req, res) {
-    var promisse = Kanban.find({nome: {$eq: req.params.nome}})
+  function buscarKanbanPorId(req, res) {
+    var promisse = Kanban.find({_id: req.params.idKanban})
                          .populate('secoes.funcionalidades')
                          .exec();
 
@@ -270,7 +270,7 @@
     kanbanDefault: cadastrarKanbanDefault,
     buscarTodos: buscarTodos,
     buscarSecoes: buscarSecoes,
-    buscarKanbanPorNome: buscarKanbanPorNome,
+    buscarKanbanPorId: buscarKanbanPorId,
     buscarFuncionalidadesSecao: buscarFuncionalidadesSecao,
     adicionarSecao: adicionarSecao,
     alterarSecao: alterarSecao,

@@ -6,7 +6,7 @@ module.exports = {
   descricao:        {type: String, default: ''},
   severidade:       {type: Number, default: ''},
   ordem:            {type: Number, default: 0},
-  tags:             [{type: String}],
+  tags:             [{type: Schema.Types.ObjectId, ref: 'Tags'}],
   dataInicio:       {type: Date},
   dataFim:          {type: Date},
   duracao:          {type: Number},

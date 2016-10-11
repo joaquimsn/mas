@@ -87,8 +87,17 @@ div.login-container(data-ng-controller='LoginController')
                                   data-ng-if="formConta.password.$touched && !submitted")
               div(ng-messages-include="partials/main/messages-validation")
 
-      div.botoes
+      div.botoes(data-ng-hide='cadastroSucesso')
         button.button.cadastrar(data-ng-click='cadastrarConta(conta)', 
                        data-ng-disabled='formConta.$invalid') Cadastrar
 
         button.button.cancelar(data-ng-click='showSignup = !showSignup') Cancelar
+      
+      div.botoes(data-ng-show='cadastroSucesso')
+        button.button.cadastrar(data-ng-click='showSignup = !showSignup') Voltar
+
+        
+         
+show-message(data-show="globalMessage.show",
+             data-nivel="globalMessage.nivel",
+             data-text="globalMessage.text")

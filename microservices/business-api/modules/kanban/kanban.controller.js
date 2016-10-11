@@ -10,8 +10,8 @@
     Service.buscarSecoes(req, res);
   }
 
-  function buscarKanbanPorNome(req, res) {
-    Service.buscarKanbanPorNome(req, res);
+  function buscarKanbanPorId(req, res) {
+    Service.buscarKanbanPorId(req, res);
   }
 
   function buscarFuncionalidadesSecao(req, res) {
@@ -45,7 +45,7 @@
   var controller = {
     buscarTodos: buscarTodos,
     buscarSecoes: buscarSecoes,
-    buscarKanbanPorNome: buscarKanbanPorNome,
+    buscarKanbanPorId: buscarKanbanPorId,
     buscarFuncionalidadesSecao: buscarFuncionalidadesSecao,
     adicionarSecao: adicionarSecao,
     alterarSecao: alterarSecao,
