@@ -13,9 +13,11 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.projeto, {
       templateUrl: 'expose/projeto/projeto',
+      ontroller: 'ProjetoController'
     }).
     when(SystemUriConfig.projetoCadastro, {
       templateUrl: 'expose/projeto/projeto-formulario',
+      controller: 'ProjetoCadastroController'
     }).
     when(SystemUriConfig.projetoAlteracao, {
       templateUrl: 'expose/projeto/projeto-formulario',
