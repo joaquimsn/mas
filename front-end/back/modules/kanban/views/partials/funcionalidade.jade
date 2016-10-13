@@ -20,34 +20,35 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
               label.label(for='editor') Especificação geral
               textarea(type="text"
                       name='descricao',
+                      rows='5'
                       data-ng-model='novaFuncionalidade.descricao')
 
             div.botoes
             
             div.anexos
 
-            div.comentarios(ng-show='edicao')
+            div.comentarios(ng-if='edicao')
               div.header
                 i.material-icons.md-24 speaker_notes
                 span Comentário
               div.inputContainer
                 textarea(type="text"
                         rows='5'
-                        data-ng-model='comentario')
+                        data-ng-model='comentario.mensagem')
               div.botoes
                 md-button.md-raised.md-primary(data-ng-click='adicionarComentario(comentario, novaFuncionalidade)') Salvar
             
-            div.historico(ng-show='edicao')
+            div.historico(ng-if='edicao')
               div.header
                 i.material-icons.md-24 subject 
                 span Historico
               ul.list
-                li.item(data-ng-repeat='historico in ::historicos track by $index')
+                li.item(data-ng-repeat="historico in historicos | orderBy:'data':true")
                   div.acao
                     span(data-ng-bind='historico.acao')
                   div.descricao(data-ng-bind='historico.descricao')
                   div.data
-                    span {{(historico.data | date:'dd/MM/yyyy')}}
+                    span {{(historico.data | date:'dd/MM/yyyy HH:mm')}}
                   div.divider
              
 
@@ -56,27 +57,43 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
             div
             md-input-container.data(flex-gt-sm='')
               label Data início
-              md-datepicker(ng-model='novaFuncionalidade.dataInicio')
+              md-datepicker(ng-model='novaFuncionalidade.dataInicio', required='{{novaFuncionalidade.dataFim}}')
             
             md-input-container.data(flex-gt-sm='')
               label Data fim
               md-datepicker(ng-model='novaFuncionalidade.dataFim')
 
-            md-input-container.md-block.left15(flex-gt-sm='')
+            md-input-container.md-block.left15(flex-gt-sm='' data-ng-if='false')
               label Modulo 
               md-select(ng-model='novaFuncionalidade.modulo')
                 md-option(ng-repeat='modulo in modulosFiltro', ng-value='{{modulo}}')
                   | {{modulo.nome}}
+            div
+              md-content.md-padding.autocomplete.usuarioChip(layout='column', ng-controller='UsuarioSearchController')
+                md-contact-chips(ng-model='usuarios', 
+                                md-contacts='querySearch($query)', 
+                                md-contact-name='nome', 
+                                md-contact-image='imagem', 
+                                md-require-match='true',
+                                filter-selected='true',
+                                placeholder='Adicione um usuário',
+                                secondary-placeholder='Adicionar usuário')
+              
+            div.left15
+              md-input-container(flex-gt-sm="")
+                label Severidade
+                input(name="Severidade", ng-model="novaFuncionalidade.severidade" ng-pattern="/^[0-9]{2}|[0-9]{1}$/")
             
-            md-content.md-padding.autocomplete.usuarioChip(layout='column', ng-controller='UsuarioSearchController')
-              md-contact-chips(ng-model='usuarios', 
-                               md-contacts='querySearch($query)', 
-                               md-contact-name='nome', 
-                               md-contact-image='imagem', 
-                               md-require-match='true',
-                               filter-selected='true',
-                               placeholder='Adicione um usuário',
-                               secondary-placeholder='Adicionar usuário')
+            div.left15(data-ng-controller='TagController')
+              md-input-container
+                label Tags
+                md-select(ng-model="novaFuncionalidade.tags" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="")
+                  md-select-header.demo-select-header
+                    input.demo-header-searchbox.md-text(ng-model="searchTerm" type="search" placeholder="Pesquisar uma tag")
+                  md-optgroup(label="tags")
+                    md-option(ng-value="tag" ng-repeat="tag in tags | filter:searchTerm", ng-style='{color: tag.cor}')
+                      span(ng-style='{color: tag.cor}') {{tag.nome}}
+
 
 
 
@@ -84,4 +101,5 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
   md-dialog-actions(layout='row')
     md-button(ng-click="closeModalCadastroFuncionalidade()")
       | Cancelar
-    md-button.md-primary(data-ng-click='cadastrarParaSecao(novaFuncionalidade) && closeModalCadastroFuncionalidade()') Salvar
+    md-button.md-primary(ng-if='!edicao' data-ng-click='cadastrarParaSecao(novaFuncionalidade) && closeModalCadastroFuncionalidade()', data-ng-disabled='formFuncionalidade.$invalid') Salvar
+    md-button.md-primary(ng-if='edicao' data-ng-click='alterarFuncionalidade(novaFuncionalidade) && closeModalCadastroFuncionalidade()', data-ng-disabled='formFuncionalidade.$invalid') Alterar

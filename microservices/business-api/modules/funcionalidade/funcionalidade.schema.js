@@ -4,12 +4,17 @@ var mongoose  = require('mongoose'),
 module.exports = {
   titulo:           {type: String, required: true, min: 3, max: 200},
   descricao:        {type: String, default: ''},
-  severidade:       {type: Number, default: ''},
+  severidade:       {type: Number, default: 0},
   ordem:            {type: Number, default: 0},
-  tags:             [{type: Schema.Types.ObjectId, ref: 'Tags'}],
+  tags:             [{
+                      _id: {type: Schema.Types.ObjectId}, 
+                      nome:{type: String, required: true, min: 2, max: 200},
+                      cor: {type: String}}
+  ],
   dataInicio:       {type: Date},
   dataFim:          {type: Date},
   duracao:          {type: Number},
+  usuarios: [{type: Schema.Types.ObjectId, ref: 'Usuarios'}],
   responsaveis:     [
     {
       nome:   {type: String, default: ''},

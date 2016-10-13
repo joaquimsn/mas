@@ -1,6 +1,7 @@
 (function () {
   'use strict';
   var Kanban    = require('./kanban.model');
+  var Funcionalidade    = require('./../funcionalidade/funcionalidade.model');
   var kanbanUtil = require('./kanban.util');
 
   function KanbanObject() {
@@ -59,7 +60,6 @@
       $push: {secoes: req.body}
     },
     {
-      upsert: true,
       safe: true,
       new: true
     }
@@ -136,7 +136,6 @@
       $push: {'secoes.$.funcionalidades': req.body}
     },
     {
-      upsert: true,
       safe: true
     }
     ).exec();

@@ -5,11 +5,16 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function HomeController(HomeService, AcessoService) {
+function HomeController($rootScope, HomeService, SessaoService) {
   var mv = this;
 
+  function notificarAlteracaoModoVisao() {
+    $rootScope.$broadcast('modoVisaoAlterado', {tipo: 'geral'});
+    SessaoService.storeProjeto({});
+  }
+
   function init() {
-    AcessoService.salvarModoVisao({tipo: 'geral'});
+    notificarAlteracaoModoVisao();
   }
   init();
 }

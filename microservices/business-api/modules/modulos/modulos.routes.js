@@ -7,4 +7,6 @@ module.exports = function (server) {
 
   server.post('/modulos', controller.cadastrar);
   server.put('/modulos/:id', controller.alterar);
+
+  server.put('/modulos/:idModulo/funcionalidades', controller.adicionarFuncionalidade);
 };

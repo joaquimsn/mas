@@ -25,6 +25,9 @@ function systemUri(SystemUriConfig) {
     projeto: function () {
       return SystemUriConfig.projeto;
     },
+    equipe: function () {
+      return SystemUriConfig.equipe;
+    },
     projetoCadastro: function () {
       return SystemUriConfig.projetoCadastro;
     },

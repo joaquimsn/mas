@@ -1,0 +1,21 @@
+div.page-header
+  div.name Equipes
+  div.options(data-ng-show='false')
+    div.option
+      a.link(data-ng-href='{{systemUri.modulo()}}') Listagem
+    div.option
+      a.link(data-ng-href='{{systemUri.moduloCadastro()}}') Cadastro
+
+div.modulo-container
+  div.containercadastro
+    
+  div.headerlista
+    p Para adicionar um usuário selecione a equipe abaixo
+  div.lista
+    div.item.cursorPointer(data-ng-repeat='equipe in equipes track by $index', data-ng-click='abrirModalUsuarios(equipe)')
+      div.linha
+        span.textodestaque(data-ng-bind="equipe.nome")
+      div.linha
+        div.indices
+          span.textosecundario Quantidade de usuários {{equipe.usuarios.length}}
+

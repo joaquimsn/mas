@@ -13,6 +13,7 @@ module.exports = {
   modulos:            [
     {
       modulo: {type: Schema.Types.ObjectId, ref: 'Modulos'},
+      kanban:             {type: Schema.Types.ObjectId, ref: 'Kanbans'},
       status: objectStatus
     }
   ],

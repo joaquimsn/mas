@@ -18,17 +18,18 @@ function _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, me
     acao : acao,
     descricao: mensagem
   };
-  console.log(funcionalidade);
-  console.log(evento);
+
   FuncionalidadeService.registrarEvento(evento, funcionalidade);
 }
 
 /**
  * @ngInject
  */
-function KanbanController($scope, KanbanService, ModuloService, FuncionalidadeService, ngDialog, $mdDialog, orderByFilter) {
+function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeService, ngDialog, $mdDialog, orderByFilter) {
   $scope.novaSecao = {nome: ''};
   $scope.moduloFiltroSelecionado;
+
+  $scope.moduloKanbanSelecionado = SessaoService.getModulo();
 
   function buscarModuloCb(promisse) {
     promisse.success(function (modulos) {
@@ -150,18 +151,18 @@ function KanbanController($scope, KanbanService, ModuloService, FuncionalidadeSe
       var funcionalidades = event.dest.sortableScope.modelValue;
       var novaPosicao = event.dest.index;
       var antigaPosicao =  event.source.index;
-      
-      // registro evento de repriorização
-      var funcionalidade = event.source.itemScope.modelValue;
-      var mensagem = 'A prioridade foi alterada de ' + antigaPosicao + ' para ' + novaPosicao;
-
-      _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, mensagem);
 
       if(novaPosicao < antigaPosicao) {
         ordernarFuncionalidades(funcionalidades, novaPosicao);
       } else {
         ordernarFuncionalidades(funcionalidades, antigaPosicao);
       }
+
+      // registro evento de repriorização
+      var funcionalidade = event.source.itemScope.modelValue;
+      var mensagem = 'A prioridade foi alterada de ' + antigaPosicao + ' para ' + novaPosicao + ' na seção ' + funcionalidade.status;
+
+      _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, mensagem);
     }
   };
 
@@ -181,7 +182,18 @@ function KanbanController($scope, KanbanService, ModuloService, FuncionalidadeSe
   };
 
   $scope.removeSection = function(section, event) {
-    if(section.funcionalidades && section.funcionalidades.length === 0) {
+    if(section.estadoFinal) {
+      $mdDialog.show(
+        $mdDialog.alert()
+          .parent(angular.element(document.querySelector('#kanaban-secoes')))
+          .clickOutsideToClose(true)
+          .title('Atenção')
+          .textContent('Não é possível excluir a seção final, apenas alterar seu nome. Importante independente da ordem definida essa seção sempre é a final.')
+          .ariaLabel('Dialog')
+          .ok('Ok!')
+          .targetEvent(event)
+      );
+    } else if(section.funcionalidades && section.funcionalidades.length === 0) {
       KanbanService.removeSection($scope.kanban, section);
     } else {
       $mdDialog.show(
@@ -266,7 +278,9 @@ function KanbanController($scope, KanbanService, ModuloService, FuncionalidadeSe
   };
 
   KanbanService.findKanban(buscarKanbanCb);
-  ModuloService.findModulos(buscarModuloCb);
-}
+  //SessaoService.findModulos(buscarModuloCb);
+
+
+$scope.moduloKanbanSelecionado = SessaoService.getModulo();}
 
 controllersModule.controller('KanbanController', KanbanController);

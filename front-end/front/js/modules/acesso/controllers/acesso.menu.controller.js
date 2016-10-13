@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function AcessoMenuController(AcessoService) {
+function AcessoMenuController($scope, AcessoService) {
   var mv = this;
 
   function carregarMenus() {
@@ -20,8 +20,16 @@ function AcessoMenuController(AcessoService) {
     }
   }
 
+  function mudarModoVisaoMenus() {
+    $scope.$on('modoVisaoAlterado', function(event, modo) {
+      AcessoService.salvarModoVisao(modo);
+      carregarMenus();
+    });
+  }
+
   function init() {
     carregarMenus();
+    mudarModoVisaoMenus();
   }
   init();
 }

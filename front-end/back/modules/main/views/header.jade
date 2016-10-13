@@ -20,7 +20,10 @@ div(data-ng-controller="HeaderController", ng-cloak)
 
       div.user(data-ng-controller='UsuarioSessaoController as mv')
         div.userdata
+          i.icon.material-icons account_circle
           span(data-ng-bind='::mv.usuarioLogado.nome')
           button.sair(data-ng-click='mv.sair()') Sair
+        div.projeto
+            span(data-ng-bind='projetoContaSelecionado.nome')
 
   include menu

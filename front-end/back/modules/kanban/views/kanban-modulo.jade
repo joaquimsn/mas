@@ -1,10 +1,10 @@
 div.page-header
-      div.name Kanban - Modulo
+      div.name Kanban - <b>{{moduloKanbanSelecionado.nome}}</b>
       div.options()
         div.option 
           md-button.md-warn(ng-click="abrirModalCadastroSecao($event)") Nova seção
 
-div.filtros
+div.filtros(data-ng-if='false')
   div.filtro(layout-gt-sm="row")
     md-input-container.md-block(flex-gt-sm='40')
       label Modulo
@@ -35,18 +35,14 @@ div.boards(data-ng-model='kanban')
             div.titulo
               span(data-ng-bind='task.titulo')
             div.informacoes
-              span 23/04/2016
-              span 24/05/2016
-            div.tags(data-ng-show='false')
-              span.tag Importante
-              span.tag Outra
-              span.tag Outra
-              span.tag Outra
-              span.tag Outra
-              span.tag Outra
+              span(data-ng-show='task.dataInicio', data-ng-bind='task.dataInicio | date: "dd/MM/yyyy"')
+              span.divisor(data-ng-show='task.dataFim') até
+              span(data-ng-show='task.dataFim', data-ng-bind='task.dataFim | date: "dd/MM/yyyy"')
+            div.tags(data-ng-show='task.tags')
+              span.tag(data-ng-repeat="tag in task.tags track by $index", data-ng-bind='tag.nome', data-ng-style='{background: tag.cor}')
               
             div.usuarios
-              ul.list
+              ul.list(data-ng-show='false')
                 li.usuario 
                   i.material-icons.md-36 account_box
                 li.usuario 

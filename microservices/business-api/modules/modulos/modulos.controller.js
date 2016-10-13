@@ -18,9 +18,14 @@
     Service.buscarPorId(req, res);
   }
 
+    function adicionarFuncionalidade (req, res) {
+    Service.adicionarFuncionalidade(req, res);
+  }
+
   var controller = {
     cadastrar: cadastrar,
     alterar: alterar,
+    adicionarFuncionalidade: adicionarFuncionalidade,
     buscarTodos: buscarTodos,
     buscarPorId: buscarPorId
   };

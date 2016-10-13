@@ -37,7 +37,7 @@
     var promisse = Funcionalidades.findById({_id: req.params.idFuncionalidade}).exec();
 
     promisse.then(function (funcionalidade) {
-      console.log("consultando historicos");
+      console.log("consultando historicos", funcionalidade.historicos);
       res.json(funcionalidade.historicos);
     });
 
@@ -104,18 +104,18 @@
       $push: {'historicos': req.body}
     },
     {
-      upsert: true,
-      safe: true
+      safe: true,
+      new: true
     }
     ).exec();
 
     promisse.then(function(funcionalidade) {
-      console.log("Historico adicionado com sucesso");
-      res.json(funcionalidade);
+      console.log("Historico adicionado com sucesso", funcionalidade.historicos);
+      res.json(funcionalidade.historicos);
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao adicionarHistorico" + error);
+      console.error("Erro ao adicionarHistorico", error);
       res.status(500);
       res.json(error);
     });
@@ -154,7 +154,6 @@
       $push: {tarefas: req.body}
     },
     {
-      upsert: true,
       safe: true
     }
     ).exec();
@@ -220,9 +219,16 @@
   function alterar(req, res) {
     var query = {_id: req.params.idFuncionalidade};
     var model = req.body;
-    delete model._id;
-
-    var promisse = Funcionalidades.update(query, model);
+  
+    var promisse = Funcionalidades.update(query, {
+      $set: {titulo: model.titulo, 
+            descricao: model.descricao,   
+            tags: model.tags, 
+            dataInicio: model.dataInicio,
+            dataFim: model.dataFim,
+            usuarios: model.usuarios,
+            severidade: model.severidade}
+    });
 
     promisse.then(function (funcionalidade) {
       res.json(funcionalidade);

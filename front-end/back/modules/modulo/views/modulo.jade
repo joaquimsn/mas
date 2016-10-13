@@ -8,14 +8,14 @@ div.page-header
 
 div.modulo-container
   div.lista
-    div.item(data-ng-repeat='modulo in ::modulos track by $index')
+    div.item.cursorPointer(data-ng-repeat='modulo in ::modulos track by $index', data-ng-click='irParaKanban(modulo)')
       div.linha
         span.textodestaque(data-ng-bind="modulo.nome")
       div.linha
         div.indices
-          span.textosecundario funcionalidades {{modulo.funcionalidades.lenfth}}
+          span.textosecundario Funcionalidades {{modulo.funcionalidades.length}}
         div.equipes
-          span.label equipe
+          span.label equipes
           div.equipe(data-ng-repeat='equipe in ::modulo.equipes')
             span.letra {{equipe.nome.charAt(0)}}
 

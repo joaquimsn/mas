@@ -5,7 +5,7 @@
   bcrypt    = require('bcrypt-nodejs');
 
   function login (req, res) {
-    var username = req.body.usuario,
+    var username = req.body.usuario.toLowerCase(),
         password = req.body.senha,
         promisse = Conta.findOne({'email': { $regex : new RegExp(username, "i") }, 'ativo': true}).exec();
 
@@ -17,12 +17,12 @@
             res.json(conta);
           } else {
             res.status(403);
-            res.json('Senha inválida');
+            res.json('Usuário ou senha inválidos');
           }
         });
       } else {
         res.status(403);
-        res.json('Usuário inválido');
+        res.json('Usuário ou senha inválidos');
       }
     });
     promisse.then(null, function (error) {
@@ -111,6 +111,7 @@
   function cadastrar(req, res) {
     var conta =  req.body;
     conta.senha = bcrypt.hashSync(conta.senha);
+    conta.email = conta.email.toLowerCase();
     console.log('Conta para cadastro', conta);
     var model = new Conta(conta);
 

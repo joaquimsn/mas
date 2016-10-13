@@ -5,8 +5,9 @@ var servicesModule = require('./_index');
 /**
  * @ngInject
  */
-function SessaoService($window) {
+function SessaoService($window, $rootScope) {
   this.storeUsuario = function(usuario) {
+    console.log('Armazenado usuario', usuario);
     $window.sessionStorage.usuario = JSON.stringify(usuario);
   };
 
@@ -26,11 +27,21 @@ function SessaoService($window) {
 
   this.storeProjeto = function(projeto) {
     $window.sessionStorage.projetoSelecionado = JSON.stringify(projeto);
+    $rootScope.projetoContaSelecionado = projeto;
   };
 
   this.getProjeto = function() {
     var projeto = JSON.parse($window.sessionStorage.projetoSelecionado || {});
     return projeto;
+  };
+
+  this.storeModulo = function(modulo) {
+    $window.sessionStorage.moduloSelecionado = JSON.stringify(modulo);
+  };
+
+  this.getModulo = function() {
+    var modulo = JSON.parse($window.sessionStorage.moduloSelecionado || {});
+    return modulo;
   };
 
   this.storeFuncionalidade = function(funcionalidade) {

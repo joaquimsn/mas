@@ -4,8 +4,8 @@ var mongoose  = require('mongoose'),
 
 module.exports = {
   nome:           {type: String, required: true, min: 3, max: 200},
-  email:          {type: String, min: 6, max: 128},
-  senha:          {type: String},
+  email:          {type: String, min: 6, max: 128, required: true,},
+  senha:          {type: String, required: true,},
   projetos:       [
     {
       proprio: {type: Boolean},

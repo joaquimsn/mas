@@ -25,7 +25,7 @@ function ContaService(requestApiService) {
     requestApiService.getNo(callback, '/contas/' + id);
   };
 
-  this.adicionarProjeto = function(projeto, id) {
+  this.adicionarProjeto = function(projeto, idConta) {
     function retornoCb(data) {
       console.log('Adicionado projeto a conta', data);
     }
@@ -33,7 +33,7 @@ function ContaService(requestApiService) {
     console.log('Projeto recem cadastrado', projeto);
     var vinculo = new VinculoProjeto(projeto);
     console.log('Vinculo projeto', vinculo);
-    requestApiService.putNo(retornoCb, vinculo, '/contas/' + id + '/projetos');
+    requestApiService.putNo(retornoCb, vinculo, '/contas/' + idConta + '/projetos');
   };
 }
 

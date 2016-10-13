@@ -13,6 +13,7 @@ module.exports = {
     }
   ],
   dataCadastro:       {type: Date, default: Date.now},
+  funcionalidades:  [{type: Schema.Types.ObjectId, ref: 'Funcionalidades'}],
   status:             {
     codigo : {type: Number},
     display: {type: String}

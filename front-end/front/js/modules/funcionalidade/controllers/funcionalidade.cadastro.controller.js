@@ -6,7 +6,16 @@ var controllersModule = require('./_index');
  * @ngInject
  */
 function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService, ModuloService, TagService) {
+  function resetVariaveis() {
+    $scope.novaFuncionalidade = {};
+    $scope.edicao = false;
+    $scope.historicos = {};
+  }
+  resetVariaveis();
+  
+  
   $scope.sectionSelecionada = section;
+  
   function cadastroCb(funcionalidade) {
     console.log(funcionalidade);
     $scope.novaFuncionalidade = {usuarios: []};

@@ -15,8 +15,8 @@ function menusGeral() {
       url: '/projetos',
       icon: 'icon-projeto',
       submenus: []
-    }
-    /*{
+    },
+    {
       nome: 'Equipes',
       url: '/equipes',
       icon: 'icon-share',
@@ -27,7 +27,7 @@ function menusGeral() {
       url: '/configuracoes',
       icon: 'icon-build',
       submenus: []
-    }*/
+    }
   ];
 }
 
@@ -39,12 +39,12 @@ function menusProjeto() {
       icon: 'icon-home',
       submenus: []
     },
-    /*{
+    {
       nome: 'Dashboard',
       url: '/gestao-projeto/dashboard',
       icon: 'icon-dashboard',
       submenus: []
-    },*/
+    },
     {
       nome: 'Kanban',
       url: '/gestao-projeto/kanban-modulo',

@@ -12,6 +12,10 @@ function UsuarioSessaoController(AuthService, SessaoService, $window) {
     mv.usuarioLogado = SessaoService.getUsuario();
   }
 
+  function carregarProjeto() {
+    mv.projetoContaSelecionado = SessaoService.getProjeto();
+  }
+
   mv.sair = function() {
     AuthService.logout();
     $window.location.reload();
@@ -19,6 +23,7 @@ function UsuarioSessaoController(AuthService, SessaoService, $window) {
 
   function init() {
     carregarUsuario();
+    carregarProjeto();
   }
 
   init();

@@ -13,6 +13,8 @@ require('./modules/usuario/_index');
 require('./modules/email/_index');
 require('./modules/acesso/_index');
 require('./modules/projeto/_index');
+require('./modules/equipe/_index');
+require('./modules/tag/_index');
 
 require('angular-route');
 require('angular-animate');
@@ -36,6 +38,8 @@ var requires = [
   'agileTcc.Email',
   'agileTcc.Acesso',
   'agileTcc.Projeto',
+  'agileTcc.Equipe',
+  'agileTcc.Tag',
   'ngRoute',
   'as.sortable',
   'ngSanitize',

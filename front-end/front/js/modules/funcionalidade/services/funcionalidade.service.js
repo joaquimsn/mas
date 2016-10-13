@@ -5,7 +5,7 @@ var servicesModule = require('./_index');
 /**
  * @ngInject
  */
-function FuncionalidadeService(requestApiService) {
+function FuncionalidadeService(requestApiService, ModuloService) {
   this.findFuncionalidade = function (callback) {
     requestApiService.get(callback, '/funcionalidades');
   };
@@ -14,9 +14,14 @@ function FuncionalidadeService(requestApiService) {
     requestApiService.postNo(callback, funcionalidade, '/funcionalidades');
   };
 
+  this.alterar = function(callback, funcionalidade) {
+    requestApiService.putNo(callback, funcionalidade, '/funcionalidades/' + funcionalidade._id);
+  };
+
   this.cadastrarParaSecao = function(callback, funcionalidade, kanban, section) {
     requestApiService.postNo(callback, funcionalidade, '/kanban/' + kanban._id +'/secoes/' + section._id + '/funcionalidades');
-  };
+    ModuloService.adicionarFuncionalidade(funcionalidade);
+};
 
   this.alterar = function(callback, funcionalidade) {
     requestApiService.putNo(callback, funcionalidade, '/funcionalidades/' + funcionalidade._id);

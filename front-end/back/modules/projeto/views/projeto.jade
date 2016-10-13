@@ -8,12 +8,17 @@ div.page-header
 
 div.projeto-container
   div.lista
-    div.item(data-ng-repeat='contaProjeto in ::projetos track by $index' data-ng-click='abrirKanban(contaProjeto.projeto)')
-      div.linha
-        span.textodestaque(data-ng-bind="contaProjeto.projeto.nome")
+    div.item(data-ng-repeat='contaProjeto in ::projetos track by $index')
+      div.linha.comColunas
+        div.indices
+          span.textodestaque(data-ng-bind="contaProjeto.projeto.nome")
+        div.indices.itemDireita
+          div.irModulos.cursorPointer(data-ng-click='irParaModulos(contaProjeto.projeto)')
+            i.icon(class='material-icons') view_module
+            span.link Ir para modulos
       div.linha
         div.indices
           span.textosecundario Modulos {{projeto.modulos.length}}
-        div.projeto.repositorioGitpe
-            span.label Repositorio {{projeto.repositorioGit}}
+        div.indices.projeto.repositorioGitpe
+            span.textosecundario.label Repositorio {{projeto.repositorioGit}}
 
