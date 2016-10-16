@@ -17,6 +17,11 @@ function ModuloService(requestApiService, SessaoService) {
   this.adicionarFuncionalidade = function(funcionalidade) {
     requestApiService.putNo(function() {}, funcionalidade, '/modulos/' + SessaoService.getModulo()._id + '/funcionalidades');
   };
+
+  this.buscarTodosPorProjeto = function(callback) {
+   
+    requestApiService.getNo(callback, '/projetos/' + SessaoService.getProjeto()._id + '/modulos');
+  };
 }
 
 servicesModule.service('ModuloService', ModuloService);

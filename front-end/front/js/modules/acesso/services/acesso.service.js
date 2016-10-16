@@ -21,13 +21,13 @@ function menusGeral() {
       url: '/equipes',
       icon: 'icon-share',
       submenus: []
-    },
+    }/*,
     {
       nome: 'Configurações',
       url: '/configuracoes',
       icon: 'icon-build',
       submenus: []
-    }
+    }*/
   ];
 }
 
@@ -39,12 +39,12 @@ function menusProjeto() {
       icon: 'icon-home',
       submenus: []
     },
-    {
+    /*{
       nome: 'Dashboard',
       url: '/gestao-projeto/dashboard',
       icon: 'icon-dashboard',
       submenus: []
-    },
+    },*/
     {
       nome: 'Kanban',
       url: '/gestao-projeto/kanban-modulo',
@@ -56,13 +56,13 @@ function menusProjeto() {
       url: '/gestao-projeto/modulos',
       icon: 'icon-modulos',
       submenus: []
-    },
-    {
+    }
+    /*{
       nome: 'Tags',
       url: '/gestao-projeto/tags',
       icon: 'icon-tag',
       submenus: []
-    }
+    }*/
   ];
 }
 

@@ -13,7 +13,7 @@ function UsuarioSessaoController(AuthService, SessaoService, $window) {
   }
 
   function carregarProjeto() {
-    mv.projetoContaSelecionado = SessaoService.getProjeto();
+    //mv.projetoContaSelecionado = SessaoService.getProjeto();
   }
 
   mv.sair = function() {

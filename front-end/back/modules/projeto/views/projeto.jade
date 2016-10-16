@@ -8,7 +8,7 @@ div.page-header
 
 div.projeto-container
   div.lista
-    div.item(data-ng-repeat='contaProjeto in ::projetos track by $index')
+    div.item(data-ng-repeat='contaProjeto in projetos track by $index')
       div.linha.comColunas
         div.indices
           span.textodestaque(data-ng-bind="contaProjeto.projeto.nome")

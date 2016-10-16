@@ -8,6 +8,7 @@ var controllersModule = require('./_index');
 function ProjetoController($scope, $rootScope, $location, systemUri, ProjetoService, SessaoService) {
   function buscarProjetosUsuarioCb(promisse) {
     promisse.success(function (projetos) {
+      console.log(projetos);
       $scope.projetos = projetos;
     });
     promisse.error(function (err) {

@@ -22,6 +22,8 @@ function ModuloController($scope, systemUri, $location, ModuloService, SessaoSer
   };
 
   ModuloService.findModulos(findModuloCb);
+  //ModuloService.buscarTodosPorProjeto(findModuloCb);
+
 }
 
 controllersModule.controller('ModuloController', ModuloController);
