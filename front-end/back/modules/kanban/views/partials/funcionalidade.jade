@@ -68,24 +68,27 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
               md-select(ng-model='novaFuncionalidade.modulo')
                 md-option(ng-repeat='modulo in modulosFiltro', ng-value='{{modulo}}')
                   | {{modulo.nome}}
-            div
-              md-content.md-padding.autocomplete.usuarioChip(layout='column', ng-controller='UsuarioSearchController')
-                md-contact-chips(ng-model='usuarios', 
-                                md-contacts='querySearch($query)', 
-                                md-contact-name='nome', 
-                                md-contact-image='imagem', 
-                                md-require-match='true',
-                                filter-selected='true',
-                                placeholder='Adicione um usuário',
-                                secondary-placeholder='Adicionar usuário')
+                  
+            div(ng-controller='UsuarioSearchController as mv')
+              md-content.md-padding.autocomplete(layout='column')
+                md-contact-chips(ng-model='novaFuncionalidade.usuarios', 
+                  md-contacts='mv.querySearch($query)', 
+                  md-contact-name='nome', 
+                  md-contact-image='mock.imagem', 
+                  md-contact-email='email', 
+                  md-require-match='true', 
+                  md-highlight-flags='i', 
+                  filter-selected='mv.filterSelected', 
+                  placeholder='Usuários')
+
               
             div.left15
-              md-input-container(flex-gt-sm="")
+              md-input-container.margindown(flex-gt-sm="")
                 label Severidade
                 input(name="Severidade", ng-model="novaFuncionalidade.severidade" ng-pattern="/^[0-9]{2}|[0-9]{1}$/")
             
             div.left15(data-ng-controller='TagController')
-              md-input-container
+              md-input-container.margindown.fullsize
                 label Tags
                 md-select(ng-model="novaFuncionalidade.tags" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="")
                   md-select-header.demo-select-header

@@ -31,7 +31,10 @@ function SessaoService($window, $rootScope) {
   };
 
   this.getProjeto = function() {
-    var projeto = JSON.parse($window.sessionStorage.projetoSelecionado || {});
+    var projeto = {};
+    if($window.sessionStorage.projetoSelecionado) {
+      projeto = JSON.parse($window.sessionStorage.projetoSelecionado || {});
+    }
     return projeto;
   };
 

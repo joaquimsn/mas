@@ -6,34 +6,38 @@ var controllersModule = require('./_index');
  * @ngInject
  */
 function UsuarioSearchController($scope, UsuarioService) {
-  var self = $scope;
-  var cachedQuery;
+    var self = this;
+    self.allContacts = [];
+    self.contacts = [];
+    self.filterSelected = true;
+    var cachedQuery, lastSearch;
 
-  UsuarioService.buscarUsuarioDisponivelParaProjeto(function(usuarios) {
-     self.todosUsuarios = usuarios;
-  });
+    UsuarioService.buscarUsuarioDisponivelParaProjeto(function(usuarios) {
+      self.allContacts = usuarios;
+      console.log(usuarios);
+    });
 
-  self.usuarios = [];
-  self.querySearch = querySearch;
 
-  /**
-   * Search for contacts; use a random delay to simulate a remote call
-   */
-  function querySearch (criteria) {
-    cachedQuery = cachedQuery || criteria;
-    return cachedQuery ? self.todosUsuarios.filter(createFilterFor(cachedQuery)) : [];
-  }
-
-  /**
-   * Create filter function for a query string
-   */
-  function createFilterFor(query) {
-    var lowercaseQuery = angular.lowercase(query);
-
-    return function filterFn(usuario) {
-      return (usuario.nome.toLowerCase().indexOf(lowercaseQuery) !== -1);
+    var mock = {
+      imagem: ''
     };
-  }
+
+    self.mock = mock;
+
+    function querySearch (criteria) {
+      cachedQuery = cachedQuery || criteria;
+      return cachedQuery ? self.allContacts.filter(createFilterFor(cachedQuery)) : [];
+    }
+
+    function createFilterFor(query) {
+      var lowercaseQuery = angular.lowercase(query);
+
+      return function filterFn(contact) {
+        return (contact.nome.indexOf(lowercaseQuery) != -1);
+      };
+    }
+
+    self.querySearch = querySearch;
 }
 
 controllersModule.controller('UsuarioSearchController', UsuarioSearchController);

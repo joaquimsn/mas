@@ -10,6 +10,10 @@ function FuncionalidadeService(requestApiService, ModuloService) {
     requestApiService.get(callback, '/funcionalidades');
   };
 
+  this.buscarPorId = function (callback, id) {
+    requestApiService.getNo(callback, '/funcionalidades/' + id);
+  };
+
   this.cadastrar = function(callback, funcionalidade) {
     requestApiService.postNo(callback, funcionalidade, '/funcionalidades');
   };

@@ -5,11 +5,13 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService, ModuloService, TagService) {
+function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService, ModuloService, TagService, SessaoService) {
   function resetVariaveis() {
-    $scope.novaFuncionalidade = {};
+    $scope.novaFuncionalidade = {usuarios: [SessaoService.getUsuario()]};
     $scope.edicao = false;
     $scope.historicos = {};
+
+    
   }
   resetVariaveis();
   
