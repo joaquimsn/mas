@@ -30,9 +30,7 @@ function ContaService(requestApiService) {
       console.log('Adicionado projeto a conta', data);
     }
 
-    console.log('Projeto recem cadastrado', projeto);
     var vinculo = new VinculoProjeto(projeto);
-    console.log('Vinculo projeto', vinculo);
     requestApiService.putNo(retornoCb, vinculo, '/contas/' + idConta + '/projetos');
   };
 }

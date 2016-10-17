@@ -32,9 +32,7 @@ module.exports = {
   ],
   tarefas: [
     {
-      nome:         {type: String, required: true, min: 3, max: 200},
-      descricao:    {type: String},
-      responsaveis: [{tyepe: Schema.Types.ObjectId}]
+      concluida:         {type: Boolean, default: false}
     }
   ],
   arquivos: [

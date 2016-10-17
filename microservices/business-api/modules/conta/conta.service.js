@@ -58,7 +58,7 @@
       if(projetos.length > 0) {
         res.json(projetos);
       } else {
-        res.json('[]');
+        res.json([]);
       }
     });
 

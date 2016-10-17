@@ -38,32 +38,32 @@ $form_login
           padding 5px
           width 100%
 
-    > .botoes
-      margin-top 20px
-      display flex
-      align-content: space-between
-      flex-wrap: wrap
+      > .botoes
+        margin-top 20px
+        display flex
+        align-content: space-between
+        flex-wrap: wrap
 
-      > .button
-        width 50%
-        height 45px
-        border none
-        background $darkAccentColor
-        cursor pointer
-        font-size pt(18px)
-        color $textPrimaryColor
+        > .button
+          width 50%
+          height 45px
+          border none
+          background $darkAccentColor
+          cursor pointer
+          font-size pt(18px)
+          color $textPrimaryColor
 
-      > button[disabled]
-        cursor auto
-        background #BBB
+        > input[disabled]
+          cursor auto
+          background #BBB
 
-      > .links
-        width: 50%
-        margin-top 10px
-        text-align: end
-        
-        > .createaccount
-          color: #512DA8
+        > .links
+          width: 50%
+          margin-top 10px
+          text-align: end
+          
+          > .createaccount
+            color: #512DA8
   
   .signup
     @extends $form_login

@@ -4,7 +4,7 @@ module.exports = function (server) {
 
   server.get('/projetos', controller.buscarTodos);
   server.get('/projetos/:idProjeto', controller.buscarPorId);
-  server.get('/projeto/:idProjeto/modulos', controller.buscarModulos);
+  server.get('/projetos/:idProjeto/modulos', controller.buscarModulos);
 
   server.post('/projetos', controller.cadastrar);
   server.post('/projetos/:idProjeto/modulos', controller.adicionarModulo);

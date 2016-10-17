@@ -8,14 +8,14 @@ div.page-header
 
 div.projeto-container
   div.lista
-    div.item(data-ng-repeat='contaProjeto in projetos track by $index')
+    div.item(data-ng-repeat='contaProjeto in projetosUsuario track by $index')
       div.linha.comColunas
         div.indices
           span.textodestaque(data-ng-bind="contaProjeto.projeto.nome")
         div.indices.itemDireita
           div.irModulos.cursorPointer(data-ng-click='irParaModulos(contaProjeto.projeto)')
             i.icon(class='material-icons') view_module
-            span.link Ir para modulos
+            span.link Ir para módulos
       div.linha
         div.indices
           span.textosecundario Modulos {{projeto.modulos.length}}

@@ -32,12 +32,12 @@
   }
 
   function buscarModulos(req, res) {
-    var promisse = Projeto.find({_id: req.params.idProjeto})
-                         .populate('modulos')
+    var promisse = Projeto.findById({_id: req.params.idProjeto})
+                         .populate('modulos.modulo')
                          .exec();
 
     promisse.then(function (projeto) {
-      console.log("consultando modulos");
+      console.log("modulos do projeto", projeto);
       res.json(projeto.modulos);
     });
 
@@ -73,6 +73,7 @@
   }
 
   function adicionarModulo(req, res) {
+    console.log(req.body);
     var promisse = Projeto.findByIdAndUpdate(
     {
       _id: req.params.idProjeto

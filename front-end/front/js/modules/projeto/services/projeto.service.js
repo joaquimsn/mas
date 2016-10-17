@@ -23,8 +23,10 @@ function ProjetoService($http, requestApiService, SessaoService, ContaService) {
     function retornoCb(data) {
       console.log('Adicionado modulo ao projeto', data);
     }
-
-    requestApiService.postNo(retornoCb, modulo, '/projetos/' + SessaoService.getProjeto()._id + '/modulos');
+    var projetoModulo = {
+      modulo: modulo
+    };
+    requestApiService.postNo(retornoCb, projetoModulo, '/projetos/' + SessaoService.getProjeto()._id + '/modulos');
   };
 }
 

@@ -52,17 +52,17 @@ function menusProjeto() {
       submenus: []
     },
     {
-      nome: 'Modulos',
+      nome: 'Módulos',
       url: '/gestao-projeto/modulos',
       icon: 'icon-modulos',
       submenus: []
-    }
-    /*{
+    },
+    {
       nome: 'Tags',
       url: '/gestao-projeto/tags',
       icon: 'icon-tag',
       submenus: []
-    }*/
+    }
   ];
 }
 

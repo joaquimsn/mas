@@ -5,15 +5,13 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function ModuloController($scope, systemUri, $location, ModuloService, SessaoService) {
-  function findModuloCb(promisse) {
-    promisse.success(function (modulos) {
-      $scope.modulos = modulos;
-    });
-    promisse.error(function (err) {
-      console.log('Erro ao buscar');
-      console.log(err);
-    });
+function ModuloController($scope, systemUri, $location, ModuloService, SessaoService, globalMessage) {
+  function buscarModulosCb(projetoModulos) {
+    $scope.projetoModulos = projetoModulos;
+
+    if(projetoModulos.length === 0) {
+      globalMessage.warn("O projeto não possui nenhum módulo");
+    }
   }
 
   $scope.irParaKanban = function(modulo) {
@@ -21,8 +19,8 @@ function ModuloController($scope, systemUri, $location, ModuloService, SessaoSer
     $location.path(systemUri.kanban());
   };
 
-  ModuloService.findModulos(findModuloCb);
-  //ModuloService.buscarTodosPorProjeto(findModuloCb);
+
+  ModuloService.buscarTodosPorProjeto(buscarModulosCb);
 
 }
 

@@ -5,7 +5,7 @@ div.login-container(data-ng-controller='LoginController')
         logo 
         span MAS
 
-      form.form(name='formLogin')
+      form.form(name='formLogin' ng-submit='acessar(credencial)')
         div.campo
           label Email
           input(type='email' data-ng-model='credencial.usuario' 
@@ -21,12 +21,11 @@ div.login-container(data-ng-controller='LoginController')
                 placeholder="Informe sua senha" 
                 required)
 
-      div.botoes
-        button.button(data-ng-click='acessar(credencial)', 
-                       data-ng-disabled='formLogin.$invalid') Entrar
+        div.botoes
+          input.button(type="submit" value="Entrar" data-ng-disabled='formLogin.$invalid')
 
-        div.links
-          a.createaccount(data-ng-click='showSignup = !showSignup') criar conta
+          div.links
+            a.createaccount(data-ng-click='showSignup = !showSignup') criar conta
 
     div.signup(data-ng-show='showSignup')
       div.header

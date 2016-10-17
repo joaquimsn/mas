@@ -10,10 +10,11 @@ var objectStatus = {
 module.exports = {
   nome:               {type: String, required: true, min: 3, max: 200},
   descricao:          {type: String, min: 3, max: 600},
+  dataInicio:       {type: Date, require: true},
+  dataFim:          {type: Date, require: true},
   modulos:            [
     {
       modulo: {type: Schema.Types.ObjectId, ref: 'Modulos'},
-      kanban:             {type: Schema.Types.ObjectId, ref: 'Kanbans'},
       status: objectStatus
     }
   ],

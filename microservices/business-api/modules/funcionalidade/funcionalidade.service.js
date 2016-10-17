@@ -50,7 +50,11 @@
   }
 
   function buscarComentarios(req, res) {
-    var promisse = Funcionalidades.findById({_id: req.params.idFuncionalidade}).exec();
+    var promisse = Funcionalidades.findById({_id: req.params.idFuncionalidade})
+                                  .populate('usuarios')
+                                  .populate('tarefas.tarefa')
+                                  .populate('tarefas.comentarios')
+                                  .exec();
 
     promisse.then(function (funcionalidade) {
       console.log("consultando comentarios");
@@ -147,20 +151,22 @@
   }
 
   function adicionarTarefa(req, res) {
+    console.log("tarefa", req.body);
     var promisse = Funcionalidades.findByIdAndUpdate(
     {
       _id: req.params.idFuncionalidade
     }, {
-      $push: {tarefas: req.body}
+      $push: {tarefas:  req.body}
     },
     {
-      safe: true
+      safe: true,
+      new: true
     }
     ).exec();
 
     promisse.then(function(funcionalidade) {
       console.log("Tarefa adicionada com sucesso");
-      res.json(funcionalidade);
+      res.json(funcionalidade.tarefas);
     });
 
     promisse.then(null, function (error) {
@@ -174,7 +180,7 @@
     var promisse = Funcionalidades.update(
     {
       _id: req.params.idFuncionalidade,
-      'tarefas._id': req.params.idTarefa
+      'tarefas.tarefa._id': req.params.idTarefa
     }, {
       $set: {'tarefas.$': req.body}
     },

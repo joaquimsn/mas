@@ -8,8 +8,7 @@ var controllersModule = require('./_index');
 function ProjetoController($scope, $rootScope, $location, systemUri, ProjetoService, SessaoService) {
   function buscarProjetosUsuarioCb(promisse) {
     promisse.success(function (projetos) {
-      console.log(projetos);
-      $scope.projetos = projetos;
+      $scope.projetosUsuario = projetos;
     });
     promisse.error(function (err) {
       console.log('Erro ao buscar');
@@ -19,7 +18,6 @@ function ProjetoController($scope, $rootScope, $location, systemUri, ProjetoServ
 
   $scope.irParaModulos = function(projeto) {
     if(projeto) {
-      console.log('Projeto Para abrir',projeto);
       SessaoService.storeProjeto(projeto);
       $rootScope.$broadcast('modoVisaoAlterado', {tipo: 'projeto'});
 

@@ -1,5 +1,5 @@
 div.page-header
-  div.name Modulos
+  div.name Módulos
   div.options
     div.option
       a.link(data-ng-href='{{systemUri.modulo()}}') Listagem
@@ -8,14 +8,14 @@ div.page-header
 
 div.modulo-container
   div.lista
-    div.item.cursorPointer(data-ng-repeat='modulo in ::modulos track by $index', data-ng-click='irParaKanban(modulo)')
+    div.item.cursorPointer(data-ng-repeat='projetoModulo in ::projetoModulos track by $index', data-ng-click='irParaKanban(projetoModulo.modulo)')
       div.linha
-        span.textodestaque(data-ng-bind="modulo.nome")
+        span.textodestaque(data-ng-bind="projetoModulo.modulo.nome")
       div.linha
         div.indices
-          span.textosecundario Funcionalidades {{modulo.funcionalidades.length}}
+          span.textosecundario Funcionalidades {{projetoModulo.modulo.funcionalidades.length}}
         div.equipes
           span.label equipes
-          div.equipe(data-ng-repeat='equipe in ::modulo.equipes')
+          div.equipe(data-ng-repeat='equipe in ::projetoModulo.modulo.equipes')
             span.letra {{equipe.nome.charAt(0)}}
 
