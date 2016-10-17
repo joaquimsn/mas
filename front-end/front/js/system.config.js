@@ -36,6 +36,10 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
       templateUrl: 'expose/kanban/kanban-modulo',
       controller: 'KanbanController'
     }).
+    when(SystemUriConfig.gestaoProjetoDashboard, {
+      templateUrl: 'expose/dashboard/dashboard',
+      controller: 'BurndownController'
+    }).
     // when(SystemUriConfig.funcionalidade, {
     //   templateUrl: 'expose/funcionalidade/funcionalidade',
     //   controller: 'FuncionalidadeController'

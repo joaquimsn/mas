@@ -13,6 +13,7 @@ require('./modules/usuario/_index');
 require('./modules/email/_index');
 require('./modules/acesso/_index');
 require('./modules/projeto/_index');
+require('./modules/burndown/_index');
 require('./modules/equipe/_index');
 require('./modules/tag/_index');
 
@@ -24,30 +25,33 @@ require('angular-messages');
 require('angular-material');
 require('ng-sortable');
 require('angular-i18n/angular-locale_pt-br');
+require('c3-angular/c3-angular');
 require('ng-dialog/js/ngDialog.min');
 require('ng-dialog/js/ngDialog.min');
 
 var requires = [
-  'agileTcc.Main',
-  'agileTcc.Home',
-  'agileTcc.Kanban',
-  'agileTcc.Modulo',
-  'agileTcc.Funcionalidade',
-  'agileTcc.Login',
-  'agileTcc.Usuario',
-  'agileTcc.Email',
-  'agileTcc.Acesso',
-  'agileTcc.Projeto',
-  'agileTcc.Equipe',
-  'agileTcc.Tag',
-  'ngRoute',
-  'as.sortable',
-  'ngSanitize',
-  'ngMaterial',
-  'ngAnimate',
-  'ngDialog',
-  'ngMessages',
-  'duScroll'
+    'agileTcc.Main',
+    'agileTcc.Home',
+    'agileTcc.Kanban',
+    'agileTcc.Modulo',
+    'agileTcc.Funcionalidade',
+    'agileTcc.Login',
+    'agileTcc.Usuario',
+    'agileTcc.Email',
+    'agileTcc.Acesso',
+    'agileTcc.Projeto',
+    'agileTcc.Burndown',
+    'agileTcc.Equipe',
+    'agileTcc.Tag',
+    'ngRoute',
+    'as.sortable',
+    'ngSanitize',
+    'ngMaterial',
+    'ngAnimate',
+    'ngDialog',
+    'ngMessages',
+    'gridshore.c3js.chart',
+    'duScroll'
 ];
 
 angular.module('agileTcc', requires);

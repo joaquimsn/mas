@@ -12,7 +12,10 @@ function SessaoService($window, $rootScope) {
   };
 
   this.getUsuario = function() {
-    var usuario = JSON.parse($window.sessionStorage.usuario || {});
+    var usuario = {};
+    if($window.sessionStorage.usuario) {
+      usuario = JSON.parse($window.sessionStorage.usuario);
+    }
     return usuario;
   };
 

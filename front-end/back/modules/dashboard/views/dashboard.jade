@@ -1,0 +1,28 @@
+div.container-geral
+  div.containergrafico
+    div.header
+      span Grafico Burndown - Dias
+    div.grafico
+      c3chart(bindto-id="chart1")
+        chart-column( column-id=""
+                column-values="30,20,10,0"
+                column-type="spline")
+        chart-column(column-id="Andamento"
+                      column-values="30,25,5,0"
+                      column-type="line")
+    
+    div.header
+      span Grafico Burndown - Tarefas
+    div.grafico
+        c3chart(bindto-id="chart2")
+          chart-column(column-id="Esperado"
+                        column-color="blue"
+                        column-values="100,80,60,40,20,0"
+                        column-type="spline")
+          chart-column(column-id="Tarefas"
+                        column-name="Tarefas"
+                        column-color="green"
+                        column-values="110,90,55,40,20,0"
+                        column-type="bar")
+          chart-axes(y="line1")
+

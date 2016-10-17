@@ -17,6 +17,7 @@ function selectedMenu($location) {
         }
       }
       scope.$on('$locationChangeSuccess', setActive);
+      setActive();
     }
   };
 }
