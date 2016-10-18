@@ -46,8 +46,9 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
   };
 
   $scope.alterarFuncionalidade = function(funcionalidade) {
-    function alterarCb() {
+    function alterarCb(retorno) {
       globalMessage.info('Funcionalidade Alterada com sucesso');
+      console.log('Funcionalidade para alterar', retorno);
     }
     FuncionalidadeService.alterar(alterarCb, funcionalidade);
   };

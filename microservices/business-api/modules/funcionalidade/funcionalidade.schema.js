@@ -32,7 +32,8 @@ module.exports = {
   ],
   tarefas: [
     {
-      concluida:         {type: Boolean, default: false}
+      concluida:         {type: Boolean, default: false},
+      titulo:           {type: String, required: true, min: 3, max: 200}
     }
   ],
   arquivos: [

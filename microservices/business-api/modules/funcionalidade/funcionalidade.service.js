@@ -234,7 +234,9 @@
             dataInicio: model.dataInicio,
             dataFim: model.dataFim,
             usuarios: model.usuarios,
-            severidade: model.severidade}
+            severidade: model.severidade,
+            tarefas: model.tarefas
+          }
     });
 
     promisse.then(function (funcionalidade) {

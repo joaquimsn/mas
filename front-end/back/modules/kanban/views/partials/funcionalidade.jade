@@ -27,6 +27,29 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
             
             div.anexos
 
+            div.tarefasContainer(ng-if='edicao' data-ng-controller="TarefaController as mv")
+              span Tarefas
+              div.formTarefa
+                div
+                  md-input-container
+                    label Titulo
+                    input(ng-model="mv.novaTarefa.titulo")
+
+                  md-input-container
+                    md-button.md-primary.md-hue-1(data-ng-click='mv.adcionarTarefa(mv.novaTarefa)') Adicionar
+                  
+              div.listaTarefa
+                div(layout='row', layout-wrap='', flex='')
+                  div(flex-xs='', flex='50')
+                    md-checkbox(aria-label='Finalizar todos', ng-checked='mv.isChecked()', md-indeterminate='mv.isIndeterminate()', ng-click='mv.toggleAll()')
+                      span(ng-if='mv.isChecked()') Desmarcar todos
+                      span(ng-if='!mv.isChecked()') Marcar todos
+
+                    div.select-all-checkboxes(flex='100', ng-repeat='tarefa in novaFuncionalidade.tarefas')
+                      md-checkbox(ng-checked='mv.exists(tarefa, selected)', ng-click='mv.toggle(tarefa, selected)')
+                        | {{ tarefa.titulo}}
+              
+
             div.comentarios(ng-if='edicao')
               div.header
                 i.material-icons.md-24 speaker_notes
@@ -69,8 +92,8 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
                 md-option(ng-repeat='modulo in modulosFiltro', ng-value='{{modulo}}')
                   | {{modulo.nome}}
                   
-            div(ng-controller='UsuarioSearchController as mv')
-              md-content.md-padding.autocomplete(layout='column')
+            div.left15(ng-controller='UsuarioSearchController as mv')
+              md-input-container(flex-gt-sm="")
                 md-contact-chips(ng-model='novaFuncionalidade.usuarios', 
                   md-contacts='mv.querySearch($query)', 
                   md-contact-name='nome', 

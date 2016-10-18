@@ -10,7 +10,7 @@ function ModuloController($scope, systemUri, $location, ModuloService, SessaoSer
     $scope.projetoModulos = projetoModulos;
 
     if(projetoModulos.length === 0) {
-      globalMessage.warn("O projeto não possui nenhum módulo");
+      globalMessage.warn("O projeto não possui módulos");
     }
   }
 
