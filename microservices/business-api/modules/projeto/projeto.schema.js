@@ -12,7 +12,7 @@ module.exports = {
   descricao:          {type: String, min: 3, max: 600},
   dataInicio:       {type: Date, require: true},
   dataFim:          {type: Date, require: true},
-  default:          {type: Boolean, require: true},
+  default:          {type: Boolean},
   modulos:            [
     {
       modulo: {type: Schema.Types.ObjectId, ref: 'Modulos'},

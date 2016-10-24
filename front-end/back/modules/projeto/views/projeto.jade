@@ -18,7 +18,9 @@ div.projeto-container
             span.link Ir para módulos
       div.linha
         div.indices
-          span.textosecundario Modulos {{projeto.modulos.length}}
+          span.textosecundario Modulos {{contaProjeto.projeto.modulos.length}}
+        div.indices
+          md-switch.md-warn(data-ng-model="contaProjeto.projeto.default") Padrão
         div.indices.projeto.repositorioGitpe
             span.textosecundario.label(data-ng-show='false') Repositorio {{projeto.repositorioGit}}
 
