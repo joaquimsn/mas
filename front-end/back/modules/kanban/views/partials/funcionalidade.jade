@@ -113,15 +113,13 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
             div.left15(data-ng-controller='TagController')
               md-input-container.margindown.fullsize
                 label Tags
-                md-select(ng-model="novaFuncionalidade.tags" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="")
+                md-select(ng-model="novaFuncionalidade.tags" md-on-close="clearSearchTerm()" data-md-container-class="selectdemoSelectHeader" multiple="true"
+                  ng-model-options="{trackBy: '$value._id'}")
                   md-select-header.demo-select-header
                     input.demo-header-searchbox.md-text(ng-model="searchTerm" type="search" placeholder="Pesquisar uma tag")
                   md-optgroup(label="tags")
-                    md-option(ng-value="tag" ng-repeat="tag in tags | filter:searchTerm", ng-style='{color: tag.cor}')
+                    md-option(ng-value="tag" ng-repeat="tag in tagsParaSelecao | filter:searchTerm", ng-style='{color: tag.cor}')
                       span(ng-style='{color: tag.cor}') {{tag.nome}}
-
-
-
 
             
   md-dialog-actions(layout='row')

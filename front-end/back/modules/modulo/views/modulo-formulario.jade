@@ -37,6 +37,14 @@ div.modulo-container
       div.message-container(data-ng-messages="moduloForm.descricao.$error", data-ng-if='moduloForm.descricao.$touched && !submitted')
         div(data-ng-message='minlength') Descrição muito pequena
         div(data-ng-message='maxlength') Descrição muito grande
+    
+     md-input-container.data(flex-gt-sm='')
+      label Data início
+      md-datepicker(ng-model='novoModulo.dataInicio', required)
+    
+    md-input-container.data(flex-gt-sm='')
+      label Data fim
+      md-datepicker(ng-model='novoModulo.dataFim' required)
 
     div.botoes
       input.botaoCadastrar(type="submit",

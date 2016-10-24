@@ -61,12 +61,7 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.gestaoProjetoTag, {
       templateUrl: 'expose/tag/tag',
-    }).
-    when(SystemUriConfig.gestaoProjetoTagCadastro, {
-      templateUrl: 'expose/tag/tag-formulario',
-    }).
-    when(SystemUriConfig.gestaoProjetoTagAlteracao, {
-      templateUrl: 'expose/tag/tag-formulario',
+      controller: 'TagCadastroController'
     }).
     when(SystemUriConfig.notFound, {
       templateUrl: 'expose/main/404'

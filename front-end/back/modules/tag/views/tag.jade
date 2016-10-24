@@ -1,0 +1,65 @@
+div.page-header
+  div.name Tags
+  div.options
+    div.option
+      a.link.linkselected(data-ng-href='{{systemUri.modulo()}}') Gerenciamento de tags
+
+div.tag-container
+  div.cadastro
+    div(data-ng-hide="habilitarCadastro")
+      md-button(class="md-raised md-primary" data-ng-click="habilitarCadastro = !habilitarCadastro") Cadastrar Nova Tag
+    form(name="tagForm" data-ng-show="habilitarCadastro")
+      div.containercadastro(layout-gt-sm="row")
+        md-input-container(class="md-block" flex-gt-sm="")
+          label Nome
+          input(ng-model="novaTag.nome" name='nome' required)
+
+        div(class="md-block" flex-gt-sm="")
+          div(
+            md-color-picker
+            name="cor"
+            required
+            ng-model="novaTag.cor"
+            label="Escolhe uma cor"
+            icon="brush"
+            default="#000"
+            md-color-generic-palette="false"
+            md-color-history="false")
+
+        md-input-container(class="md-block" flex-gt-sm="")
+          md-button(class="md-warn md-raised md-hue-2" data-ng-click="habilitarCadastro = !habilitarCadastro") Cancelar
+          md-button.md-primary.md-hue-1(data-ng-click='cadastrar(novaTag)' ng-disabled="tagForm.$invalid") Cadastrar
+
+  div.listagem
+    div.header 
+      span.title Tags cadastradas - {{tags.length}}
+    ul.lista
+      li.containertag(ng-repeat="tag in tags track by $index")
+        div.tagitem
+          div.dados
+            div.visualizacao(data-ng-hide='tag.editar')
+              span.tagcard(data-ng-style='{background: tag.cor}') {{tag.nome}}
+            div.edicao(data-ng-show='tag.editar' layout-gt-sm="row")
+              md-input-container(class="md-block" flex-gt-sm="")
+                label Nome
+                input(ng-model="tag.nome")
+
+              div(class="md-block" flex-gt-sm="")
+                div(
+                  md-color-picker
+                  ng-model="tag.cor"
+                  label="Escolhe uma cor"
+                  icon="brush"
+                  default="#000"
+                  md-color-generic-palette="false"
+                  md-color-history="false")
+
+          div.acoes
+            div.botoes(data-ng-hide='tag.editar')
+              div.button.editar.cursorPointer(data-ng-click="tag.editar = !tag.editar")
+                i.material-icons mode_edit
+                span editar
+            div.botoes(data-ng-show='tag.editar')
+              md-button(class="md-warn md-raised md-hue-2" data-ng-click="tag.editar = !tag.editar") Cancelar
+              md-button(class="md-raised md-primary" data-ng-click="alterar(tag)") Salvar
+        md-divider(data-ng-hide="$last")

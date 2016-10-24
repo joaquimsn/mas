@@ -7,13 +7,13 @@ var controllersModule = require('./_index');
  */
 function UsuarioSearchController($scope, UsuarioService) {
     var self = this;
-    self.allContacts = [];
-    self.contacts = [];
+    self.allUsers = [];
+    self.Users = [];
     self.filterSelected = true;
     var cachedQuery, lastSearch;
 
     UsuarioService.buscarUsuarioDisponivelParaProjeto(function(usuarios) {
-      self.allContacts = usuarios;
+      self.allUsers = usuarios;
       console.log(usuarios);
     });
 
@@ -26,7 +26,7 @@ function UsuarioSearchController($scope, UsuarioService) {
 
     function querySearch (criteria) {
       cachedQuery = cachedQuery || criteria;
-      return cachedQuery ? self.allContacts.filter(createFilterFor(cachedQuery)) : [];
+      return cachedQuery ? self.allUsers.filter(createFilterFor(cachedQuery)) : [];
     }
 
     function createFilterFor(query) {

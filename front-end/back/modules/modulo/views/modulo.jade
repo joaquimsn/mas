@@ -15,7 +15,6 @@ div.modulo-container
         div.indices
           span.textosecundario Funcionalidades {{projetoModulo.modulo.funcionalidades.length}}
         div.equipes
-          span.label equipes
+          span.label Duração de {{projetoModulo.modulo.dataInicio | date: "dd/MM/yyyy"}} até {{projetoModulo.modulo.dataFim | date: "dd/MM/yyyy"}} 
           div.equipe(data-ng-repeat='equipe in ::projetoModulo.modulo.equipes')
             span.letra {{equipe.nome.charAt(0)}}
-

@@ -2,6 +2,8 @@
 
 var angular = require('angular');
 
+// Others
+
 // modules
 require('./modules/main/_index');
 require('./modules/funcionalidade/_index');
@@ -25,9 +27,10 @@ require('angular-messages');
 require('angular-material');
 require('ng-sortable');
 require('angular-i18n/angular-locale_pt-br');
-require('c3-angular/c3-angular');
-require('ng-dialog/js/ngDialog.min');
-require('ng-dialog/js/ngDialog.min');
+require('c3-angular');
+require('ng-dialog');
+require('angular-cookies');
+require('md-color-picker');
 
 var requires = [
     'agileTcc.Main',
@@ -50,6 +53,8 @@ var requires = [
     'ngAnimate',
     'ngDialog',
     'ngMessages',
+    'ngCookies',
+    'mdColorPicker',
     'gridshore.c3js.chart',
     'duScroll'
 ];
@@ -62,3 +67,9 @@ angular.module('agileTcc').run(require('./system.route.interceptor.run'));
 angular.module('agileTcc').constant('SystemUriConfig', require('./system.constants'));
 angular.module('agileTcc').constant('ApplicationSettings', require('./system.application.constants'));
 angular.module('agileTcc').constant('layoutSize', require('./system.layoutSize'));
+
+//Theme material
+angular.module('agileTcc').config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('deep-purple');
+});

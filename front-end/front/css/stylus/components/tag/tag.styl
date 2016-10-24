@@ -1,0 +1,48 @@
+.tag-container
+  padding 20px
+  width: 100%
+  height: calc(100% - 70px)
+
+  > .listagem
+    width: 100%
+    height: 100%
+    > .header
+      padding 5px 0px
+      margin: 10px 0
+
+      > .title
+        font-family:  'lato regular'
+        font-size: pt(20x)
+        color: $accentColor  
+    > .lista
+      border 1px solid $dividerColor
+      border-radius: 2px
+      overflow-y: auto
+
+      > .containertag
+        padding: 5px 0px
+        width: 100%
+        
+        > .tagitem 
+          width: 100%
+          display: flex
+          align-content: space-between
+          padding: 10px
+          > .dados
+            width: 70%
+            > .visualizacao
+              > .tagcard
+                height: 25px
+                padding: 5px 10px
+                color: $textPrimaryColor 
+      
+          > .acoes
+            display: flex
+            flex-direction: row-reverse
+            width: 30%
+            > .botoes
+              > .button 30px
+              > .editar
+                height: 30px
+                vertical-align: middle
+                line-height: 30px

@@ -22,12 +22,12 @@ function menusGeral() {
             submenus: []
         }
         /*,
-            {
-              nome: 'Configurações',
-              url: '/configuracoes',
-              icon: 'icon-build',
-              submenus: []
-            }*/
+        {
+            nome: 'Configurações',
+            url: '/configuracoes',
+            icon: 'icon-build',
+            submenus: []
+        }*/
     ];
 }
 
@@ -56,12 +56,12 @@ function menusProjeto() {
             icon: 'icon-modulos',
             submenus: []
         },
-        /*{
+        {
           nome: 'Tags',
           url: '/gestao-projeto/tags',
           icon: 'icon-tag',
           submenus: []
-        }*/
+        }
     ];
 }
 
