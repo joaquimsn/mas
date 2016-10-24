@@ -28,26 +28,32 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
             div.anexos
 
             div.tarefasContainer(ng-if='edicao' data-ng-controller="TarefaController as mv")
-              span Tarefas
+              div.header
+                i.material-icons.md-24 done_all
+                span Tarefas
               div.formTarefa
-                div
-                  md-input-container
+                div(layout-gt-sm="row")
+                  md-input-container(class="md-block" flex-gt-sm="")
                     label Titulo
                     input(ng-model="mv.novaTarefa.titulo")
 
-                  md-input-container
+                  md-input-container(class="md-block" flex-gt-sm="")
                     md-button.md-primary.md-hue-1(data-ng-click='mv.adcionarTarefa(mv.novaTarefa)') Adicionar
                   
               div.listaTarefa
                 div(layout='row', layout-wrap='', flex='')
-                  div(flex-xs='', flex='50')
-                    md-checkbox(aria-label='Finalizar todos', ng-checked='mv.isChecked()', md-indeterminate='mv.isIndeterminate()', ng-click='mv.toggleAll()')
+                  div(flex-xs='')
+                    md-checkbox(aria-label='Finalizar todos', ng-checked='mv.isChecked()', 
+                                md-indeterminate='mv.isIndeterminate()', ng-click='mv.toggleAll()')
                       span(ng-if='mv.isChecked()') Desmarcar todos
                       span(ng-if='!mv.isChecked()') Marcar todos
 
-                    div.select-all-checkboxes(flex='100', ng-repeat='tarefa in novaFuncionalidade.tarefas')
+                    div.select-all-checkboxes(ng-repeat='tarefa in novaFuncionalidade.tarefas')
                       md-checkbox(ng-checked='mv.exists(tarefa, selected)', ng-click='mv.toggle(tarefa, selected)')
-                        | {{ tarefa.titulo}}
+                        span {{ tarefa.titulo}} 
+                      span(data-ng-click="mv.removerTarefa($index, novaFuncionalidade.tarefas)")
+                        i.material-icons.md-12 close
+              md-divider
               
 
             div.comentarios(ng-if='edicao')
