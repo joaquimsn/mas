@@ -1,4 +1,4 @@
-div.container-geral
+div.container-geral(data-ng-controller='HomeController as mv')
   div.containerprojetos
     div.projetos.proprios
       div.titulo
@@ -6,8 +6,9 @@ div.container-geral
       ul.header
         li.coluna.width70 Nome
         li.coluna.width30 Andamento
-      ul.items
-        li.item.width70 Ecommerce
+      ul.items(data-ng-repeat='projeto in  ::mv.projetosUsuario.proprios track by $index')
+        li.item.width70
+          span(data-ng-bind='::projeto.nome')
         li.item.width30 0%
 
     div.projetos.vinculados
@@ -16,14 +17,22 @@ div.container-geral
       ul.header
         li.coluna.width70 Nome
         li.coluna.width30 Andamento
-      ul.items
+      ul.items(data-ng-repeat='projeto in  ::mv.projetosUsuario.vinculados track by $index')
         li.item.width70
+          span(data-ng-bind='::projeto.nome')
+        li.item.width30 0%
   
   div.containertarefas
     div.titulo
       span Tarefas proxímos 7 dias
-    ul.items(data-ng-hide="true")
-      li.item
+    ul.items(data-ng-hide="::mv.funcionalidadeProximosDias.length > 0")
+      li.item(data-ng-repeat='funcionalidade in  ::mv.funcionalidadeProximosDias track by $index')
+        div.texto.width50
+          span(data-ng-bind='::funcionalidade.titulo')
+        div.texto.width30.tags
+          span.tag(data-ng-repeat="tag in ::funcionalidade.tags track by $index", data-ng-bind='tag.nome', data-ng-style='{background: tag.cor}')
+        div.texto.width20
+          span(data-ng-bind='::(funcionalidade.dataFim | date: dd/MM/yyyy)')
 
-    div.mensagemAviso(data-ng-show="true")
+    div.mensagemAviso(data-ng-show="::mv.funcionalidadeProximosDias.length === 0")
       p Não existem tarefas 

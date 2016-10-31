@@ -2,6 +2,7 @@
   'use strict';
 
   var Conta = require('./conta.usuario.model'),
+  mainUtils = require('./../main.utils'),
   bcrypt    = require('bcrypt-nodejs');
 
   function login (req, res) {
@@ -27,6 +28,39 @@
     });
     promisse.then(null, function (error) {
       console.log(error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
+  // Quando não existe usuário, é cadastro um novo usando o email
+  // informado
+  function buscarPorEmail(req, res) {
+    var email = req.params.email.toLowerCase();
+    var dataAtual = new Date();
+    var promise = Conta.find({
+                              'email': {$eq: email}
+                             }).exec();
+
+    promise.then(function (contas) {
+      if(contas.length ===0 ) {
+        var novoReq = {};
+        novoReq.body = {
+          nome: 'Pendente', 
+          email: email,
+          senha: dataAtual.getMilliseconds()
+        };
+
+        console.log("usuario temporario", novoReq.body);
+
+        cadastrar(novoReq, res);
+      } else {
+        res.json(contas[0]);
+      }
+    });
+
+    promise.then(null, function (error) {
+      console.log("Erro ao buscarPorEmail: ", error);
       res.status(500);
       res.json(error);
     });
@@ -95,6 +129,98 @@
     });
   }
 
+  function adicionarEquipe(req, res) {
+    var promisse = Conta.update(
+    {
+      _id: req.params.idConta
+    }, {
+      $push: {'equipes': req.body}
+    },
+    {
+      upsert: true,
+      safe: true,
+      new:true
+    }
+    ).exec();
+
+    promisse.then(function(conta) {
+      console.log("Equipe adicionado na conta com sucesso", conta);
+      res.json(conta);
+    });
+
+    promisse.then(null, function (error) {
+      console.error("Erro ao adicionarEquipe na conta", error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
+  function adicionarUsuarioEquipe(req, res) {
+    var promisse = Conta.update(
+    {
+      _id: req.params.idConta,
+      'equipes._id': req.params.idEquipe
+    }, {
+      $push: {'equipes.$.membros': req.body}
+    },
+    {
+      safe: true
+    }
+    ).exec();
+
+    promisse.then(function(conta) {
+      console.log("Usuario adicionada na equipe com sucesso");
+      res.json(conta);
+    });
+
+    promisse.then(null, function (error) {
+      console.error("Erro ao adicionarUsuarioEquipe", error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
+  function buscarUsuariosPorIds(ids, res) {
+    var promisse = Conta.find({_id: {'$in' : ids}})
+                         .exec();
+
+    promisse.then(function (usuarios) {
+      res.json(usuarios);
+    });
+    promisse.then(null, function (error) {
+      console.log("Erro ao buscarUsuarios por id: ", error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
+  function buscarUsuarioEquipe(req, res) {
+    var promisse = Conta.findById({_id: req.params.idConta, 'equipes._id': req.idEquipe})
+                         .exec();
+
+    promisse.then(function (conta) {
+      console.log("consultando membros da equipe");
+      var equipes = conta.equipes.filter(function (equipe) {
+        return String(equipe._id) === req.params.idEquipe;
+      });
+
+      if(equipes.length > 0) {
+        var ids = mainUtils.extrairIds(equipes[0].membros);
+
+        buscarUsuariosPorIds(ids, res);
+      } else {
+        res.json([]);
+      }
+    });
+
+    promisse.then(null, function (error) {
+      console.error("Erro ao buscar o conta por nome: ", req.params.nome);
+    
+      res.status(500);
+      res.json(error);
+    });
+  }
+
   function buscarPorId(req, res) {
     var promisse = Conta.findOne({'_id' : req.params.id}).exec();
 
@@ -148,9 +274,13 @@
     cadastrar: cadastrar,
     alterar: alterar,
     adicionarProjeto: adicionarProjeto,
+    adicionarEquipe: adicionarEquipe,
+    adicionarUsuarioEquipe: adicionarUsuarioEquipe,
     buscarTodos: buscarTodos,
     buscarPorId: buscarPorId,
     buscarProjetos: buscarProjetos,
+    buscarUsuarioEquipe: buscarUsuarioEquipe,
+    buscarPorEmail: buscarPorEmail,
     login: login
   };
 

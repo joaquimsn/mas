@@ -10,6 +10,10 @@ function ProjetoService($http, requestApiService, SessaoService, ContaService) {
     requestApiService.get(cb, '/contas/' + SessaoService.getUsuario()._id + '/projetos');
   };
 
+  this.buscarTodosParaRelatorio = function(cb) {
+    requestApiService.getNo(cb, '/contas/' + SessaoService.getUsuario()._id + '/projetos');
+  };
+
   this.cadastrar = function(callback, data) {
     function cb(projeto) {
       //ContaService.adicionarProjeto(projeto, SessaoService.getUsuario()._id);

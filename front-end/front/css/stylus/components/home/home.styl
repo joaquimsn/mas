@@ -6,6 +6,7 @@
   margin-bottom 20px
   display flex
   align-content: space-between
+  
   > .projetos
     width: 47%
     padding: 10px
@@ -21,16 +22,16 @@
       display: flex
       align-items: flex-start
       height: 25px
+      border-bottom 1px solid $dividerColor
     
     > .items
       font-family 'lato light'
       display: flex
       align-items: flex-start
-      border-top 1px solid $dividerColor
       padding-top: 10px
     
 .containertarefas
-  min-height: 250px 
+  height: 300px
   border 1px solid $dividerColor
   padding 10px
   border-radius 2px
@@ -43,11 +44,35 @@
     color $darkAccentColor
 
   > .items
+    max-height: 250px
+    overflow-y: auto
     font-family 'lato light'
     display: flex
-    align-items: flex-start
+    flex-wrap: wrap
     border-top 1px solid $dividerColor
     padding-top: 10px
+
+    > .item
+      width: 100%
+      display: flex
+      margin: 10px 0
+
+      > .tags
+        display: flex
+        flex-wrap: wrap
+        justify-content: flex-start
+        .tag 
+          color: $textPrimaryColor
+          height: 20px
+          font-size pt(10px)
+          text-align: center
+          line-height: 20px
+          margin-right: 4px
+          margin-bottom: 4px
+          vertical-align: middle
+
+          border-radius: 4px
+          padding: 0px 5px
 
   > .mensagemAviso
     margin-top 30px
@@ -58,5 +83,9 @@
 
 .width70
   width: 70%
+.width50
+  width: 50%
 .width30
   width: 30%
+.width20
+  width: 20%

@@ -10,6 +10,14 @@ function ModuloService(requestApiService, SessaoService) {
     requestApiService.get(cb, '/modulos');
   };
 
+  this.buscarPorId = function(cb, id) {
+    requestApiService.getNo(cb, '/modulos/' + id);
+  };
+
+  this.buscarPorProjeto = function(callback, projeto) {
+    requestApiService.getNo(callback, '/projetos/' + projeto._id + '/modulos');
+  };
+
   this.cadastrar = function(callback, data) {
     requestApiService.post(callback, data, '/modulos');
   };

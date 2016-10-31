@@ -15,7 +15,7 @@ require('./modules/usuario/_index');
 require('./modules/email/_index');
 require('./modules/acesso/_index');
 require('./modules/projeto/_index');
-require('./modules/burndown/_index');
+require('./modules/dashboard/_index');
 require('./modules/equipe/_index');
 require('./modules/tag/_index');
 
@@ -43,7 +43,7 @@ var requires = [
     'agileTcc.Email',
     'agileTcc.Acesso',
     'agileTcc.Projeto',
-    'agileTcc.Burndown',
+    'agileTcc.Dashboard',
     'agileTcc.Equipe',
     'agileTcc.Tag',
     'ngRoute',

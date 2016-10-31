@@ -3,14 +3,13 @@
 var controllersModule = require('./_index');
 
 var umDiaMs = 1000 * 60 * 60 * 24;
-
 function intervaloDias(dataIncio, dataTermino) {
     var dataInicioMs = dataIncio.getTime();
     var dataTerminoMs = dataTermino.getTime();
 
     var diferenca = dataTerminoMs - dataInicioMs;
 
-    return Math.round(diferenca / umDiaMs);
+    return (diferenca / umDiaMs);
 }
 
 function _acaoFuncionalidadeMovida(FuncionalidadeService, funcionalidade, mensagem) {
@@ -293,13 +292,12 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
 
     // status tag
     $scope.verificarStatusTask = function(task) {
-      if(task.dataFim()) {
-        var diferenca = intervaloDias(new Date(), new Date(task.dataFim));
-
-        if (diferenca < 0) {
+      if(task.dataFim) {
+        var diferenca = intervaloDias(new Date(task.dataFim), new Date());
+        if (diferenca > 1) {
           return '-vencida';
         }
-        else if (diferenca <= 1) {
+        else if (diferenca <= 1 && diferenca >= 0) {
           return '-paravencer ';
         } 
         else {

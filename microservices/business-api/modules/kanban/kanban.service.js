@@ -253,12 +253,12 @@
       if(secoes.length > 0) {
         res.json(secoes[0].funcionalidades);
       } else {
-        res.json('[]');
+        res.json([]);
       }
     });
 
     promisse.then(null, function (error) {
-      console.error("Erro ao buscar o kanban por nome: " + req.params.nome);
+      console.error("Erro ao buscar o kanban por id: " + req.params.idKanban);
       console.error(error);
       res.status(500);
       res.json(error);

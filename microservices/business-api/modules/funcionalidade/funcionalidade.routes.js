@@ -22,4 +22,7 @@ module.exports = function (server) {
 
   /*Exclusões*/
   server.del('/funcionalidades/:idFuncionalidade/comentarios/:idComentario', controller.removerComentario);
+  
+  // Filtor
+  server.post('/funcionalidades/filtro', controller.filtrar);
 };

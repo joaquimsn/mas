@@ -1,7 +1,7 @@
 div.container-geral
-  div.containergrafico
+  div.containergrafico.burndown(data-ng-controller='DashboardBurndownController as mvBurn')
     div.header
-      span Grafico Burndown - Dias
+      span Gráfico Burndown
     div.filtros-burndown
       div.filtro(layout-gt-sm="row")
         md-input-container.md-block(flex-gt-sm='40')
@@ -25,3 +25,6 @@ div.container-geral
         chart-column(column-id="Andamento"
                       column-values=""
                       column-type="line")
+
+  include ./secao-chart.jade
+    

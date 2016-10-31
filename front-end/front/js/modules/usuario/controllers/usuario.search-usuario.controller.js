@@ -6,14 +6,13 @@ var controllersModule = require('./_index');
  * @ngInject
  */
 function UsuarioSearchController($scope, UsuarioService) {
-    var self = this;
-    self.allUsers = [];
-    self.Users = [];
-    self.filterSelected = true;
+    var mv = this;
+    mv.allUsers = [];
+    mv.filterSelected = true;
     var cachedQuery, lastSearch;
 
     UsuarioService.buscarUsuarioDisponivelParaProjeto(function(usuarios) {
-      self.allUsers = usuarios;
+      mv.allUsers = usuarios;
       console.log(usuarios);
     });
 
@@ -22,22 +21,21 @@ function UsuarioSearchController($scope, UsuarioService) {
       imagem: ''
     };
 
-    self.mock = mock;
-
-    function querySearch (criteria) {
-      cachedQuery = cachedQuery || criteria;
-      return cachedQuery ? self.allUsers.filter(createFilterFor(cachedQuery)) : [];
-    }
+    mv.mock = mock;
 
     function createFilterFor(query) {
       var lowercaseQuery = angular.lowercase(query);
-
-      return function filterFn(contact) {
-        return (contact.nome.indexOf(lowercaseQuery) != -1);
+      return function filterFn(usuario) {
+        return (usuario.nome.toLowerCase().indexOf(lowercaseQuery) != -1);
       };
     }
 
-    self.querySearch = querySearch;
+    function querySearch (criteria) {
+      cachedQuery = criteria;
+      return cachedQuery ? mv.allUsers.filter(createFilterFor(cachedQuery)) : [];
+    }
+
+    mv.querySearch = querySearch;
 }
 
 controllersModule.controller('UsuarioSearchController', UsuarioSearchController);

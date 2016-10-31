@@ -2,6 +2,11 @@
 var mongoose  = require('mongoose'),
     Schema    = mongoose.Schema;
 
+var objectStatus = {
+  codigo : {type: Number, default: 1},
+  display: {type: String, default: 'Ativo'}
+}; 
+
 module.exports = {
   nome:           {type: String, required: true, min: 3, max: 200},
   email:          {type: String, min: 6, max: 128, required: true,},
@@ -14,6 +19,18 @@ module.exports = {
         codigo : {type: Number},
         display: {type: String}
       } 
+    }
+  ],
+  equipes: [
+    {
+      nome:  {type: String, min: 3, max: 60},
+      membros: [
+        {
+          usuario: {type: Schema.Types.ObjectId, ref: 'Usuarios'},
+          status: objectStatus    
+        }
+      ],
+      status: objectStatus
     }
   ],
   ativo:          {type: Boolean, default: true},

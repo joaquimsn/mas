@@ -10,6 +10,10 @@ function KanbanService(requestApiService, KanbanManipulatorFactory, SessaoServic
     requestApiService.get(cb, '/kanban/' + SessaoService.getModulo().kanban);
   };
 
+  this.buscarPorId = function(callback, id) {
+    requestApiService.getNo(callback, '/kanban/' + id);
+  };
+
   this.addSection = function(kanban, section) {
     KanbanManipulatorFactory.addSection(kanban, section);
   };

@@ -30,7 +30,7 @@ div.boards(data-ng-model='kanban')
                data-ng-model='section.funcionalidades')
         li.task(data-ng-repeat='task in section.funcionalidades',
                 data-as-sortable-item,
-                data-ng-class='{verificarStatusTask(task)}'
+                class="{{verificarStatusTask(task)}}"
                 data-ng-click='abrirModalEdicaoFuncionalidade($event, task)')
           div.content(data-as-sortable-item-handle)
             div.titulo
@@ -50,7 +50,7 @@ div.boards(data-ng-model='kanban')
                   i.material-icons.md-36 account_box
 
 
-        div.add
+        div.add(data-ng-hide='::section.estadoFinal')
           a.button(data-ng-click='abrirModalCadastroFuncionalidade($event, section)')
             svg.icon(viewBox='0 0 48 48')
                 use(xlink:href='/build/images/default/layout/icons.svg#icon-add')

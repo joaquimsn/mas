@@ -45,6 +45,10 @@ function FuncionalidadeService(requestApiService, ModuloService) {
     var endPoint = '/funcionalidades/' + funcionalidade._id + '/comentarios';
     requestApiService.postNo(function() {}, comentario, endPoint);
   };
+
+  this.filtrar = function(callback, filtro) {
+    requestApiService.postNo(callback, filtro, '/funcionalidades/filtro');
+  };
 }
 
 servicesModule.service('FuncionalidadeService', FuncionalidadeService);

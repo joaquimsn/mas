@@ -73,7 +73,6 @@
   }
 
   function adicionarModulo(req, res) {
-    console.log(req.body);
     var promisse = Projeto.findByIdAndUpdate(
     {
       _id: req.params.idProjeto

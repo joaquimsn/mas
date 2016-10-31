@@ -53,6 +53,10 @@
   function buscarPorId (req, res) {
     Service.buscarPorId(req, res);
   }
+  
+  function filtrar (req, res) {
+    Service.filtrar(req, res);
+  }
 
   var controller = {
     cadastrar:          cadastrar,
@@ -67,7 +71,8 @@
     buscarTarefas:      buscarTarefas,
     buscarComentarios:  buscarComentarios,
     buscarHistoricos:   buscarHistoricos,
-    buscarPorId:        buscarPorId
+    buscarPorId:        buscarPorId,
+    filtrar: filtrar
   };
 
   module.exports = controller;

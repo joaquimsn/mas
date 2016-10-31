@@ -10,7 +10,6 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.home, {
       templateUrl: 'expose/home/home',
-      controller: 'HomeController'
     }).
     when(SystemUriConfig.projeto, {
       templateUrl: 'expose/projeto/projeto',
@@ -38,7 +37,6 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.gestaoProjetoDashboard, {
       templateUrl: 'expose/dashboard/dashboard',
-      controller: 'BurndownController'
     }).
     // when(SystemUriConfig.funcionalidade, {
     //   templateUrl: 'expose/funcionalidade/funcionalidade',

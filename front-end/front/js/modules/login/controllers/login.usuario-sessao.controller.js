@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function UsuarioSessaoController($rootScope, $location, systemUri, AuthService, SessaoService, ProjetoService, ModuloService, globalMessage, $window) {
+function UsuarioSessaoController($rootScope, $location, systemUri, $timeout, AuthService, SessaoService, ProjetoService, ModuloService, globalMessage, $window) {
   var mv = this;
 
   function carregarUsuario() {
@@ -17,15 +17,20 @@ function UsuarioSessaoController($rootScope, $location, systemUri, AuthService, 
   }
 
   function carregarModulo(modulo) {
-    SessaoService.storeModulo(modulo);
-    $location.path(systemUri.kanban());
+    SessaoService.storeModulo(modulo.modulo);
+    $timeout(function() {
+      $location.path(systemUri.kanban());
+    }, 200);
   }
 
   function irParaKanban(projeto) {
+    console.log("ir para kanban", mv.projetoContaSelecionado);
+    // Remover essa solucção
+    projeto = mv.projetoContaSelecionado;
     if(projeto) {
       SessaoService.storeProjeto(projeto);
       $rootScope.$broadcast('modoVisaoAlterado', {tipo: 'projeto'});
-
+      
       ModuloService.buscarTodosPorProjeto(function(modulos) {
         if (modulos.length > 0) {
           carregarModulo(modulos[0]);
@@ -33,6 +38,7 @@ function UsuarioSessaoController($rootScope, $location, systemUri, AuthService, 
           globalMessage.warn("O projeto não possui modulos cadastrados, para continuar cadastre um modulo");
         }
       });
+
     }
   }
 
@@ -41,15 +47,23 @@ function UsuarioSessaoController($rootScope, $location, systemUri, AuthService, 
     $window.location.reload();
   };
 
+  function buscarProjetosUsuarioCb(promisse) {
+    promisse.success(function (projetos) {
+     mv.projetosConta = projetos;
+    });
+    promisse.error(function (err) {
+      console.log('Erro ao buscar');
+      console.log(err);
+    });
+  }
+
   function init() {
     carregarUsuario();
     carregarProjeto();
 
     mv.irParaKanban = irParaKanban;
 
-    ProjetoService.buscarTodosPorUsuario(function (projetosConta) {
-      mv.projetosConta = projetosConta;
-    });
+    ProjetoService.buscarTodosPorUsuario(buscarProjetosUsuarioCb);
   }
 
   init();

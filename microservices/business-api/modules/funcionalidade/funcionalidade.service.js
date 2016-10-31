@@ -272,6 +272,22 @@
     });
   }
 
+  function filtrar (req, res) {
+    var filtro = req.body;
+
+    var promisse = Funcionalidades.find(filtro).exec();
+
+    promisse.then(function (funcionalidades) {
+      res.json(funcionalidades);
+    });
+
+    promisse.then(null, function (error) {
+      console.error("Erro ao filtrar funcionalidades: " + error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
   var service = {
     cadastrar: cadastrar,
     adicionarTarefa: adicionarTarefa,
@@ -285,7 +301,8 @@
     buscarTarefas: buscarTarefas,
     buscarHistoricos: buscarHistoricos,
     buscarComentarios: buscarComentarios,
-    buscarPorId: buscarPorId
+    buscarPorId: buscarPorId,
+    filtrar: filtrar
   };
 
   module.exports = service;
