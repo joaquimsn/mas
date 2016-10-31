@@ -5,7 +5,7 @@ var servicesModule = require('./_index');
 /**
  * @ngInject
  */
-function KanbanService(requestApiService, KanbanManipulatorFactory, SessaoService) {
+function KanbanService(requestApiService, KanbanManipulatorFactory, SessaoService, FuncionalidadeService) {
   this.findKanban = function (cb) {
     requestApiService.get(cb, '/kanban/' + SessaoService.getModulo().kanban);
   };
@@ -66,6 +66,17 @@ function KanbanService(requestApiService, KanbanManipulatorFactory, SessaoServic
       + '/funcionalidades/' + funcionalidade._id);
   };
 
+  function fecharFuncionalidade(funcionalidade) {
+    var status = {
+      display: 'Fechada',
+      codigo: 10
+    };
+
+    funcionalidade.status = status;
+
+    FuncionalidadeService.alterarStatus(function(){}, funcionalidade);
+  } 
+
   this.adicionarFuncionalidadeSecao = function(funcionalidade, kanban, secao) {
     function cb(promise) {
       promise.success(function (funcionalidade) {
@@ -74,6 +85,10 @@ function KanbanService(requestApiService, KanbanManipulatorFactory, SessaoServic
       promise.error(function (err) {
         console.error(err);
       });
+    }
+
+    if(secao.estadoFinal) {
+      fecharFuncionalidade(funcionalidade);
     }
 
     var idKanban = kanban._id;

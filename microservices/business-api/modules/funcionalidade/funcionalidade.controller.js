@@ -29,6 +29,10 @@
   function alterar(req, res) {
     Service.alterar(req, res);
   }
+  
+  function alterarStatus(req, res) {
+    Service.alterarStatus(req, res);
+  }
 
   function removerComentario(req, res) {
     Service.removerComentario(req, res);
@@ -66,6 +70,7 @@
     alterarTarefa:      alterarTarefa,
     alterarComentario:  alterarComentario,
     alterar:            alterar,
+    alterarStatus: alterarStatus,
     removerComentario:  removerComentario,
     buscarTodos:        buscarTodos,
     buscarTarefas:      buscarTarefas,

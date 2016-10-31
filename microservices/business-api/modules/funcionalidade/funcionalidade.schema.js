@@ -1,6 +1,11 @@
 var mongoose  = require('mongoose'),
     Schema    = mongoose.Schema;
 
+var objectStatus = {
+  codigo : {type: Number, default: 1},
+  display: {type: String, default: 'Ativo'}
+}; 
+
 module.exports = {
   titulo:           {type: String, required: true, min: 3, max: 200},
   descricao:        {type: String, default: ''},
@@ -51,8 +56,5 @@ module.exports = {
   ],
   dataCadastro:       {type: Date, default: Date.now},
   kanban: {type: Schema.Types.ObjectId, ref: 'Kanbans'},
-  status:             {
-    codigo : {type: Number},
-    display: {type: String}
-  }
+  status: objectStatus
 };

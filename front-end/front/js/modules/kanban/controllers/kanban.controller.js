@@ -87,7 +87,6 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
         var kanban = $scope.kanban;
         for (var index = posicaoStartOrdenacao; index < secoes.length; index++) {
             var secao = secoes[index];
-            console.log(secao);
             secao.ordem = index;
             KanbanService.alterarSecao(function() {}, secao, kanban);
         }
@@ -292,7 +291,8 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
 
     // status tag
     $scope.verificarStatusTask = function(task) {
-      if(task.dataFim) {
+			var status = task.status || {};
+      if(task.dataFim && status.codigo !== 10) {
         var diferenca = intervaloDias(new Date(task.dataFim), new Date());
         if (diferenca > 1) {
           return '-vencida';

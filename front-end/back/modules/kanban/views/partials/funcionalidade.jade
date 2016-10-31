@@ -92,6 +92,11 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
               label Data fim
               md-datepicker(ng-model='novaFuncionalidade.dataFim')
 
+            div.left15
+              md-input-container.margindown(flex-gt-sm="")
+                label Duração
+                input(name="duracao", ng-model="novaFuncionalidade.duracao" ng-pattern="/^[0-9]{2}|[0-9]{1}$/")
+
             md-input-container.md-block.left15(flex-gt-sm='' data-ng-if='false')
               label Modulo 
               md-select(ng-model='novaFuncionalidade.modulo')

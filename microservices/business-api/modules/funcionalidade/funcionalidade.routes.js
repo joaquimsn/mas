@@ -19,6 +19,7 @@ module.exports = function (server) {
   server.put('/funcionalidades/:idFuncionalidade', controller.alterar);
   server.put('/funcionalidades/:idFuncionalidade/tarefas/:idTarefa', controller.alterarTarefa);
   server.put('/funcionalidades/:idFuncionalidade/comentarios/:idComentario', controller.alterarComentario);
+  server.put('/funcionalidades/:idFuncionalidade/status', controller.alterarStatus);
 
   /*Exclusões*/
   server.del('/funcionalidades/:idFuncionalidade/comentarios/:idComentario', controller.removerComentario);

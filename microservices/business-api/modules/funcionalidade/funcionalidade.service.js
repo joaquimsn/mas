@@ -249,6 +249,25 @@
     });
   }
 
+  function alterarStatus(req, res) {
+    var query = {_id: req.params.idFuncionalidade};
+    var status = req.body;
+  
+    var promisse = Funcionalidades.update(query, {
+      $set: {status:status, 
+          }
+    });
+
+    promisse.then(function (funcionalidade) {
+      res.json(funcionalidade);
+    });
+    promisse.then(null, function (error) {
+      console.error("Erro ao alterar status o funcionalidade: " + error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
   function removerComentario(req, res) {
     var promisse = Funcionalidades.findByIdAndUpdate(
     {
@@ -296,6 +315,7 @@
     alterarTarefa: alterarTarefa,
     alterarComentario: alterarComentario,
     alterar: alterar,
+    alterarStatus: alterarStatus,
     removerComentario: removerComentario,
     buscarTodos: buscarTodos,
     buscarTarefas: buscarTarefas,
