@@ -86,11 +86,11 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
             div
             md-input-container.data(flex-gt-sm='')
               label Data início
-              md-datepicker(ng-model='novaFuncionalidade.dataInicio', required='{{novaFuncionalidade.dataFim}}')
+              md-datepicker(ng-model='novaFuncionalidade.dataInicio', required='{{novaFuncionalidade.dataFim}}' ng-disabled='novaFuncionalidade.status.codigo === 10')
             
             md-input-container.data(flex-gt-sm='')
               label Data fim
-              md-datepicker(ng-model='novaFuncionalidade.dataFim')
+              md-datepicker(ng-model='novaFuncionalidade.dataFim' ng-disabled='novaFuncionalidade.status.codigo === 10')
 
             div.left15
               md-input-container.margindown(flex-gt-sm="")
@@ -131,6 +131,12 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
                   md-optgroup(label="tags")
                     md-option(ng-value="tag" ng-repeat="tag in tagsParaSelecao | filter:searchTerm", ng-style='{color: tag.cor}')
                       span(ng-style='{color: tag.cor}') {{tag.nome}}
+            
+            div.left15.containerstatus
+              div.label
+                span Status
+              span.status(data-ng-bind="novaFuncionalidade.status.display")
+
 
             
   md-dialog-actions(layout='row')

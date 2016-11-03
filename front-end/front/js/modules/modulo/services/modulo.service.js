@@ -29,6 +29,10 @@ function ModuloService(requestApiService, SessaoService) {
   this.buscarTodosPorProjeto = function(callback) {
     requestApiService.getNo(callback, '/projetos/' + SessaoService.getProjeto()._id + '/modulos');
   };
+
+  this.filtrar = function(callback, filtro) {
+    requestApiService.postNo(callback, filtro, '/modulos/filtro');
+  };
 }
 
 servicesModule.service('ModuloService', ModuloService);

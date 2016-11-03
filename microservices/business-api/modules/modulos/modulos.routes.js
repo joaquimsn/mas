@@ -9,4 +9,7 @@ module.exports = function (server) {
   server.put('/modulos/:id', controller.alterar);
 
   server.put('/modulos/:idModulo/funcionalidades', controller.adicionarFuncionalidade);
+
+  // Filtro
+  server.post('/modulos/filtro', controller.filtrar);
 };

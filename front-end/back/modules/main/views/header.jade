@@ -24,8 +24,9 @@ div(data-ng-controller="HeaderController", ng-cloak)
           span(data-ng-bind='::mv.usuarioLogado.nome')
           button.sair(data-ng-click='mv.sair()') Sair
         div.projeto
-          md-input-container.md-block.marginzero(flex-gt-sm='100')
-            md-select(ng-model='mv.projetoContaSelecionado' data-ng-change="mv.irParaKanban(mv.projetoContaSelecionado.projeto)")
+          span Projeto
+          md-input-container.md-block.marginzero.inputcontainer(flex-gt-sm='100')
+            md-select.select(ng-model='mv.projetoContaSelecionado' data-ng-change="mv.irParaKanban(mv.projetoContaSelecionado.projeto)")
               md-option(ng-repeat='projetoConta in mv.projetosConta', ng-value='projetoConta.projeto')
                 | {{projetoConta.projeto.nome}}
 

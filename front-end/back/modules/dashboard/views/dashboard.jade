@@ -4,26 +4,42 @@ div.container-geral
       span Gráfico Burndown
     div.filtros-burndown
       div.filtro(layout-gt-sm="row")
-        md-input-container.md-block(flex-gt-sm='40')
-          label Modulo
-          md-select(ng-model='moduloFiltroSelecionado')
-            md-option(ng-repeat='modulo in modulosFiltro', ng-value='modulo')
-              | {{modulo.nome}}
-        md-input-container.md-block(flex-gt-sm='40')
-          label Visualização
-          md-select(ng-model='mv.tipoVisualizacao')
+        md-input-container.md-block(flex-gt-sm='30')
+          label Modulos
+          md-select(ng-model='mvBurn.moduloSelecionado' data-ng-change='mvBurn.filtrarModulo(mvBurn.moduloSelecionado)')
+            md-option(ng-repeat='projetoModulo in mvBurn.projetoModulos', ng-value='projetoModulo.modulo')
+              | {{projetoModulo.modulo.nome}}
+        md-input-container.md-block(flex-gt-sm='30')
+          label Visualização 
+          md-select(ng-model='mvBurn.tipoVisualizacao')
             md-option(ng-value='dias')
               | Pontos
             md-option(ng-value='tarefa')
               | Tarefas
 
+        md-input-container.md-block(flex-gt-sm='30')
+          label Período em 
+          md-select(ng-model='mvBurn.tipoPeriodo')
+            md-option(ng-value='dias')
+              | Dias
+            md-option(ng-value='semanas')
+              | Semanas
+
     div.grafico
-      c3chart(bindto-id="chart1")
+      c3chart(bindto-id='chart2')
+        chart-column(column-id='data 1', column-name='Esperado', column-color='red', column-values='120,100,80,60,40,80, 80', column-type='line')
+        chart-column(column-id='data 2', column-name='Data 2', column-color='green', column-values='120,100,60,40,20,0', column-type='line')
+
+      c3chart(bindto-id="chart1" data-ng-if='mvBurn.burndown')
+        chart-legend(show-legend="true" legend-position="right")
+        chart-colors(color-pattern="#1f77b4,#ffbb78,#2ca02c,#ff7f0e")
+        chart-size(chart-height="600" chart-width="600")
+        chart-tooltip(show-tooltip="true" group-tooltip="false")
         chart-column( column-id=""
-                column-values=""
-                column-type="spline")
+                column-values="{{mvBurn.burndown.esperado}}"
+                column-type="line")
         chart-column(column-id="Andamento"
-                      column-values=""
+                      column-values="{{mvBurn.burndown.andamento}}"
                       column-type="line")
 
   include ./secao-chart.jade

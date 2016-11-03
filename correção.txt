@@ -1,0 +1,8 @@
+data padrão americano
+por legenda das cores de indicação
+
+prioridades
+- burndown
+- editar modulo e projetos
+- vincular equipes ao projeto
+- git

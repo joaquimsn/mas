@@ -94,12 +94,31 @@
     });
   }
 
+  function filtrar (req, res) {
+    var filtro = req.body;
+
+    var promisse = Modulos.find(filtro)
+                          .populate('funcionalidades')
+                          .exec();
+
+    promisse.then(function (funcionalidades) {
+      res.json(funcionalidades);
+    });
+
+    promisse.then(null, function (error) {
+      console.error("Erro ao filtrar funcionalidades: " + error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
   var service = {
     cadastrar: cadastrar,
     alterar: alterar,
     adicionarFuncionalidade: adicionarFuncionalidade,
     buscarTodos: buscarTodos,
-    buscarPorId: buscarPorId
+    buscarPorId: buscarPorId,
+    filtrar: filtrar
   };
 
   module.exports = service;

@@ -18,8 +18,12 @@
     Service.buscarPorId(req, res);
   }
 
-    function adicionarFuncionalidade (req, res) {
+  function adicionarFuncionalidade (req, res) {
     Service.adicionarFuncionalidade(req, res);
+  }
+  
+  function filtrar (req, res) {
+    Service.filtrar(req, res);
   }
 
   var controller = {
@@ -27,7 +31,8 @@
     alterar: alterar,
     adicionarFuncionalidade: adicionarFuncionalidade,
     buscarTodos: buscarTodos,
-    buscarPorId: buscarPorId
+    buscarPorId: buscarPorId,
+    filtrar: filtrar
   };
 
   module.exports = controller;

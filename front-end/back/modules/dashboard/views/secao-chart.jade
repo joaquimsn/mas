@@ -1,22 +1,22 @@
-div.containergrafico.secao(data-ng-controller='DashboardSecaoController as mvBurn')
+div.containergrafico.secao(data-ng-controller='DashboardSecaoController as mvSecao')
     div.header
       span Funcionalidades por seção
     div.filtros-burndown
       div.filtro(layout-gt-sm="row")
         md-input-container.md-block(flex-gt-sm='40')
           label Projetos
-          md-select(ng-model='mvBurn.projetoSelecionado' data-ng-change='mvBurn.buscarModulosPorProjeto(mvBurn.projetoSelecionado)')
-            md-option(ng-repeat='projetoConta in mvBurn.projetosConta track by projetoConta._id',
+          md-select(ng-model='mvSecao.projetoSelecionado' data-ng-change='mvSecao.buscarModulosPorProjeto(mvSecao.projetoSelecionado)')
+            md-option(ng-repeat='projetoConta in mvSecao.projetosConta track by projetoConta._id',
                       ng-value='projetoConta.projeto')
               | {{projetoConta.projeto.nome}}
         md-input-container.md-block(flex-gt-sm='40')
           label Modulos
-          md-select(ng-model='mvBurn.moduloSelecionado' data-ng-change='mvBurn.buscarKanbanPorModulo(mvBurn.moduloSelecionado)')
-            md-option(ng-repeat='projetoModulo in mvBurn.projetoModulos', ng-value='projetoModulo.modulo')
+          md-select(ng-model='mvSecao.moduloSelecionado' data-ng-change='mvSecao.buscarKanbanPorModulo(mvSecao.moduloSelecionado)')
+            md-option(ng-repeat='projetoModulo in mvSecao.projetoModulos', ng-value='projetoModulo.modulo')
               | {{projetoModulo.modulo.nome}}
 
     div.grafico
-      c3chart(bindto-id="donut-plot1-chart" data-ng-if='mvBurn.kanbanModuloSelecionado')
-        chart-column(data-ng-repeat="secao in mvBurn.kanbanModuloSelecionado.secoes" column-id="{{secao.nome}}" column-values="{{secao.funcionalidades.length + 1}}" column-type="donut")
-        chart-donut(title="{{mvBurn.moduloSelecionado.nome}}" width="60")
+      c3chart(bindto-id="donut-plot1-chart" data-ng-if='mvSecao.kanbanModuloSelecionado')
+        chart-column(data-ng-repeat="secao in mvSecao.kanbanModuloSelecionado.secoes" column-id="{{secao.nome}}" column-values="{{secao.funcionalidades.length + 1}}" column-type="donut")
+        chart-donut(title="{{mvSecao.moduloSelecionado.nome}}" width="60")
     
