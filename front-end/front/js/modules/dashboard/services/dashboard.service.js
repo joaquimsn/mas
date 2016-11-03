@@ -21,7 +21,39 @@ function DashboardService(requestApiService, ModuloService) {
     cb({});
   };
 
-  this.criarBurndown = function(callback, modulo) {
+  function totalPontos(funcionalidades) {
+    var totalPontos = 0;
+
+    angular.forEach(funcionalidades, function(funcionalidade) {
+      totalPontos = funcionalidade.severidade + totalPontos;
+    });
+
+    return totalPontos;
+  }
+
+  function visualizacaoPorPontos(burndown, modulo, periodo) {
+    var dataInicio = new Date(modulo.dataInicio);
+    var dataFim = new Date(modulo.dataFim);
+    var intervalo = Math.round(intervaloDias(dataInicio, dataFim));
+
+    var totalDePontos = totalPontos(modulo.funcionalidades);
+    var valorIdeal = Math.round(totalDePontos / intervalo);
+
+    var resultadoSubtracao = totalDePontos;
+    var dataTrabalho = angular.copy(dataInicio);
+
+    burndown.esperado.push(angular.copy(resultadoSubtracao));
+    for(var index = 0; index <= intervalo; index ++) {
+      resultadoSubtracao = resultadoSubtracao - valorIdeal;
+      burndown.esperado.push(angular.copy(resultadoSubtracao));
+
+      //function buscarTarefaPorData(tarefa) {
+        //var data
+      //}
+    } 
+  }
+
+  this.criarBurndown = function(callback, modulo, visualizacao, periodo) {
     var filtro = {
       _id: modulo._id
     };
@@ -30,20 +62,13 @@ function DashboardService(requestApiService, ModuloService) {
       retorno =  retorno[0];
       console.log('retorno', retorno);
       var burndown = {
-        esperado:  [80, 60, 40, 20, 0],
-        andamento: [80, 60, 30, 25, 0]
+        esperado:  [],
+        andamento: []
       };
 
-      var intervalo = intervaloDias(new Date(retorno.dataInicio), new Date(retorno.dataFim));
-
-      var valorIdeal = intervalo / (retorno.funcionalidades.length + 1);
-  
-      var resultadoSub = intervalo;
-      angular.forEach(retorno.funcionalidades, function(func) {
-        
-        //burndown.esperado.push(angular.copy(resultadoSub));
-        resultadoSub = resultadoSub - valorIdeal;
-      });
+      if(visualizacao.value === "pontos") {
+        visualizacaoPorPontos(burndown, retorno, periodo);
+      }
 
       callback(burndown);
     }
