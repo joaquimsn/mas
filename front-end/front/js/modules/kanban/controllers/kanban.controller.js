@@ -265,6 +265,25 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
             });
     };
 
+    $scope.abrirModalEdicaoModulo = function(ev, modulo) {
+        $mdDialog.show({
+                controller: 'ModuloEdicaoController',
+                templateUrl: 'partials/modulo/modulo-formulario',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                preserveScope: true,
+                scope: $scope,
+                locals: { modulo: modulo },
+                fullscreen: true // Only for -xs, -sm breakpoints.
+            })
+            .then(function(retorno) {
+                // fallback
+            }, function() {
+                // Modal fechado
+            });
+    };
+
     $scope.closeModalCadastroFuncionalidade = function() {
         $mdDialog.cancel();
     };

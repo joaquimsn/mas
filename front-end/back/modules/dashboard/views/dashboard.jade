@@ -23,8 +23,6 @@ div.container-geral
 
     div.grafico
       c3chart(bindto-id='chart2', data-ng-if='mvBurn.burndown')
-        chart-column(column-id="x"
-          column-values="{{mvBurn.burndown.periodo.toString()}}")
         chart-column(column-id='data 1', 
                      column-name='Esperado', 
                      column-color='green', 

@@ -1,5 +1,7 @@
 div.page-header
       div.name Kanban - <b>{{moduloKanbanSelecionado.nome}}</b>
+        div(data-ng-if="false")
+          md-button(ng-click="abrirModalEdicaoModulo($event, moduloKanbanSelecionado)") editar
       div.options()
         div.option 
           md-button.md-warn(ng-click="abrirModalCadastroSecao($event)") Nova seção

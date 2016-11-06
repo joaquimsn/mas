@@ -22,6 +22,10 @@ function ModuloService(requestApiService, SessaoService) {
     requestApiService.post(callback, data, '/modulos');
   };
 
+  this.alterar = function(callback, data, id) {
+    requestApiService.put(callback, data, '/modulos/' + id);
+  };
+
   this.adicionarFuncionalidade = function(funcionalidade) {
     requestApiService.putNo(function() {}, funcionalidade, '/modulos/' + SessaoService.getModulo()._id + '/funcionalidades');
   };
