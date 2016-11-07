@@ -1,21 +1,44 @@
 div.page-header
   div.name Equipes
-  div.options(data-ng-show='false')
+  div.options
     div.option
-      a.link(data-ng-href='{{systemUri.modulo()}}') Listagem
-    div.option
-      a.link(data-ng-href='{{systemUri.moduloCadastro()}}') Cadastro
+      a.link.linkselected(data-ng-href='{{systemUri.equipe()}}') Gerenciamento de equipes
 
-div.modulo-container
-  div.containercadastro
-    
-  div.headerlista
-    p Para adicionar um usuário selecione a equipe abaixo
-  div.lista
-    div.item.cursorPointer(data-ng-repeat='equipe in equipes track by $index', data-ng-click='abrirModalUsuarios(equipe)')
-      div.linha
-        span.textodestaque(data-ng-bind="equipe.nome")
-      div.linha
-        div.indices
-          span.textosecundario Quantidade de usuários {{equipe.usuarios.length}}
+div.equipe-container
+  div.cadastro
+    div(data-ng-hide="habilitarCadastro")
+      md-button(class="md-raised md-primary" data-ng-click="habilitarCadastro = !habilitarCadastro") Cadastrar Nova Equipe
+    form(name="equipeForm" data-ng-show="habilitarCadastro")
+      div.containercadastro(layout-gt-sm="row")
+        md-input-container(class="md-block" flex-gt-sm="")
+          label Nome
+          input(ng-model="novaEquipe.nome" name='nome' required)
 
+        md-input-container(class="md-block" flex-gt-sm="")
+          md-button(class="md-warn md-raised md-hue-2" data-ng-click="habilitarCadastro = !habilitarCadastro") Cancelar
+          md-button.md-primary.md-hue-1(data-ng-click='cadastrar(novaEquipe)' ng-disabled="equipeForm.$invalid") Cadastrar
+
+  div.listagem
+    div.header 
+      span.title Equipes cadastradas - {{equipes.length}}
+      span.subtitle Para adicionar usuários clique na equipe 
+    ul.lista
+      li.containerequipe(ng-repeat="equipe in equipes track by $index")
+        div.equipeitem
+          div.dados.cursorPointer(data-ng-click='abrirModalUsuarios($event, equipe)')
+            div.visualizacao(data-ng-hide='equipe.editar')
+              span.equipecard{{equipe.nome}}
+            div.edicao(data-ng-show='equipe.editar' layout-gt-sm="row")
+              md-input-container(class="md-block" flex-gt-sm="")
+                label Nome
+                input(ng-model="equipe.nome")
+
+          div.acoes
+            div.botoes(data-ng-hide='equipe.editar')
+              div.button.editar.cursorPointer(data-ng-click="equipe.editar = !equipe.editar")
+                i.material-icons mode_edit
+                span editar
+            div.botoes(data-ng-show='equipe.editar')
+              md-button(class="md-warn md-raised md-hue-2" data-ng-click="equipe.editar = !equipe.editar") Cancelar
+              md-button(class="md-raised md-primary" data-ng-click="alterar(equipe)") Salvar
+        md-divider(data-ng-hide="$last")

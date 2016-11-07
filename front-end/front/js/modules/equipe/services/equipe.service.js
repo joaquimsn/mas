@@ -6,25 +6,28 @@ var servicesModule      = require('./_index');
  * @ngInject
  */
 function EquipeService($http, requestApiService, SessaoService, ContaService) {
-  this.buscarTodosPorUsuario = function(cb) {
-    requestApiService.get(cb, '/contas/' + SessaoService.getUsuario()._id + '/projetos');
+  this.buscarEquipes = function(cb) {
+    function callback(conta) {
+      cb(conta.equipes);
+    }
+
+    requestApiService.getNo(callback, '/contas/' + SessaoService.getUsuario()._id);
   };
 
   this.cadastrar = function(callback, data) {
     function cb(equipe) {
-      //ContaService.adicionarProjeto(equipe, SessaoService.getUsuario()._id);
       callback(equipe);
     }
 
-    requestApiService.post(cb, data, '/projetos');
+    requestApiService.putNo(cb, data, '/contas/' + SessaoService.getUsuario()._id + '/equipes');
   };
 
-  this.adicionarUsuario = function(usuario) {
-    function retornoCb(data) {
-      console.log('Adicionado usuario ao equipe', data);
-    }
+  this.adicionarMembro = function(callback, usuario, equipe) {
+    requestApiService.putNo(callback, usuario, '/contas/' + SessaoService.getUsuario()._id + '/equipes/' + equipe._id + '/membros');
+  };
 
-    requestApiService.postNo(retornoCb, usuario, '/equipes/' + SessaoService.getUsuario()._id + '/usuarios');
+  this.buscarMembros = function(callback, equipe) {
+    requestApiService.getNo(callback, '/contas/' + SessaoService.getUsuario()._id + '/equipes/' + equipe._id + '/membros');
   };
 }
 

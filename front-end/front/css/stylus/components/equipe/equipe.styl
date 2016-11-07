@@ -1,0 +1,53 @@
+.equipe-container
+  padding 20px
+  width: 100%
+  height: calc(100% - 70px)
+
+  > .listagem
+    width: 100%
+    height: 100%
+    > .header
+      padding 5px 0px
+      margin: 10px 0
+
+      > .title
+        font-family:  'lato regular'
+        font-size: pt(20x)
+        color: $accentColor
+      > .subtitle
+        margin-left: 10px
+        font-family:  'lato regular'
+        font-size: pt(16x)
+        color: $darkAccentColor
+    > .lista
+      border 1px solid $dividerColor
+      border-radius: 2px
+      overflow-y: auto
+
+      > .containerequipe
+        padding: 5px 0px
+        width: 100%
+        
+        > .equipeitem 
+          width: 100%
+          display: flex
+          align-content: space-between
+          padding: 10px
+          > .dados
+            width: 70%
+            > .visualizacao
+              > .equipecard
+                height: 25px
+                padding: 5px 10px
+                color: $primaryTextColor 
+      
+          > .acoes
+            display: flex
+            flex-direction: row-reverse
+            width: 30%
+            > .botoes
+              > .button 30px
+              > .editar
+                height: 30px
+                vertical-align: middle
+                line-height: 30px

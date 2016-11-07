@@ -24,6 +24,7 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.equipe, {
       templateUrl: 'expose/equipe/equipe',
+      controller: 'EquipeController'
     }).
     when(SystemUriConfig.configuracao, {
       templateUrl: 'expose/configuracao/configuracao',

@@ -1,0 +1,12 @@
+div.membrosContainer(layout="column" ng-cloak="")
+
+  md-content(class="md-padding autocomplete" layout="column")
+    div.adicionar
+
+    md-list(class="fixedRows")
+      md-subheader(class="md-no-sticky") Usuários
+      md-list-item(class="md-2-line membro-item" ng-repeat="membro in membros track by $index")
+        img(ng-src="{{imagemDefault}}" class="md-avatar" alt="{{membro.nome}}")
+        div(class="md-list-item-text compact")
+          h3(data-ng-bind="membro.nome")
+          p(data-ng-bind='membro.email')
