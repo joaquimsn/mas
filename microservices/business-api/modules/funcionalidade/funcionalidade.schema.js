@@ -18,8 +18,10 @@ module.exports = {
   ],
   dataInicio:       {type: Date},
   dataFim:          {type: Date},
+  dataFechamento:   {type: Date},
   duracao:          {type: Number},
   usuarios: [{type: Schema.Types.ObjectId, ref: 'Usuarios'}],
+  funcionalidade: {type: Schema.Types.ObjectId, ref: 'Funcionalidades'},
   responsaveis:     [
     {
       nome:   {type: String, default: ''},

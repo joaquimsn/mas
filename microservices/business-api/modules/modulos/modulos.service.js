@@ -94,11 +94,36 @@
     });
   }
 
+  function adicionarTarefa(req, res) {
+    var promisse = Modulos.update(
+    {
+      _id: req.params.idModulo
+    }, {
+      $push: {'tarefas': req.body}
+    },
+    {
+      safe: true
+    }
+    ).exec();
+
+    promisse.then(function(modulo) {
+      console.log("Tarefa adicionada ao modulo com sucesso");
+      res.json(modulo);
+    });
+
+    promisse.then(null, function (error) {
+      console.error("Erro ao adicionarTarefa ao modulo", error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
   function filtrar (req, res) {
     var filtro = req.body;
 
     var promisse = Modulos.find(filtro)
                           .populate('funcionalidades')
+                          .populate('tarefas')
                           .exec();
 
     promisse.then(function (funcionalidades) {
@@ -116,6 +141,7 @@
     cadastrar: cadastrar,
     alterar: alterar,
     adicionarFuncionalidade: adicionarFuncionalidade,
+    adicionarTarefa: adicionarTarefa,
     buscarTodos: buscarTodos,
     buscarPorId: buscarPorId,
     filtrar: filtrar

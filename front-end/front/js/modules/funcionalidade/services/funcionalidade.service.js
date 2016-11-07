@@ -28,7 +28,7 @@ function FuncionalidadeService(requestApiService, ModuloService) {
 
   this.cadastrarParaSecao = function(callback, funcionalidade, kanban, section) {
     requestApiService.postNo(callback, funcionalidade, '/kanban/' + kanban._id +'/secoes/' + section._id + '/funcionalidades');
-    ModuloService.adicionarFuncionalidade(funcionalidade);
+    ModuloService.adicionarTarefa(funcionalidade);
   };
 
   this.registrarEvento = function(evento, funcionalidade) {

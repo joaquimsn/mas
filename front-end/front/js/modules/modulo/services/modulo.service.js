@@ -30,6 +30,10 @@ function ModuloService(requestApiService, SessaoService) {
     requestApiService.putNo(function() {}, funcionalidade, '/modulos/' + SessaoService.getModulo()._id + '/funcionalidades');
   };
 
+  this.adicionarTarefa = function(funcionalidade) {
+    requestApiService.putNo(function() {}, funcionalidade, '/modulos/' + SessaoService.getModulo()._id + '/tarefas');
+  };
+
   this.buscarTodosPorProjeto = function(callback) {
     requestApiService.getNo(callback, '/projetos/' + SessaoService.getProjeto()._id + '/modulos');
   };

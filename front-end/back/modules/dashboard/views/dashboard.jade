@@ -6,16 +6,23 @@ div.container-geral
       div.filtro(layout-gt-sm="row")
         md-input-container.md-block(flex-gt-sm='30')
           label Modulos
-          md-select(ng-model='mvBurn.moduloSelecionado' data-ng-change='mvBurn.montarBurndown()')
+          md-select(ng-model='mvBurn.moduloSelecionado' data-ng-change='mvBurn.buscarFuncionalidades(mvBurn.moduloSelecionado)')
             md-option(ng-repeat='projetoModulo in mvBurn.projetoModulos', ng-value='projetoModulo.modulo')
               | {{projetoModulo.modulo.nome}}
+        
         md-input-container.md-block(flex-gt-sm='30')
+          label Funcionalidades
+          md-select(ng-model='mvBurn.funcionalidadeSelecionada' data-ng-change='mvBurn.montarBurndown()')
+            md-option(ng-repeat='funcionalidade in mvBurn.funcionalidades', ng-value='funcionalidade')
+              | {{funcionalidade.titulo}}
+        
+        md-input-container.md-block(flex-gt-sm='20')
           label Visualização 
           md-select(ng-model='mvBurn.tipoVisualizacaoSelecionado', ng-disabled="!mvBurn.moduloSelecionado", data-ng-change='mvBurn.montarBurndown()')
             md-option(ng-repeat='tipoVisualizacao in mvBurn.tiposVisualizacao track by tipoVisualizacao.codigo', ng-value='tipoVisualizacao')
               | {{tipoVisualizacao.display}}
 
-        md-input-container.md-block(flex-gt-sm='30')
+        md-input-container.md-block(flex-gt-sm='20')
           label Período em 
           md-select(ng-model='mvBurn.tipoPeriodoSelecionado', ng-disabled="!mvBurn.tipoVisualizacaoSelecionado", data-ng-change='mvBurn.montarBurndown()')
             md-option(ng-repeat='tipoPeriodo in mvBurn.tiposPeriodos track by tipoPeriodo.codigo', ng-value='tipoPeriodo')

@@ -1,3 +1,0 @@
-{"_id":{"$oid":"5702bf12bdd387112d574bdc"}, "course": {"$oid":"56ebfb3970ee68f83c3aa138"}, "students":[],"duration":"2 dias","beginDate":{"$date":"2016-05-07T21:09:00.000Z"}}
-{"_id":{"$oid":"5702bf16bdd387112d574bdd"}, "course": {"$oid":"56eca2eb61685b8920d1f9d9"}, "students":[],"duration":"1 dia","beginDate":{"$date":"2016-05-07T21:14:30.000Z"}}
-{"_id":{"$oid":"5702bf1abdd387112d574bde"}, "course": {"$oid":"56eca4dcb669869027a03e46"}, "students":[],"duration":"1 dia","beginDate":{"$date":"2016-05-07T21:14:30.000Z"}}

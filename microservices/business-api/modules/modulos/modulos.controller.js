@@ -21,6 +21,10 @@
   function adicionarFuncionalidade (req, res) {
     Service.adicionarFuncionalidade(req, res);
   }
+
+  function adicionarTarefa (req, res) {
+    Service.adicionarTarefa(req, res);
+  }
   
   function filtrar (req, res) {
     Service.filtrar(req, res);
@@ -30,6 +34,7 @@
     cadastrar: cadastrar,
     alterar: alterar,
     adicionarFuncionalidade: adicionarFuncionalidade,
+    adicionarTarefa: adicionarTarefa,
     buscarTodos: buscarTodos,
     buscarPorId: buscarPorId,
     filtrar: filtrar

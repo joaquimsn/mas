@@ -2,7 +2,11 @@ data padrão americano
 por legenda das cores de indicação
 
 prioridades
-- burndown
-- editar modulo e projetos
+- gestao equipes
 - vincular equipes ao projeto
+- Criar marcador para grupo "será igual funcionalidade essa data será usada para montar
+o bunrdown" 
+- criar modelo de dados para para funcionalidade
+- editar modulo e projetos
 - git
+- criar gráfico de tarefas fechadas com atraso

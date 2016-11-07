@@ -11,7 +11,8 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
   function tiposVisualizacao() {
     return [
       {display: "Pontos", value: "pontos", codigo: 1},
-      {display: "tarefas", value: "tarefas", codigo: 2}
+      {display: "Tarefas", value: "tarefas", codigo: 2},
+      {display: "Horas", value: "horas", codigo: 3}
     ];
   }
 
@@ -20,6 +21,19 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
       {display: "Dias", value: "dias", codigo: 1},
       {display: "Semanas", value: "semanas", codigo: 2}
     ];
+  }
+
+  function buscarFuncionalidades(modulo) {
+     mv.funcionalidadeSelecionada = undefined;
+    function buscarFuncionalidadesCb(modulo) {
+      mv.funcionalidades = modulo.funcionalidades;
+    }
+
+    var filtro = {
+      _id: modulo._id
+    };
+
+    ModuloService.filtrar(buscarFuncionalidadesCb, filtro);
   }
 
   function buscarModulos() {
@@ -39,15 +53,17 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
     }
 
     if(mv.moduloSelecionado &&
+      mv.funcionalidadeSelecionada &&
       mv.tipoVisualizacaoSelecionado && 
       mv.tipoPeriodoSelecionado) {
 
-      DashboardService.criarBurndown(criarBurndownCb, mv.moduloSelecionado, mv.tipoVisualizacaoSelecionado, mv.tipoPeriodoSelecionado);
+      DashboardService.criarBurndown(criarBurndownCb, mv.moduloSelecionado, mv.funcionalidadeSelecionada, mv.tipoVisualizacaoSelecionado, mv.tipoPeriodoSelecionado);
     }
   }
 
   function init() {
     mv.montarBurndown = montarBurndown;
+    mv.buscarFuncionalidades = buscarFuncionalidades;
 
     mv.moduloSelecionado;
     mv.tipoVisualizacaoSelecionado;

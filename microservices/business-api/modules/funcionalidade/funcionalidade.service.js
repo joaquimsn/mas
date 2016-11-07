@@ -251,10 +251,11 @@
 
   function alterarStatus(req, res) {
     var query = {_id: req.params.idFuncionalidade};
-    var status = req.body;
+    var body = req.body;
   
     var promisse = Funcionalidades.update(query, {
-      $set: {status:status, 
+      $set: {status: body.status,
+             dataFechamento: body.dataFechamento
           }
     });
 

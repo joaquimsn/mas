@@ -73,6 +73,7 @@ function KanbanService(requestApiService, KanbanManipulatorFactory, SessaoServic
     };
 
     funcionalidade.status = status;
+    funcionalidade.dataFechamento = new Date();
 
     FuncionalidadeService.alterarStatus(function(){}, funcionalidade);
   } 

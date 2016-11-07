@@ -21,10 +21,10 @@ function DashboardService(requestApiService, ModuloService) {
     cb({});
   };
 
-  function totalPontos(funcionalidades) {
+  function totalPontos(tarefas) {
     var totalPontos = 0;
 
-    angular.forEach(funcionalidades, function(funcionalidade) {
+    angular.forEach(tarefas, function(funcionalidade) {
       totalPontos = funcionalidade.severidade + totalPontos;
     });
 
@@ -43,7 +43,7 @@ function DashboardService(requestApiService, ModuloService) {
     var dataAtual = new Date();
     var intervalo = Math.round(intervaloDias(dataInicio, dataFim));
 
-    var totalDePontos = totalPontos(modulo.funcionalidades);
+    var totalDePontos = totalPontos(modulo.tarefas);
     var valorIdeal = Math.round(totalDePontos / intervalo);
 
     var resultadoSubtracao = angular.copy(totalDePontos);
@@ -69,7 +69,7 @@ function DashboardService(requestApiService, ModuloService) {
         }
       }
 
-      var tarefaRealizadasNoDiaTrabalho = modulo.funcionalidades.filter(buscarTarefaPorData);
+      var tarefaRealizadasNoDiaTrabalho = modulo.tarefas.filter(buscarTarefaPorData);
       var pontosRealizados = totalPontos(tarefaRealizadasNoDiaTrabalho);
 
       if (pontosRealizados > 0) {
@@ -92,7 +92,7 @@ function DashboardService(requestApiService, ModuloService) {
     var dataAtual = new Date();
     var intervalo = Math.trunc(intervaloDias(dataInicio, dataFim));
     console.log("intervalo", intervalo);
-    var totalDePontos = totalPontos(modulo.funcionalidades);
+    var totalDePontos = totalPontos(modulo.tarefas);
     var quantidadeSemana = Math.round(intervalo / 7);
     // ideal por semana
     var valorIdeal = Math.trunc(totalDePontos / quantidadeSemana) ;
@@ -121,7 +121,7 @@ function DashboardService(requestApiService, ModuloService) {
         }
       }
 
-      var tarefaRealizadasNoDiaTrabalho = modulo.funcionalidades.filter(buscarTarefaPorData);
+      var tarefaRealizadasNoDiaTrabalho = modulo.tarefas.filter(buscarTarefaPorData);
       var pontosRealizados = totalPontos(tarefaRealizadasNoDiaTrabalho);
 
       if (pontosRealizados > 0) {
@@ -140,7 +140,8 @@ function DashboardService(requestApiService, ModuloService) {
 
   this.criarBurndown = function(callback, modulo, visualizacao, periodo) {
     var filtro = {
-      _id: modulo._id
+      _id: modulo._id,
+      funcionalidade: funcionalidade
     };
 
     function montarBurndown(retorno) {
