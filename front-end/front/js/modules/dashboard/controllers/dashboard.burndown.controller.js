@@ -10,8 +10,7 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
 
   function tiposVisualizacao() {
     return [
-      {display: "Pontos", value: "pontos", codigo: 1},
-      {display: "tarefas", value: "tarefas", codigo: 2}
+      {display: "Pontos", value: "pontos", codigo: 1}
     ];
   }
 

@@ -47,8 +47,8 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
 
   $scope.alterarFuncionalidade = function(funcionalidade) {
     function alterarCb(retorno) {
-      globalMessage.info('Funcionalidade Alterada com sucesso');
-      console.log('Funcionalidade para alterar', retorno);
+      globalMessage.info('Tarefa Alterada com sucesso');
+      console.log('Tarefa para alterar', retorno);
     }
     FuncionalidadeService.alterar(alterarCb, funcionalidade);
   };

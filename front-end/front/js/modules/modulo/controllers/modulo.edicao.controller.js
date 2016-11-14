@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function ModuloCadastroController(modulo, $scope, ModuloService, globalMessage) {
+function ModuloEdicaoController(modulo, $scope, ModuloService, globalMessage) {
   ModuloService.buscarPorId(function(novo) {
     novo.dataInicio = novo.dataInicio ? new Date(novo.dataInicio) : novo.dataInicio;
     novo.dataFim = novo.dataFim ? new Date(novo.dataFim) : novo.dataFim;
@@ -30,4 +30,4 @@ function ModuloCadastroController(modulo, $scope, ModuloService, globalMessage) 
   };
 }
 
-controllersModule.controller('ModuloCadastroController', ModuloCadastroController);
+controllersModule.controller('ModuloEdicaoController', ModuloEdicaoController);

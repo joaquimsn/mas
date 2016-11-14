@@ -1,0 +1,9 @@
+{"_id":{"$oid":"57ff4a30fb439e0c7c0b93e7"},"nome":"Importante","cor":"#d61d04","dataCadastro":{"$date":"2016-10-13T08:47:44.801Z"},"__v":0}
+{"_id":{"$oid":"57ff51b9fb439e0c7c0b93e8"},"nome":"Pendente","cor":"#f37312","dataCadastro":{"$date":"2016-10-13T09:19:53.598Z"},"__v":0}
+{"_id":{"$oid":"580d9914f9c56bce3d8ebe7c"},"nome":"Solicitação","cor":"#2017da","dataCadastro":{"$date":"2016-10-24T05:16:04.345Z"},"__v":0}
+{"_id":{"$oid":"580d99f2f9c56bce3d8ebe82"},"nome":"tag 2","cor":"#4a900d","dataCadastro":{"$date":"2016-10-24T05:19:46.563Z"},"__v":0}
+{"_id":{"$oid":"580d9a00f9c56bce3d8ebe83"},"nome":"tag 3","cor":"#e3c50c","dataCadastro":{"$date":"2016-10-24T05:20:00.790Z"},"__v":0}
+{"_id":{"$oid":"580d9a09f9c56bce3d8ebe84"},"nome":"tag 4","cor":"#a01212","dataCadastro":{"$date":"2016-10-24T05:20:09.949Z"},"__v":0}
+{"_id":{"$oid":"580d9a16f9c56bce3d8ebe85"},"nome":"tag 56","cor":"#d40202","dataCadastro":{"$date":"2016-10-24T05:20:22.571Z"},"__v":0}
+{"_id":{"$oid":"580da01ef9c56bce3d8ebe86"},"nome":"cadastro","cor":"#576309","dataCadastro":{"$date":"2016-10-24T05:46:06.045Z"},"__v":0}
+{"_id":{"$oid":"580da0aef9c56bce3d8ebe87"},"nome":"tag teste","cor":"#373535","dataCadastro":{"$date":"2016-10-24T05:48:30.767Z"},"__v":0}
