@@ -2,7 +2,6 @@ data padrão americano
 por legenda das cores de indicação
 
 prioridades
-- gestao equipes
 - vincular equipes ao projeto
 - Criar marcador para grupo "será igual funcionalidade essa data será usada para montar
 o bunrdown" 

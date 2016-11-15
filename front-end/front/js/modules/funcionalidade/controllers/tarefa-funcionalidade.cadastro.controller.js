@@ -18,6 +18,7 @@ function TarefaFuncionalidadeCadastroController($scope, FuncionalidadeService, M
 
   function inicializar() {
     $scope.cadastrar = cadastrar;
+    $scope.cadastro = true;
 
     ModuloService.buscarTodosPorProjeto(function(projetoModulos) {
       $scope.projetoModulos = projetoModulos;

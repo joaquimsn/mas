@@ -61,7 +61,7 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.gestaoProjetoTarefaFuncionalidadeAlteracao, {
       templateUrl: 'expose/tarefa-funcionalidade/tarefa-funcionalidade-formulario',
-      controller: 'TarefaFuncionalidadeAlteracaoController'
+      controller: 'TarefaFuncionalidadeEdicaoController'
     }).
     when(SystemUriConfig.gestaoProjetoTag, {
       templateUrl: 'expose/tag/tag',

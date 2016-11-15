@@ -26,7 +26,7 @@ div.tarefafuncionalidade-container
         div(data-ng-message='minlength') Nome muito pequeno
         div(data-ng-message='maxlength') Nome muito grande
     
-    md-input-container.md-block(flex-gt-sm='30')
+    md-input-container.md-block(flex-gt-sm='40', data-ng-if="cadastro")
       label Modulos
       md-select(ng-model='moduloSelecionado' required name='modulo')
         md-option(ng-repeat='projetoModulo in projetoModulos', ng-value='projetoModulo.modulo')

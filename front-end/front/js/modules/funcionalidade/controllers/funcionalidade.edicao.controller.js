@@ -16,7 +16,6 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
   $scope.novaFuncionalidade = funcionalidade;
 
   FuncionalidadeService.buscarPorId(function(func) {
-    console.log('buscou por id', func);
     $scope.novaFuncionalidade.usuarios = func.usuarios;
     $scope.novaFuncionalidade.funcionalidade = func.funcionalidade;
   }, funcionalidade._id);
@@ -43,8 +42,8 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
 
   $scope.alterarFuncionalidade = function(funcionalidade) {
     function alterarCb(retorno) {
-      globalMessage.info('Funcionalidade Alterada com sucesso');
-      console.log('Funcionalidade para alterar', retorno);
+      globalMessage.info('Tarefa Alterada com sucesso');
+      console.log('Tarefa para alterar', retorno);
     }
     FuncionalidadeService.alterar(alterarCb, funcionalidade);
   };

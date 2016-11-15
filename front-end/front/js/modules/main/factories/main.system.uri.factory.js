@@ -19,8 +19,8 @@ function systemUri(SystemUriConfig) {
         moduloCadastro: function() {
             return SystemUriConfig.gestaoProjetoModuloCadastro;
         },
-        moduloAlteracao: function() {
-            return SystemUriConfig.gestaoProjetoModuloAlteracao;
+        moduloAlteracao: function(id) {
+            return SystemUriConfig.gestaoProjetoModuloAlteracao.replace(':id', id);
         },
         tarefaFuncionalidade: function() {
             return SystemUriConfig.gestaoProjetoTarefaFuncionalidade;
@@ -29,7 +29,7 @@ function systemUri(SystemUriConfig) {
             return SystemUriConfig.gestaoProjetoTarefaFuncionalidadeCadastro;
         },
         tarefaFuncionalidadeAlteracao: function(id) {
-            return SystemUriConfig.gestaoProjetoModuloAlteracao.replace(':id', id);
+            return SystemUriConfig.gestaoProjetoTarefaFuncionalidadeAlteracao.replace(':id', id);
         },
         projeto: function() {
             return SystemUriConfig.projeto;
@@ -40,8 +40,8 @@ function systemUri(SystemUriConfig) {
         projetoCadastro: function() {
             return SystemUriConfig.projetoCadastro;
         },
-        projetoAlteracao: function() {
-            return SystemUriConfig.projetoAlteracao;
+        projetoAlteracao: function(id) {
+            return SystemUriConfig.projetoAlteracao.replace(':id', id);
         },
         kanban: function() {
             return SystemUriConfig.gestaoProjetoKanbanModulo;

@@ -22,7 +22,6 @@ function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService
     $scope.addNewTask(angular.copy(funcionalidade));
 
     FuncionalidadeService.cadastrarParaSecao(function(data) {
-      console.log('Cadastrada no servidor com sucesso');
     }, funcionalidade, $scope.kanban, $scope.sectionSelecionada);
   }
 

@@ -7,15 +7,31 @@ var controllersModule = require('./_index');
  */
 function TarefaFuncionalidadeController($scope, systemUri, $location, ModuloService, SessaoService, globalMessage) {
   function buscarPorModulo(modulo) {
-    function buscarFuncionalidadesCb(funcionalidades) {
-      $scope.funcionalidades = funcionalidades;
+    function buscarFuncionalidadesCb(modulo) {
+      console.log(modulo);
+      $scope.funcionalidades = modulo.funcionalidades;
     }
 
-    ModuloService.buscarTodosPorModulo(buscarFuncionalidadesCb, modulo);
+    ModuloService.buscarPorId(buscarFuncionalidadesCb, modulo._id);
+  }
+
+  function buscarModulos() {
+    function buscarModuloCb(projetoModulos) {
+      $scope.projetoModulos = projetoModulos;
+    }
+    
+    ModuloService.buscarTodosPorProjeto(buscarModuloCb);
+  }
+
+  function goTo(funcionalidade) {
+    $location.path(systemUri.tarefaFuncionalidadeAlteracao(funcionalidade._id));
   }
   
   function inicializar() {
     $scope.buscarPorModulo = buscarPorModulo;
+    $scope.goTo = goTo;
+
+    buscarModulos();
   }
   inicializar();
 }

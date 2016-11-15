@@ -18,7 +18,7 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
             
             md-input-container.md-block(flex-gt-sm='95')
               label Funcionalidade
-              md-select(ng-model='novaFuncionalidade.funcionalidade' required name='tarefaFuncionalidade')
+              md-select(ng-model='novaFuncionalidade.funcionalidade' ng-model-options="{trackBy: '$value._id'}" required name='tarefaFuncionalidade')
                 md-option(ng-repeat='tarefaFuncionalidade in tarefaFuncionalidades track by tarefaFuncionalidade._id', ng-value='tarefaFuncionalidade')
                   | {{tarefaFuncionalidade.titulo}}
 

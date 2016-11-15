@@ -7,13 +7,19 @@ div.page-header
       a.link(data-ng-href='{{systemUri.tarefaFuncionalidadeCadastro()}}') Cadastro
 
 div.tarefafuncionalidade-container
-  div.filtro
+  div.filtro(layout-gt-sm="row")
+    md-input-container.md-block(flex-gt-sm='40')
+      label Modulo
+      md-select(ng-model='moduloFiltroSelecionado', data-ng-change='buscarPorModulo(moduloFiltroSelecionado)')
+        md-option(ng-repeat='projetoModulo in projetoModulos', ng-value='projetoModulo.modulo')
+          | {{projetoModulo.modulo.nome}}
   div.lista
-    div.item.cursorPointer(data-ng-repeat='funcionalidade in ::funcionalidades track by $index')
-      div.linha
+    div.item(data-ng-repeat='funcionalidade in ::funcionalidades track by $index')
+      div.col
         span.textodestaque(data-ng-bind="funcionalidade.titulo")
-      div.linha
-        div.indices
-          span.textosecundario
-        div.equipes
-          span.label Duração de {{funcionalidade.dataInicio | date: "dd/MM/yyyy"}} até {funcionalidade.dataFim | date: "dd/MM/yyyy"}} 
+      div.col
+        span.textosecundario Duração de {{funcionalidade.dataInicio | date: "dd/MM/yyyy"}} até {{funcionalidade.dataFim | date: "dd/MM/yyyy"}}
+      div.col.acoes
+        div.botoes
+          div.editar.cursorPointer(data-ng-click="goTo(funcionalidade)")
+            i.material-icons mode_edit
