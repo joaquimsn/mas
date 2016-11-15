@@ -115,7 +115,7 @@
     ).exec();
 
     promisse.then(function(funcionalidade) {
-      console.log("Historico adicionado com sucesso", funcionalidade.historicos);
+      //console.log("Historico adicionado com sucesso", funcionalidade.historicos);
       res.json(funcionalidade.historicos);
     });
 
@@ -252,7 +252,7 @@
   function alterarStatus(req, res) {
     var query = {_id: req.params.idFuncionalidade};
     var body = req.body;
-  
+    console.log('status', body);
     var promisse = Funcionalidades.update(query, {
       $set: {status: body.status,
              dataFechamento: body.dataFechamento

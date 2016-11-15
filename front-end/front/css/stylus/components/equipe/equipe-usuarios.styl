@@ -1,30 +1,51 @@
-.membrosContainer md-content.autocomplete {
-  min-height: 250px; }
-  .membrosContainer md-content.autocomplete input {
-    min-width: 400px; }
+.membros-dialog
+  width: 100%
 
-.membrosContainer .md-item-text.compact {
-  padding-top: 8px;
-  padding-bottom: 8px; }
+.membrosContainer 
+  padding: 10px
+  width: 100%
 
-.membrosContainer .membro-item {
-  box-sizing: border-box; }
-  .membrosContainer .membro-item .md-list-item-text {
-    padding: 14px 0;
-    max-width: 190px; }
-    .membrosContainer .membro-item .md-list-item-text h3 {
-      margin: 0 !important;
-      padding: 0;
-      line-height: 1.2em !important; }
-    .membrosContainer .membro-item .md-list-item-text h3, .membrosContainer .membro-item .md-list-item-text p {
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow: hidden; }
-  @media (min-width: 960px) {
-    .membrosContainer .membro-item {
-      float: left;
-      width: 33%; } }
+  .form
+    display: flex
+    width: 100%
 
-.membrosContainer .fixedRows {
-  height: 250px;
-  overflow: hidden; }
+    .email
+      margin: 5px 0 0 0;
+      width: 40%
+  
+  .listagem
+    width: 100%
+    
+    .header
+      font-size: pt(16)
+      .title
+        margin: 0
+        color: $accentColor 
+    
+    .list
+      width: 100%
+      @media(min-width: em(800px))
+        display: flex
+        flex-wrap: wrap
+        align-content: space-between
+      
+      .item
+        @media(min-width: em(800px))
+          width: 33%;
+      
+      .usuario
+        margin-top: 10px
+        display: flex
+        padding: 10px
+        .imagem
+          width: 48px
+          height: 48px
+        
+        .detalhe
+          margin-left: 10px
+          .nome
+            margin: 0
+          .email
+            margin: 5px 0 0 0
+
+

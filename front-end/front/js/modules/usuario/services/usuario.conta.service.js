@@ -33,6 +33,11 @@ function ContaService(requestApiService) {
     var vinculo = new VinculoProjeto(projeto);
     requestApiService.putNo(retornoCb, vinculo, '/contas/' + idConta + '/projetos');
   };
+
+  // Quando não existe uma conta com o email, é gerado um novo cadastro
+  this.buscarPorEmail = function(callback, email) {
+    requestApiService.getNo(callback,  '/contas/email/' + email);
+  };
 }
 
 servicesModule.service('ContaService', ContaService);

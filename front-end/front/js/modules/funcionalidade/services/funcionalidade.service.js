@@ -23,7 +23,7 @@ function FuncionalidadeService(requestApiService, ModuloService) {
   };
   
   this.alterarStatus = function(callback, funcionalidade) {
-    requestApiService.putNo(callback, funcionalidade.status, '/funcionalidades/' + funcionalidade._id + '/status');
+    requestApiService.putNo(callback, funcionalidade, '/funcionalidades/' + funcionalidade._id + '/status');
   };
 
   this.cadastrarParaSecao = function(callback, funcionalidade, kanban, section) {
@@ -33,7 +33,6 @@ function FuncionalidadeService(requestApiService, ModuloService) {
 
   this.registrarEvento = function(evento, funcionalidade) {
     var endPoint = '/funcionalidades/' + funcionalidade._id + '/historicos';
-    console.log(evento);
     requestApiService.postNo(function(data) {console.log(data);}, evento, endPoint);
   };
 
