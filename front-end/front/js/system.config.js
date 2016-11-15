@@ -39,13 +39,6 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     when(SystemUriConfig.gestaoProjetoDashboard, {
       templateUrl: 'expose/dashboard/dashboard',
     }).
-    // when(SystemUriConfig.funcionalidade, {
-    //   templateUrl: 'expose/funcionalidade/funcionalidade',
-    //   controller: 'FuncionalidadeController'
-    // }).
-    // when(SystemUriConfig.funcionalidadeVisualizacao, {
-    //   templateUrl: 'expose/funcionalidade/funcionalidade'
-    // }).
     when(SystemUriConfig.gestaoProjetoModulo, {
       templateUrl: 'expose/modulo/modulo',
       controller: 'ModuloController'
@@ -57,6 +50,18 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     when(SystemUriConfig.gestaoProjetoModuloAlteracao, {
       templateUrl: 'expose/modulo/modulo-formulario',
       controller: 'ModuloAlteracaoController'
+    }).
+    when(SystemUriConfig.gestaoProjetoTarefaFuncionalidade, {
+      templateUrl: 'expose/tarefa-funcionalidade/tarefa-funcionalidade',
+      controller: 'TarefaFuncionalidadeController'
+    }).
+    when(SystemUriConfig.gestaoProjetoTarefaFuncionalidadeCadastro, {
+      templateUrl: 'expose/tarefa-funcionalidade/tarefa-funcionalidade-formulario',
+      controller: 'TarefaFuncionalidadeCadastroController'
+    }).
+    when(SystemUriConfig.gestaoProjetoTarefaFuncionalidadeAlteracao, {
+      templateUrl: 'expose/tarefa-funcionalidade/tarefa-funcionalidade-formulario',
+      controller: 'TarefaFuncionalidadeAlteracaoController'
     }).
     when(SystemUriConfig.gestaoProjetoTag, {
       templateUrl: 'expose/tag/tag',

@@ -5,13 +5,11 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService, ModuloService, TagService, SessaoService) {
+function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService, ModuloService, SessaoService) {
   function resetVariaveis() {
     $scope.novaFuncionalidade = {usuarios: [SessaoService.getUsuario()]};
     $scope.edicao = false;
-    $scope.historicos = {};
-
-    
+    $scope.historicos = {};  
   }
   resetVariaveis();
   
@@ -28,13 +26,8 @@ function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService
     }, funcionalidade, $scope.kanban, $scope.sectionSelecionada);
   }
 
-  function findModulosCb(promisse) {
-    promisse.success(function (modulos) {
-      $scope.modulosFiltro = modulos;
-    });
-    promisse.error(function (err) {
-      console.log('Erro ao buscar modulos');
-    });
+  function buscarPorIdCb(modulo) {
+    $scope.tarefaFuncionalidades = modulo.funcionalidades;
   }
 
   $scope.cadastrarParaSecao = function(funcionalidade) {
@@ -42,12 +35,7 @@ function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService
     FuncionalidadeService.cadastrar(cadastroCb, funcionalidade);
   };
 
-  function buscarTagsCb(tags) {
-    $scope.tags = tags;
-  }
-
-  ModuloService.findModulos(findModulosCb);
-  TagService.buscarTodas(buscarTagsCb);
+  ModuloService.buscarPorId(buscarPorIdCb, SessaoService.getModulo()._id);
 }
 
 controllersModule.controller('FuncionalidadeCadastroController', FuncionalidadeCadastroController);

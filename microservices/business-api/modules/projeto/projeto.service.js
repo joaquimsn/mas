@@ -104,9 +104,17 @@
   function alterar(req, res) {
     var query = {_id: req.params.idProjeto};
     var model = req.body;
-    delete model._id;
 
-    var promisse = Projeto.update(query, model);
+    var promisse = Projeto.update(query, {
+      $set: {
+        nome: model.nome,
+        descricao: model.descricao,
+        dataInicio: model.dataInicio,
+        dataFim: model.dataFim,
+        equipes: model.equipes,
+        usuarios: model.usuarios
+      }
+    });
 
     promisse.then(function (projeto) {
       res.json(projeto);

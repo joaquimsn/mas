@@ -20,14 +20,13 @@ function menusGeral() {
             url: '/equipes',
             icon: 'icon-share',
             submenus: []
-        }
-        /*,
+        },
         {
             nome: 'Configurações',
             url: '/configuracoes',
             icon: 'icon-build',
             submenus: []
-        }*/
+        }
     ];
 }
 
@@ -54,6 +53,12 @@ function menusProjeto() {
             nome: 'Módulos',
             url: '/gestao-projeto/modulos',
             icon: 'icon-modulos',
+            submenus: []
+        },
+        {
+            nome: 'Funcionalidade',
+            url: '/gestao-projeto/funcionalidade',
+            icon: 'icon-funcionalidade',
             submenus: []
         },
         {

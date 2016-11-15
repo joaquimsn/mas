@@ -19,7 +19,8 @@
   }
 
   function buscarPorId(req, res) {
-    var promisse = Modulos.findOne({'_id' : req.params.id}).exec();
+    var promisse = Modulos.findOne({'_id' : req.params.id})
+                          .populate('funcionalidades').exec();
 
     promisse.then(function (modulo) {
       res.json(modulo);

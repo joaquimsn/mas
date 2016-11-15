@@ -73,6 +73,7 @@
     var promisse = Funcionalidades.findOne({'_id' : req.params.idFuncionalidade})
                                   .populate('tags')
                                   .populate('usuarios')
+                                  .populate('funcionalidade')
                                   .exec();
 
     promisse.then(function (funcionalidade) {
@@ -235,7 +236,7 @@
             dataFim: model.dataFim,
             usuarios: model.usuarios,
             severidade: model.severidade,
-            tarefas: model.tarefas
+            funcionalidade: model.funcionalidade
           }
     });
 

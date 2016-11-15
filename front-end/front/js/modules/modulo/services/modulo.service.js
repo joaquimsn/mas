@@ -26,8 +26,8 @@ function ModuloService(requestApiService, SessaoService) {
     requestApiService.put(callback, data, '/modulos/' + id);
   };
 
-  this.adicionarFuncionalidade = function(funcionalidade) {
-    requestApiService.putNo(function() {}, funcionalidade, '/modulos/' + SessaoService.getModulo()._id + '/funcionalidades');
+  this.adicionarFuncionalidade = function(funcionalidade, modulo) {
+    requestApiService.putNo(function() {}, funcionalidade, '/modulos/' + modulo._id + '/funcionalidades');
   };
 
   this.adicionarTarefa = function(funcionalidade) {

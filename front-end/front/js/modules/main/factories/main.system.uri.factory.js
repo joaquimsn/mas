@@ -22,6 +22,15 @@ function systemUri(SystemUriConfig) {
         moduloAlteracao: function() {
             return SystemUriConfig.gestaoProjetoModuloAlteracao;
         },
+        tarefaFuncionalidade: function() {
+            return SystemUriConfig.gestaoProjetoTarefaFuncionalidade;
+        },
+        tarefaFuncionalidadeCadastro: function() {
+            return SystemUriConfig.gestaoProjetoTarefaFuncionalidadeCadastro;
+        },
+        tarefaFuncionalidadeAlteracao: function(id) {
+            return SystemUriConfig.gestaoProjetoModuloAlteracao.replace(':id', id);
+        },
         projeto: function() {
             return SystemUriConfig.projeto;
         },

@@ -1,0 +1,60 @@
+div.page-header
+  div.name Funcionalidade
+  div.options
+    div.option
+      a.link(data-ng-href='{{systemUri.tarefaFuncionalidade()}}') Listagem
+    div.option
+      a.link(data-ng-href='{{systemUri.tarefaFuncionalidadeCadastro()}}'  selected-menu) Cadastro
+
+
+div.tarefafuncionalidade-container
+  div.titulo
+    h3 Cadastro de Funcionalidade
+
+  form.tarefaFuncForm(name='tarefaFuncForm', data-ng-submit='cadastrar(novaTarefaFuncionalidade)')
+    div.inputcontainer
+      label.label(for='inputNome') Nome
+      input.input(type='text',
+            id='inputNome',
+            name='nome',
+            data-ng-model='novaTarefaFuncionalidade.titulo',
+            ng-minlength="3"
+            ng-maxlength="200"
+            required)
+      div.message-container(data-ng-messages="tarefaFuncForm.nome.$error", data-ng-if='tarefaFuncForm.nome.$touched && !submitted')
+        div(data-ng-message='required') Nome é obrigatorio
+        div(data-ng-message='minlength') Nome muito pequeno
+        div(data-ng-message='maxlength') Nome muito grande
+    
+    md-input-container.md-block(flex-gt-sm='30')
+      label Modulos
+      md-select(ng-model='moduloSelecionado' required name='modulo')
+        md-option(ng-repeat='projetoModulo in projetoModulos', ng-value='projetoModulo.modulo')
+          | {{projetoModulo.modulo.nome}}
+
+    div.inputcontainer
+      label.label(for='inputDescricao') Descrição
+      textarea.textarea(id='inputDescricao',
+            name='descricao',
+            data-ng-model='novaTarefaFuncionalidade.descricao',
+            rows='4',
+            ng-minlength="3",
+            ng-maxlength="600")
+      div.message-container(data-ng-messages="tarefaFuncForm.descricao.$error", data-ng-if='tarefaFuncForm.descricao.$touched && !submitted')
+        div(data-ng-message='minlength') Descrição muito pequena
+        div(data-ng-message='maxlength') Descrição muito grande
+    
+     md-input-container.data(flex-gt-sm='')
+      label Data início
+      md-datepicker(ng-model='novaTarefaFuncionalidade.dataInicio', required)
+    
+    md-input-container.data(flex-gt-sm='')
+      label Data fim
+      md-datepicker(ng-model='novaTarefaFuncionalidade.dataFim' required)
+
+    div.botoes
+      input.botaoCadastrar(type="submit",
+            value="Cadastrar",
+            data-ng-disabled='tarefaFuncForm.$invalid',
+            data-ng-class="{'botao_desabilitado': tarefaFuncForm.$invalid}")
+

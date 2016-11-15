@@ -27,16 +27,12 @@ module.exports = {
   gitHub:             {type: Object},
   equipes: [
     {
-      nome:  {type: String, min: 3, max: 60},
-      membros: [
-        {
-          usuario: {type: Schema.Types.ObjectId, ref: 'Usuarios'},
-          status: objectStatus    
-        }
-      ],
+      _id: {type: Schema.Types.ObjectId},
+      nome:  {type: String},
       status: objectStatus
     }
   ],
+  usuarios: [{type: Schema.Types.ObjectId, ref: 'Usuarios'}],
   dataCadastro: {type: Date, default: Date.now},
   status: objectStatus
 };

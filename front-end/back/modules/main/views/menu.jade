@@ -11,6 +11,7 @@ aside.left-menu(data-ng-show='(isDesktop || showMenuLeft)')
     ul.list(data-ng-controller='AcessoMenuController as mv')
       li.item(data-ng-repeat='menu in mv.menus track by $index')
         a.link(data-ng-href='{{menu.url}}', data-selected-menu)
+          md-tooltip(md-direction="right") {{menu.nome}}
           svg.icon(viewBox='0 0 48 48')
             use(xlink:href='{{"/build/images/default/layout/icons.svg#" + menu.icon}}')
           span.label(data-ng-bind='menu.nome')

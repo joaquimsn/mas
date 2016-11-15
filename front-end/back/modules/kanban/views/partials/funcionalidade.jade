@@ -15,6 +15,12 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
                           name='nome',
                           data-ng-model='novaFuncionalidade.titulo'
                           required)
+            
+            md-input-container.md-block(flex-gt-sm='95')
+              label Funcionalidade
+              md-select(ng-model='novaFuncionalidade.funcionalidade' required name='tarefaFuncionalidade')
+                md-option(ng-repeat='tarefaFuncionalidade in tarefaFuncionalidades track by tarefaFuncionalidade._id', ng-value='tarefaFuncionalidade')
+                  | {{tarefaFuncionalidade.titulo}}
 
             div.inputContainer
               label.label(for='editor') Especificação geral

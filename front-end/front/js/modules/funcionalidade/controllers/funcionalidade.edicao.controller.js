@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeService, ModuloService, globalMessage) {
+function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeService, ModuloService, SessaoService, globalMessage) {
   $scope.edicao = true;
   $scope.historicos = [];
   console.log("Funcionalidade selecionada", funcionalidade);
@@ -18,15 +18,11 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
   FuncionalidadeService.buscarPorId(function(func) {
     console.log('buscou por id', func);
     $scope.novaFuncionalidade.usuarios = func.usuarios;
+    $scope.novaFuncionalidade.funcionalidade = func.funcionalidade;
   }, funcionalidade._id);
   
-  function findModulosCb(promisse) {
-    promisse.success(function (modulos) {
-      $scope.modulosFiltro = modulos;
-    });
-    promisse.error(function (err) {
-      console.log('Erro ao buscar modulos');
-    });
+  function buscarPorIdCb(modulo) {
+    $scope.tarefaFuncionalidades = modulo.funcionalidades;
   }
 
   $scope.adicionarComentario = function(comentario, funcionalidade) {
@@ -58,7 +54,7 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
     $scope.historicos = historicos || [];
   }, funcionalidade);
 
-  ModuloService.findModulos(findModulosCb);
+  ModuloService.buscarPorId(buscarPorIdCb, SessaoService.getModulo()._id);
 }
 
 controllersModule.controller('FuncionalidadeEdicaoController', FuncionalidadeEdicaoController);

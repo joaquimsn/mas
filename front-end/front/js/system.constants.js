@@ -16,9 +16,9 @@ var SystemUrlConfig = {
   gestaoProjetoModuloCadastro: '/gestao-projeto/modulo/cadastro',
   gestaoProjetoModuloAlteracao: '/gestao-projeto/modulo/alteracao/:idModulo',
   gestaoProjetoTag: '/gestao-projeto/tags',
-  gestaoProjetoFuncionalidade: '/gestao-projeto/funcionalidade',
-  gestaoProjetoFuncionalidadeCadastro: '/gestao-projeto/funcionalidade/cadastro',
-  gestaoProjetoFuncionalidadeAlteracao: '/gestao-projeto/funcionalidade/alteracao/:id',
+  gestaoProjetoTarefaFuncionalidade: '/gestao-projeto/funcionalidade',
+  gestaoProjetoTarefaFuncionalidadeCadastro: '/gestao-projeto/funcionalidade/cadastro',
+  gestaoProjetoTarefaFuncionalidadeAlteracao: '/gestao-projeto/funcionalidade/alteracao/:id',
   notFound: '/404'
 };
 
