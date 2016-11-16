@@ -23,6 +23,14 @@ function ProjetoService($http, requestApiService, SessaoService, ContaService) {
     requestApiService.post(cb, data, '/projetos');
   };
 
+  this.buscarPorId = function(callback, id) {
+    requestApiService.getNo(callback, '/projetos/' + id);
+  };
+
+  this.alterar = function(callback, projeto) {
+    requestApiService.putNo(callback, projeto, '/projetos/' + projeto._id);
+  };
+
   this.adicionarModulo = function(modulo) {
     function retornoCb(data) {
       console.log('Adicionado modulo ao projeto', data);

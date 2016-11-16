@@ -25,7 +25,15 @@ function ProjetoController($scope, $rootScope, $location, systemUri, ProjetoServ
     }
   };
 
-  ProjetoService.buscarTodosPorUsuario(buscarProjetosUsuarioCb);
+  function goTo(projeto) {
+    $location.path(systemUri.projetoAlteracao(projeto._id));
+  }
+  
+  function inicializar() {
+    $scope.goTo = goTo;
+    ProjetoService.buscarTodosPorUsuario(buscarProjetosUsuarioCb);
+  }
+  inicializar();
 }
 
 controllersModule.controller('ProjetoController', ProjetoController);

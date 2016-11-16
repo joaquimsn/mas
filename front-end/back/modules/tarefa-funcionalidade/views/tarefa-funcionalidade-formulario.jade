@@ -3,8 +3,10 @@ div.page-header
   div.options
     div.option
       a.link(data-ng-href='{{systemUri.tarefaFuncionalidade()}}') Listagem
-    div.option
+    div.option(data-ng-if='cadastro')
       a.link(data-ng-href='{{systemUri.tarefaFuncionalidadeCadastro()}}'  selected-menu) Cadastro
+    div.option(data-ng-if='edicao')
+      a.link.linkselected Edicao
 
 
 div.tarefafuncionalidade-container
@@ -54,7 +56,7 @@ div.tarefafuncionalidade-container
 
     div.botoes
       input.botaoCadastrar(type="submit",
-            value="Cadastrar",
+            value="{{cadastro ? 'Cadastrar' : 'Editar'}}",
             data-ng-disabled='tarefaFuncForm.$invalid',
             data-ng-class="{'botao_desabilitado': tarefaFuncForm.$invalid}")
 

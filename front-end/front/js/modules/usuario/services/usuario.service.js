@@ -5,9 +5,13 @@ var servicesModule = require('./_index');
 /**
  * @ngInject
  */
-function UsuarioService(requestApiService) {
+function UsuarioService(requestApiService, SessaoService) {
   this.buscarUsuarioDisponivelParaProjeto = function(callback) {
-    requestApiService.getNo(callback, '/contas');
+    function retornoCb(projeto) {
+      callback(projeto.usuarios);
+    }
+
+    requestApiService.getNo(retornoCb, '/projetos/' + SessaoService.getProjeto()._id);
   };
 }
 

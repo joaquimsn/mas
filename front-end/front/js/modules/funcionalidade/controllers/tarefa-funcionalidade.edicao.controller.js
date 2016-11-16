@@ -6,9 +6,8 @@ var controllersModule = require('./_index');
  * @ngInject
  */
 function TarefaFuncionalidadeEdicaoController($scope, $routeParams, FuncionalidadeService, ModuloService, globalMessage) {
-  function cadastroCb(funcionalidade) {
-    ModuloService.adicionarFuncionalidade(funcionalidade, $scope.moduloSelecionado);
-    globalMessage.info('Funcionalidade cadastrada com sucesso');
+  function alterarCb(funcionalidade) {
+    globalMessage.info('Funcionalidade alterada com sucesso');
     delete $scope.novaTarefafuncionalidade;
   }
 
@@ -20,12 +19,13 @@ function TarefaFuncionalidadeEdicaoController($scope, $routeParams, Funcionalida
     }, id);
   }
 
-  function cadastrar(funcionalidade) {
-    FuncionalidadeService.cadastrar(cadastroCb, funcionalidade);
+  function alterar(funcionalidade) {
+    console.log('funcionalidade para alterar', funcionalidade);
+    FuncionalidadeService.alterar(alterarCb, funcionalidade);
   }
 
   function inicializar() {
-    $scope.cadastrar = cadastrar;
+    $scope.cadastrar = alterar;
     $scope.edicao = true;
     
     carregarFuncionalidade($routeParams.id);

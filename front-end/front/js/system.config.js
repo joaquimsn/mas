@@ -21,6 +21,7 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.projetoAlteracao, {
       templateUrl: 'expose/projeto/projeto-formulario',
+      controller: 'ProjetoEdicaoController'
     }).
     when(SystemUriConfig.equipe, {
       templateUrl: 'expose/equipe/equipe',

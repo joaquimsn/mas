@@ -2,10 +2,10 @@ data padrão americano
 por legenda das cores de indicação
 
 prioridades
-- vincular equipes ao projeto
 - Criar marcador para grupo "será igual funcionalidade essa data será usada para montar
 o bunrdown" 
-- criar modelo de dados para para funcionalidade
-- editar modulo e projetos
-- git
+- editar modulo
 - criar gráfico de tarefas fechadas com atraso
+
+- corrigir equipes duplicadas ao projetos
+- validar data da tarefa maior que data funcionalidade

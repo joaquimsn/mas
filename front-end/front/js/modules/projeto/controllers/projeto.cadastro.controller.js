@@ -22,6 +22,11 @@ function ProjetoCadastroController($scope, ProjetoService, globalMessage, Sessao
   $scope.cadastrar = function(modulo) {
     ProjetoService.cadastrar(cadastroCb, modulo);
   };
+
+  function inicializar() {
+    $scope.cadastro = true;
+  }
+  inicializar();
 }
 
 controllersModule.controller('ProjetoCadastroController', ProjetoCadastroController);

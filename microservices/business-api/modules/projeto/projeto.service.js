@@ -19,7 +19,9 @@
   }
 
   function buscarPorId(req, res) {
-    var promisse = Projeto.findOne({'_id' : req.params.idProjeto}).exec();
+    var promisse = Projeto.findOne({'_id' : req.params.idProjeto})
+                          .populate('usuarios')
+                          .exec();
 
     promisse.then(function (projeto) {
       res.json(projeto);

@@ -14,7 +14,7 @@ div.tarefafuncionalidade-container
         md-option(ng-repeat='projetoModulo in projetoModulos', ng-value='projetoModulo.modulo')
           | {{projetoModulo.modulo.nome}}
   div.lista
-    div.item(data-ng-repeat='funcionalidade in ::funcionalidades track by $index')
+    div.item(data-ng-repeat='funcionalidade in funcionalidades track by $index')
       div.col
         span.textodestaque(data-ng-bind="funcionalidade.titulo")
       div.col

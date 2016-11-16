@@ -9,18 +9,23 @@ div.page-header
 div.projeto-container
   div.lista
     div.item(data-ng-repeat='contaProjeto in projetosUsuario track by $index')
-      div.linha.comColunas
-        div.indices
-          span.textodestaque(data-ng-bind="contaProjeto.projeto.nome")
-        div.indices.itemDireita
-          div.irModulos.cursorPointer(data-ng-click='irParaModulos(contaProjeto.projeto)')
-            i.icon(class='material-icons') view_module
-            span.link Ir para módulos
-      div.linha
-        div.indices
-          span.textosecundario Modulos {{contaProjeto.projeto.modulos.length}}
-        div.indices
-          md-switch.md-warn(data-ng-model="contaProjeto.projeto.default") Padrão
-        div.indices.projeto.repositorioGitpe
+      div.col.width80
+        div.linha.comColunas
+          div.indices
+            span.textodestaque(data-ng-bind="contaProjeto.projeto.nome")
+          div.indices.itemDireita
+            div.irModulos.cursorPointer(data-ng-click='irParaModulos(contaProjeto.projeto)')
+              i.icon(class='material-icons') view_module
+              span.link Ir para módulos
+        div.linha
+          div.indices
+            span.textosecundario Modulos {{contaProjeto.projeto.modulos.length}}
+          div.indices
+            md-switch.md-warn.marginzero(data-ng-model="contaProjeto.projeto.default") 
+              span.labelPadrao Padrão
+          div.indices.projeto.repositorioGitpe
             span.textosecundario.label(data-ng-show='false') Repositorio {{projeto.repositorioGit}}
-
+       div.col.acoes.width20
+        div.editar.cursorPointer(data-ng-click="goTo(contaProjeto.projeto)")
+          i.material-icons mode_edit
+            

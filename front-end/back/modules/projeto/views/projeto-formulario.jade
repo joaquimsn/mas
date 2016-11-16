@@ -4,12 +4,13 @@ div.page-header
     div.option
       a.link(data-ng-href='{{systemUri.projeto()}}' ) Listagem
     div.option
-      a.link(data-ng-href='{{systemUri.projetoCadastro()}}' selected-menu) Cadastro
-
+      a.link(data-ng-href='{{systemUri.projetoCadastro()}}' selected-menu data-ng-if='cadastro') Cadastro
+    div.option(data-ng-if='edicao')
+      a.link.linkselected Edicao
 
 div.projeto-container
   div.titulo
-    h3 Cadastro de Projeto
+    h3 {{cadastro ? 'Cadastro' : 'Edição'}} de Projeto
 
   form.projetoForm(name='projetoForm', data-ng-submit='cadastrar(novoProjeto)')
     div.inputcontainer
@@ -46,10 +47,21 @@ div.projeto-container
 
       div.message-container(data-ng-messages="projetoForm.repositorio.$error", data-ng-if='projetoForm.repositorio.$touched && !submitted')
         div(ng-messages-include="partials/main/messages-validation")
-      
+
+    div.equipes(data-ng-controller='EquipeSelecaoController')
+      md-input-container.fullsize
+        label Equipes
+        md-select(ng-model="novoProjeto.equipes" md-on-close="clearSearchTerm()" 
+                  data-md-container-class="selectdemoSelectHeader equipesSelect" multiple="true"
+                  ng-model-options="{trackBy: '$value._id'}")
+          md-select-header.demo-select-header
+            input.demo-header-searchbox.md-text(ng-model="searchTerm" type="search" placeholder="Pesquisar uma equipe")
+          md-optgroup(label="equipes")
+            md-option(ng-value="equipe" ng-repeat="equipe in equipesParaSelecao | filter:searchTerm") {{equipe.nome}}
+
     div.botoes
       input.botaoCadastrar(type="submit",
-            value="Cadastrar",
+            value="{{cadastro ? 'Cadastrar' : 'Editar'}}",
             data-ng-disabled='projetoForm.$invalid',
             data-ng-class="{'botao_desabilitado': projetoForm.$invalid}")
 

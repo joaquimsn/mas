@@ -3,14 +3,29 @@
 
   > .lista
     > .item
-      height 80px
+      width: 100% 
       padding 10px
       border 1px solid $secondaryTextColor
       border-radius 2px
       margin-bottom 10px
       color $primaryTextColor
+      display: flex
 
-      > .linha
+      > .width80
+        width: 80%
+      > .width20
+        width: 20%
+      
+      > .acoes
+        display: flex
+        flex-direction: row-reverse
+        > .editar
+          width: 30px
+          height: 30px
+          vertical-align: middle
+          line-height: 30px
+
+      > .col .linha
         display flex
         .textodestaque
           font-size pt(18px)
@@ -23,6 +38,9 @@
             font-family 'lato regular'
             margin-top 10px
             display block
+          
+          .labelPadrao
+            color: $primaryTextColor
 
         > .equipes
           width 50%
@@ -44,7 +62,7 @@
               font-size pt(18px)
               color $darkAccentColor
               display block
-      > .comColunas
+      > .col .comColunas
         align-content: space-between
         > .itemDireita
           display: flex
@@ -87,6 +105,12 @@
 
       > .message-container
         color $messageError
+    > .equipes
+      width: 100%
+
+      > .fullsize
+        width: 50%
+
     .halfpage
       width 50%
 
@@ -104,3 +128,6 @@
       > .botao_desabilitado
         cursor auto
         background #BBB
+
+.equipesSelect 
+  margin-left: 40px;
