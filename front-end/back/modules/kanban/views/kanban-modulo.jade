@@ -3,9 +3,20 @@ div.page-header
         div(data-ng-if="false")
           md-button(ng-click="abrirModalEdicaoModulo($event, moduloKanbanSelecionado)") editar
       div.options()
-        div.option 
+        div.option.width50 
           md-button.md-warn(ng-click="abrirModalCadastroSecao($event)") Nova seção
-
+        div.option.width50
+          div.legendacard
+            div.titulo 
+              span Legenda card
+            ul.items
+              li.item
+                div.caixa.-vencida
+                div.label Data de entrega vencida
+              li.item
+                div.caixa.-paravencer
+                div.label Entrega 1 dia
+              
 div.filtros(data-ng-if='false')
   div.filtro(layout-gt-sm="row")
     md-input-container.md-block(flex-gt-sm='40')
