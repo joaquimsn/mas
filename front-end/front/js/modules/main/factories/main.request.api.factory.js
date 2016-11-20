@@ -88,7 +88,13 @@ function requestApiService($http, $location, $log, ApplicationSettings) {
 
   function requestGetProdNoReturn (cb, route) {
     var uri = 'http://35.160.139.101:4100/';
-    cb($http.get(uri + route));
+
+    var promise = $http.get(uri + route);
+    promise.then()
+    .then(function(retorno) {
+      cb(retorno.data);
+    })
+    .catch($log.error);
   }
   
   function requestPostDevNoReturn (cb, data, route) {
@@ -107,7 +113,13 @@ function requestApiService($http, $location, $log, ApplicationSettings) {
 
   function requestPostProdNoReturn (cb, data, route) {
     var uri = 'http://35.160.139.101:4100/';
-    cb($http.post(uri + route, data));
+
+    var promise = $http.post(uri + route, data);
+    promise.then()
+    .then(function(retorno) {
+      cb(retorno.data);
+    })
+    .catch($log.error);
   }
 
   function requestPutDevNoReturn (cb, data, route) {
@@ -126,7 +138,13 @@ function requestApiService($http, $location, $log, ApplicationSettings) {
 
   function requestPutProdNoReturn (cb, data, route) {
     var uri = 'http://35.160.139.101:4100/';
-    cb($http.put(uri + route, data));
+
+    var promise = $http.put(uri + route, data);
+    promise.then()
+    .then(function(retorno) {
+      cb(retorno.data);
+    })
+    .catch($log.error);
   }
 
   function requestdelDevNoReturn (cb, route) {
@@ -145,7 +163,13 @@ function requestApiService($http, $location, $log, ApplicationSettings) {
 
    function requestdelProdNoReturn (cb, route) {
     var uri = 'http://35.160.139.101:4100/';
-    cb($http.delete(uri + route));
+
+    var promise = $http.delete(uri + route);
+    promise.then()
+    .then(function(retorno) {
+      cb(retorno.data);
+    })
+    .catch($log.error);
   }
 
   return {

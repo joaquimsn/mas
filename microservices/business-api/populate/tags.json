@@ -1,3 +1,5 @@
+{"_id":{"$oid":"582001a8c654d15957a2f49a"},"nome":"Importante","cor":"#ab0c0c","dataCadastro":{"$date":"2016-11-07T04:23:04.337Z"},"__v":0}
+{"_id":{"$oid":"5822a12c08731da22c58f8af"},"nome":"Estudo","cor":"#22931a","dataCadastro":{"$date":"2016-11-09T04:08:12.615Z"},"__v":0}
 {"_id":{"$oid":"57ff4a30fb439e0c7c0b93e7"},"nome":"Importante","cor":"#d61d04","dataCadastro":{"$date":"2016-10-13T08:47:44.801Z"},"__v":0}
 {"_id":{"$oid":"57ff51b9fb439e0c7c0b93e8"},"nome":"Pendente","cor":"#f37312","dataCadastro":{"$date":"2016-10-13T09:19:53.598Z"},"__v":0}
 {"_id":{"$oid":"580d9914f9c56bce3d8ebe7c"},"nome":"Solicitação","cor":"#2017da","dataCadastro":{"$date":"2016-10-24T05:16:04.345Z"},"__v":0}

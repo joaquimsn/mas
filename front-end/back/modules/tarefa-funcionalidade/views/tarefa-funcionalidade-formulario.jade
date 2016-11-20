@@ -30,7 +30,7 @@ div.tarefafuncionalidade-container
     
     md-input-container.md-block(flex-gt-sm='40', data-ng-if="cadastro")
       label Modulos
-      md-select(ng-model='moduloSelecionado' required name='modulo')
+      md-select(ng-model='novaTarefaFuncionalidade.moduloSelecionado' required name='modulo')
         md-option(ng-repeat='projetoModulo in projetoModulos', ng-value='projetoModulo.modulo')
           | {{projetoModulo.modulo.nome}}
 

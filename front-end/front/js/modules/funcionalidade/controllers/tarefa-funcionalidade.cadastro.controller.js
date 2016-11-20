@@ -7,12 +7,13 @@ var controllersModule = require('./_index');
  */
 function TarefaFuncionalidadeCadastroController($scope, FuncionalidadeService, ModuloService, globalMessage) {
   function cadastroCb(funcionaldiade) {
-    ModuloService.adicionarFuncionalidade(funcionaldiade, $scope.moduloSelecionado);
+    ModuloService.adicionarFuncionalidade(funcionaldiade, $scope.moduloSelecionadoParaFuncionalidade);
     globalMessage.info('Funcionaldiade cadastrada com sucesso');
     delete $scope.novaTarefaFuncionaldiade;
   }
 
   function cadastrar(funcionaldiade) {
+    $scope.moduloSelecionadoParaFuncionalidade = funcionaldiade.moduloSelecionado;
     FuncionalidadeService.cadastrar(cadastroCb, funcionaldiade);
   }
 
