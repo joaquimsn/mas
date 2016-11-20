@@ -214,7 +214,7 @@
 
   function buscarKanbanPorId(req, res) {
     var promisse = Kanban.find({_id: req.params.idKanban})
-                         .populate('secoes.funcionalidades')
+                         .populate({path: 'secoes.funcionalidades', options: {sort: '+  '}})
                          .exec();
 
     promisse.then(function (kanban) {

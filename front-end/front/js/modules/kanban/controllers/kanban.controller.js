@@ -53,6 +53,9 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
     function buscarKanbanCb(promisse) {
         promisse.success(function(kanban) {
             kanban.secoes = orderByFilter(kanban.secoes, 'ordem');
+            angular.forEach(kanban.secoes, function(secao) {
+                secao.funcionalidades = orderByFilter(secao.funcionalidades, 'ordem');
+            });
             $scope.kanban = kanban;
         });
         promisse.error(function(err) {
@@ -94,9 +97,11 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
 
     $scope.secoesSortOptions = {
         containment: '#kanaban-secoes',
-        accept: function(sourceItemHandleScope, destSortableScope) {
-            //console.log(sourceItemHandleScope);
-            //console.log(destSortableScope);
+        accept: function(sourceItemHandleScope, destSortableScope, destItemScope) {
+            //console.log("sourceItemHandleScope: ", sourceItemHandleScope);
+            //console.log("destSortableScope: ", destSortableScope);
+            //console.log("destItemScope: ", destItemScope);
+
             return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
         },
         itemMoved: function(event) {
@@ -126,11 +131,18 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
             var funcionalidade = funcionalidades[index];
             console.log(funcionalidade);
             funcionalidade.ordem = index;
-            FuncionalidadeService.alterar(function() {}, funcionalidade);
+            FuncionalidadeService.alterarPrioridade(function() {}, funcionalidade);
         }
     }
 
     $scope.funcionalidadeSortOptions = {
+         accept: function(sourceItemHandleScope, destSortableScope, destItemScope) {
+            //console.log("sourceItemHandleScope: ", sourceItemHandleScope);
+            //console.log("destSortableScope: ", destSortableScope);
+            //console.log("destItemScope: ", destItemScope);
+
+            return destSortableScope.$parent.section && sourceItemHandleScope.itemScope.modelValue.titulo && sourceItemHandleScope.itemScope.modelValue.status.codigo != 10;
+        },
         itemMoved: function(event) {
             console.log("Funcionalidade Movida");
             event.source.itemScope.modelValue.status = event.dest.sortableScope.$parent.section.nome;
@@ -169,8 +181,9 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
 
             // registro evento de repriorização
             var funcionalidade = event.source.itemScope.modelValue;
-            var mensagem = 'A prioridade foi alterada de ' + antigaPosicao + ' para ' + novaPosicao + ' na seção ' + funcionalidade.status;
-
+            var secao = event.dest.sortableScope.$parent.modelValue;
+            var mensagem = 'A prioridade foi alterada de ' + antigaPosicao + ' para ' + novaPosicao + ' na seção ' + secao.nome;
+            
             _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, mensagem);
         }
     };

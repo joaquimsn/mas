@@ -18,9 +18,22 @@ function ProjetoCadastroController($scope, ProjetoService, globalMessage, Sessao
       console.log(err);
     });
   }
+
+  function copiarUsuariosEquipe(projeto) {
+    projeto.usuarios = [] || projeto.usuarios;
+    projeto.usuariosParaVinculo = [];
+
+    angular.forEach(projeto.equipes, function(item) {
+      if(item.membros) {
+        projeto.usuarios = projeto.usuarios.concat(item.membros);
+        projeto.usuariosParaVinculo = projeto.usuariosParaVinculo.concat(item.membros);
+      }
+    });
+  }
   
-  $scope.cadastrar = function(modulo) {
-    ProjetoService.cadastrar(cadastroCb, modulo);
+  $scope.cadastrar = function(projeto) {
+    copiarUsuariosEquipe(projeto);
+    ProjetoService.cadastrar(cadastroCb, projeto);
   };
 
   function inicializar() {

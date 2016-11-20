@@ -26,7 +26,7 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
   function buscarFuncionalidades(modulo) {
      mv.funcionalidadeSelecionada = undefined;
     function buscarFuncionalidadesCb(modulo) {
-      mv.funcionalidades = modulo.funcionalidades;
+      mv.funcionalidades = modulo[0].funcionalidades;
     }
 
     var filtro = {

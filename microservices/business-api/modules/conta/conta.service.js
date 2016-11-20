@@ -103,6 +103,33 @@
     });
   }
 
+  function vincularProjetoAoUsuario(usuario, projeto) {
+    var vinculoProjeto = {
+      projeto: projeto,
+      vinculo: false
+    }; 
+    
+    var promisse = Conta.update(
+    {
+      _id: usuario._id
+    }, {
+      $push: {'projetos': vinculoProjeto}
+    },
+    {
+      upsert: true,
+      safe: true
+    }
+    ).exec();
+
+    promisse.then(function(conta) {
+      console.log("Projeto vinculado na conta com sucesso", conta);
+    });
+
+    promisse.then(null, function (error) {
+      console.error("Erro ao vincularProjetoAoUsuario na conta", error);
+    });
+  }
+
   function adicionarProjeto(req, res) {
     var promisse = Conta.update(
     {
@@ -273,6 +300,7 @@
   var service = {
     cadastrar: cadastrar,
     alterar: alterar,
+    vincularProjetoAoUsuario: vincularProjetoAoUsuario,
     adicionarProjeto: adicionarProjeto,
     adicionarEquipe: adicionarEquipe,
     adicionarUsuarioEquipe: adicionarUsuarioEquipe,

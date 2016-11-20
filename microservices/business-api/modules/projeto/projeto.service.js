@@ -2,7 +2,7 @@
   'use strict';
 
   var Projeto = require('./projeto.model');
-  var KanbanService = require('./../kanban/kanban.service');
+  var ContaService = require('./../conta/conta.service');
 
   function buscarTodos (req, res) {
     var promisse = Projeto.find().exec();
@@ -52,26 +52,26 @@
 
   function cadastrar(req, res) {
     var projeto = req.body;
+    var usuariosParaVinculo = projeto.usuariosParaVinculo;
 
-    function cadastrarProjetoCb(kanban) {
-      projeto.kanban = kanban;
-      console.log('Projeto para cadastro', projeto);
-      var model = new Projeto(projeto);
+    console.log('Projeto para cadastro', projeto);
+    var model = new Projeto(projeto);
 
-      var promisse = model.save();
+    var promisse = model.save();
 
-      promisse.then(function(projeto) {
-        res.json(projeto);
-      });
+    promisse.then(function(projeto) {
+      for(var index = 0; index < usuariosParaVinculo.length; index++) {
+        ContaService.vincularProjetoAoUsuario(usuariosParaVinculo[index], projeto);
+      }
+      
+      res.json(projeto);
+    });
 
-      promisse.then(null, function (error) {
-        console.log("Erro ao cadastrar projeto: ", error);
-        res.status(500);
-        res.json(error);
-      });
-    }
-
-    KanbanService.kanbanDefault(cadastrarProjetoCb);
+    promisse.then(null, function (error) {
+      console.log("Erro ao cadastrar projeto: ", error);
+      res.status(500);
+      res.json(error);
+    });
   }
 
   function adicionarModulo(req, res) {
@@ -106,6 +106,10 @@
   function alterar(req, res) {
     var query = {_id: req.params.idProjeto};
     var model = req.body;
+    var usuariosParaVinculo = model.usuariosParaVinculo;
+
+
+    console.log('usuariosParaVinculos para vinculo', model.usuariosParaVinculo);
 
     var promisse = Projeto.update(query, {
       $set: {
@@ -119,6 +123,10 @@
     });
 
     promisse.then(function (projeto) {
+      for(var index = 0; index < usuariosParaVinculo.length; index++) {
+        ContaService.vincularProjetoAoUsuario(usuariosParaVinculo[index], model);
+      }
+      
       res.json(projeto);
     });
     promisse.then(null, function (error) {

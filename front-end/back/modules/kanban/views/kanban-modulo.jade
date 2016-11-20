@@ -31,7 +31,7 @@ div.boards(data-ng-model='kanban')
       ul.tasks(data-as-sortable="funcionalidadeSortOptions",
                data-ng-model='section.funcionalidades')
         li.task(data-ng-repeat='task in section.funcionalidades',
-                data-as-sortable-item,
+                data-as-sortable-item, 
                 class="{{verificarStatusTask(task)}}"
                 data-ng-click='abrirModalEdicaoFuncionalidade($event, task)')
           div.content(data-as-sortable-item-handle)

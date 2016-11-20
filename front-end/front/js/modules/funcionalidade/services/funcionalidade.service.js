@@ -25,6 +25,10 @@ function FuncionalidadeService(requestApiService, ModuloService) {
   this.alterarStatus = function(callback, funcionalidade) {
     requestApiService.putNo(callback, funcionalidade, '/funcionalidades/' + funcionalidade._id + '/status');
   };
+  
+  this.alterarPrioridade = function(callback, funcionalidade) {
+    requestApiService.putNo(callback, funcionalidade, '/funcionalidades/' + funcionalidade._id + '/prioridade');
+  };
 
   this.cadastrarParaSecao = function(callback, funcionalidade, kanban, section) {
     requestApiService.postNo(callback, funcionalidade, '/kanban/' + kanban._id +'/secoes/' + section._id + '/funcionalidades');

@@ -7,6 +7,7 @@ var controllersModule = require('./_index');
  */
 function ProjetoEdicaoController($scope, $routeParams, ProjetoService, globalMessage) {
    function alterarCb(projeto) {
+    console.log('projeto alterado', projeto);
     globalMessage.info('Projeto alterado com sucesso');
     delete $scope.novoProjeto;
   }
@@ -16,21 +17,37 @@ function ProjetoEdicaoController($scope, $routeParams, ProjetoService, globalMes
       projeto.dataInicio = projeto.dataInicio ? new Date(projeto.dataInicio) : projeto.dataInicio;
       projeto.dataFim = projeto.dataFim ? new Date(projeto.dataFim) : projeto.dataFim;
       $scope.novoProjeto = projeto;
+      $scope.equipesJaCadastradas = projeto.equipes;
     }, id);
   }
 
+  function verificarUsuariosParaVinculo(equipe, projeto) {
+    var naoVinculado = true;
+    angular.forEach($scope.equipesJaCadastradas, function(item) {
+      if(item._id === equipe._id) {
+        naoVinculado = false;
+      }
+    });
+
+    if(naoVinculado) {
+      projeto.usuariosParaVinculo = projeto.usuariosParaVinculo.concat(equipe.membros);
+    }
+  }
+
   function copiarUsuariosEquipe(projeto) {
-    projeto.usuarios = [] || projeto.usuarios;
+    projeto.usuarios = [];
+    projeto.usuariosParaVinculo = [];
+
     angular.forEach(projeto.equipes, function(item) {
       if(item.membros) {
         projeto.usuarios = projeto.usuarios.concat(item.membros);
+        verificarUsuariosParaVinculo(item, projeto);
       }
     });
   }
 
   function alterar(projeto) {
     copiarUsuariosEquipe(projeto);
-    console.log('projeto para alterar', projeto);
     ProjetoService.alterar(alterarCb, projeto);
   }
 

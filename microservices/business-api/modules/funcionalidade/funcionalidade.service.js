@@ -270,6 +270,24 @@
     });
   }
 
+  function alterarPrioridade(req, res) {
+    var query = {_id: req.params.idFuncionalidade};
+    var body = req.body;
+    
+    var promisse = Funcionalidades.update(query, {
+      $set: {ordem: body.ordem}
+    });
+
+    promisse.then(function (funcionalidade) {
+      res.json(funcionalidade);
+    });
+    promisse.then(null, function (error) {
+      console.error("Erro ao alterar status o funcionalidade: " + error);
+      res.status(500);
+      res.json(error);
+    });
+  }
+
   function removerComentario(req, res) {
     var promisse = Funcionalidades.findByIdAndUpdate(
     {
@@ -318,6 +336,7 @@
     alterarComentario: alterarComentario,
     alterar: alterar,
     alterarStatus: alterarStatus,
+    alterarPrioridade: alterarPrioridade,
     removerComentario: removerComentario,
     buscarTodos: buscarTodos,
     buscarTarefas: buscarTarefas,

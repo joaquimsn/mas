@@ -8,4 +8,5 @@ o bunrdown"
 - criar gráfico de tarefas fechadas com atraso
 
 - corrigir equipes duplicadas ao projetos
+- analisar escopo da remoção do usuário do projeto
 - validar data da tarefa maior que data funcionalidade
