@@ -7,6 +7,9 @@ function systemUri(SystemUriConfig) {
         login: function() {
             return SystemUriConfig.login;
         },
+        loginAlteracaoSenha: function(id) {
+            return SystemUriConfig.loginAlteracaoSenha.replace(':id', id);
+        },
         home: function() {
             return SystemUriConfig.home;
         },

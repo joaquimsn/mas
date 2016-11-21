@@ -19,4 +19,5 @@ div.containergrafico.secao(data-ng-controller='DashboardSecaoController as mvSec
       c3chart(bindto-id="donut-plot1-chart" data-ng-if='mvSecao.kanbanModuloSelecionado')
         chart-column(data-ng-repeat="secao in mvSecao.kanbanModuloSelecionado.secoes" column-id="{{secao.nome}}" column-values="{{secao.funcionalidades.length + 1}}" column-type="donut")
         chart-donut(title="{{mvSecao.moduloSelecionado.nome}}" width="60")
+        chart-events(on-click-data="mvSecao.irParaKanban()")
     

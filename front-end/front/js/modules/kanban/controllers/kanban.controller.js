@@ -40,6 +40,7 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
     $scope.moduloFiltroSelecionado;
 
     $scope.moduloKanbanSelecionado = SessaoService.getModulo();
+    $scope.projetoKanbanSelecionado = SessaoService.getProjeto();
 
     function buscarModuloCb(promisse) {
         promisse.success(function(modulos) {

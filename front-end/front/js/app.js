@@ -73,3 +73,13 @@ angular.module('agileTcc').config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('deep-purple');
 });
+
+angular.module('agileTcc').config(function($mdDateLocaleProvider) {
+    $mdDateLocaleProvider.formatDate = function(date) {
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+
+        return day + '/' + (monthIndex + 1) + '/' + year;
+    };
+});

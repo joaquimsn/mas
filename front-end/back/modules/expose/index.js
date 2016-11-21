@@ -1,4 +1,5 @@
 module.exports = function (express) {
+  'use strict';
   var router = express.Router();
 
   router.get('/:module/:name', function (req, res) {
@@ -8,4 +9,4 @@ module.exports = function (express) {
   });
 
   return router;
-}
+};

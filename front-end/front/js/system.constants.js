@@ -2,6 +2,7 @@
 
 var SystemUrlConfig = {
   login: '/login',
+  loginAlteracaoSenha: '/login/alteracao/:id',
   home: '/',
   projeto: '/projetos',
   projetoCadastro: '/projeto/cadastro',

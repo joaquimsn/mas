@@ -1,6 +1,6 @@
 div.login-container(data-ng-controller='LoginController')
   div.imageshadow
-    div.signin(data-ng-hide='showSignup')
+    div.signin(data-ng-hide='showSignup || loginAlteracaoSenha')
       div.sistema
         logo 
         span MAS
@@ -27,9 +27,9 @@ div.login-container(data-ng-controller='LoginController')
           div.links
             a.createaccount(data-ng-click='showSignup = !showSignup') criar conta
 
-    div.signup(data-ng-show='showSignup')
+    div.signup(data-ng-show='showSignup || loginAlteracaoSenha')
       div.header
-        h3 cadastro
+        h3 {{loginAlteracaoSenha ? 'Alteração' : 'cadastro'}}
       
       div.form-container
         form(name='formConta')
@@ -49,6 +49,7 @@ div.login-container(data-ng-controller='LoginController')
             label.label Email
             input.input(type='email',
                   name='email',
+                  data-ng-disabled='loginAlteracaoSenha'
                   data-ng-model='conta.email',
                   ng-minlength="3"
                   ng-maxlength="200"
@@ -87,8 +88,11 @@ div.login-container(data-ng-controller='LoginController')
               div(ng-messages-include="partials/main/messages-validation")
 
       div.botoes(data-ng-hide='cadastroSucesso')
-        button.button.cadastrar(data-ng-click='cadastrarConta(conta)', 
+        button.button.cadastrar(data-ng-click='cadastrarConta(conta)', data-ng-if='!loginAlteracaoSenha'
                        data-ng-disabled='formConta.$invalid') Cadastrar
+
+        button.button.cadastrar(data-ng-click='alterar(conta)', data-ng-if='loginAlteracaoSenha'
+                       data-ng-disabled='formConta.$invalid') Alterar
 
         button.button.cancelar(data-ng-click='showSignup = !showSignup') Cancelar
       

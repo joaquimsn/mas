@@ -16,10 +16,16 @@ function UsuarioSessaoController($rootScope, $location, systemUri, $timeout, Aut
     mv.projetoContaSelecionado = SessaoService.getProjeto();
   }
 
-  function carregarModulo(modulo) {
+  function carregarModulo(modulo, reload) {
     SessaoService.storeModulo(modulo.modulo);
     $timeout(function() {
-      $location.path(systemUri.kanban());
+      var path = $location.path();
+      if (path === systemUri.kanban() && reload) {
+        $location.path(systemUri.kanban());
+        $window.location.reload();
+      } else {
+        $location.path(systemUri.kanban());
+      }
     }, 200);
   }
 
@@ -28,12 +34,13 @@ function UsuarioSessaoController($rootScope, $location, systemUri, $timeout, Aut
     // Remover essa solucção
     projeto = mv.projetoContaSelecionado;
     if(projeto) {
+      var projetoAnterior = SessaoService.getProjeto();
       SessaoService.storeProjeto(projeto);
       $rootScope.$broadcast('modoVisaoAlterado', {tipo: 'projeto'});
       
       ModuloService.buscarTodosPorProjeto(function(modulos) {
         if (modulos.length > 0) {
-          carregarModulo(modulos[0]);
+          carregarModulo(modulos[0], projetoAnterior._id !== projeto._id);
         } else {
           globalMessage.warn("O projeto não possui modulos cadastrados, para continuar cadastre um modulo");
         }

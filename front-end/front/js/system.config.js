@@ -8,6 +8,9 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     when(SystemUriConfig.login, {
       templateUrl: 'expose/login/login'
     }).
+    when(SystemUriConfig.loginAlteracaoSenha, {
+      templateUrl: 'expose/login/login'
+    }).
     when(SystemUriConfig.home, {
       templateUrl: 'expose/home/home',
     }).

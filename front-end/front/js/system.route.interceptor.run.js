@@ -5,11 +5,17 @@
  */
 function run($rootScope, AuthService, AcessoService, $location, systemUri) {
   function verifyPermission() {
+    var path = $location.path();
     if (AuthService.userAuthenticated()) {
       $rootScope.showLogin = false;
     } else {
       $rootScope.showLogin = true;
-      $location.path(systemUri.login());
+      
+      if(path.startsWith(systemUri.loginAlteracaoSenha(''))) {
+        $rootScope.loginAlteracaoSenha = true;
+      } else {
+        $location.path(systemUri.login());
+      }
     }
   }
   

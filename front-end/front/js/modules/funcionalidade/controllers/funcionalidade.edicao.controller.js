@@ -40,6 +40,12 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
     comentario = {};
   };
 
+  $scope.syncGitHub = function(funcionalidade) {
+    FuncionalidadeService.syncGitHub(function() {
+      globalMessage.info('Tarefa enviada para o github com sucesso');
+    }, funcionalidade, $scope.projetoKanbanSelecionado);
+  };
+
   $scope.alterarFuncionalidade = function(funcionalidade) {
     function alterarCb(retorno) {
       globalMessage.info('Tarefa Alterada com sucesso');

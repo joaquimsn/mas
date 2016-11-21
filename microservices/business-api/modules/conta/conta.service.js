@@ -265,12 +265,12 @@
     var conta =  req.body;
     conta.senha = bcrypt.hashSync(conta.senha);
     conta.email = conta.email.toLowerCase();
-    console.log('Conta para cadastro', conta);
     var model = new Conta(conta);
 
     var promisse = model.save();
 
     promisse.then(function(conta) {
+      console.log('Conta cadastrada', conta);
       res.json(conta);
     });
 
@@ -283,10 +283,13 @@
 
   function alterar(req, res) {
     var query = {_id: req.params.idConta};
-    var model = req.body;
-    delete model._id;
+    var conta = req.body;
+    conta.senha = bcrypt.hashSync(conta.senha);
 
-    var promisse = Conta.update(query, model);
+    var promisse = Conta.update(query, {
+      $set: {senha: conta.senha, 
+            nome: conta.nome}
+      });
 
     promisse.then(function (conta) {
       res.json(conta);

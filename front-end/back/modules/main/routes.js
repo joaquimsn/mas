@@ -1,8 +1,13 @@
 module.exports = function (express) {
+  'use strict';
+
   var router = express.Router();
   var routes = [
     '/',
+    '/login/alteracao/:id',
     '/:page',
+    '/:page/cadastro',
+    '/:page/alteracao/:id',
     '/:page/:id'
   ];
 
