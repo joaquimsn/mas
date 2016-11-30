@@ -17,8 +17,16 @@ function TarefaFuncionalidadeCadastroController($scope, FuncionalidadeService, M
     FuncionalidadeService.cadastrar(cadastroCb, funcionaldiade);
   }
 
+  function converterData(objeto) {
+    if(objeto) {
+      objeto.dataInicio = new Date(objeto.dataInicio);
+      objeto.dataFim = new Date(objeto.dataFim);
+    }
+  }
+
   function inicializar() {
     $scope.cadastrar = cadastrar;
+    $scope.converterData = converterData;
     $scope.cadastro = true;
 
     ModuloService.buscarTodosPorProjeto(function(projetoModulos) {

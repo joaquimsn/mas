@@ -47,13 +47,13 @@ function DashboardService(requestApiService, ModuloService) {
     return diaSemana[data.getDay()] + " - " + data.getDate() + " / " + (data.getMonth() + 1);
   }
 
-  function visualizacaoPorPontosAndDias(burndown, funcionalidade, periodo) {
-    var dataInicio = new Date(funcionalidade.dataInicio);
-    var dataFim = new Date(funcionalidade.dataFim);
+  function visualizacaoPorPontosAndDias(burndown, modulo, periodo) {
+    var dataInicio = new Date(modulo.dataInicio);
+    var dataFim = new Date(modulo.dataFim);
     var dataAtual = new Date();
     var intervalo = Math.round(intervaloDias(dataInicio, dataFim));
 
-    var totalDePontos = totalPontos(funcionalidade.tarefas);
+    var totalDePontos = totalPontos(modulo.funcionalidades);
     var valorIdeal = Math.round(totalDePontos / intervalo);
 
     var resultadoSubtracao = angular.copy(totalDePontos);
@@ -67,19 +67,31 @@ function DashboardService(requestApiService, ModuloService) {
       resultadoSubtracao = resultadoSubtracao - valorIdeal;
       burndown.esperado.push(angular.copy(resultadoSubtracao));
 
+      function todasTarefasFechada(funcionalidade) {
+        funcionalidade.tarefas = modulo.tarefas.filter(function(item) {
+          return item.funcionalidade === funcionalidade._id;
+        });
+
+        var abertas = funcionalidade.tarefas.filter(function(item) {
+          return item.status.codigo !== 10;
+        });
+
+        return funcionalidade.tarefas.length > 0 && abertas.length === 0;
+      }
+
       // Busca as tarefas para o dia corrente
-      function buscarTarefaFechadaPorData(tarefa) {
-        if (tarefa.dataFim) {
-          var dataTarefa = new Date(tarefa.dataFim);
-          return (dataTrabalho.getDate() === dataTarefa.getDate() && 
-                  dataTarefa.getMonth() === dataTrabalho.getMonth() &&
-                  tarefa.status.codigo == 10);
+      function buscarTarefaFechadaPorData(funcionalidade) {
+        if (funcionalidade.dataFim) {
+          var dataFuncionalidade = new Date(funcionalidade.dataFim);
+          return (dataTrabalho.getDate() === dataFuncionalidade.getDate() && 
+                  dataFuncionalidade.getMonth() === dataTrabalho.getMonth() &&
+                  todasTarefasFechada(funcionalidade));
         } else {
           return false;
         }
       }
 
-      var tarefaRealizadasNoDiaTrabalho = funcionalidade.tarefas.filter(buscarTarefaFechadaPorData);
+      var tarefaRealizadasNoDiaTrabalho = modulo.funcionalidades.filter(buscarTarefaFechadaPorData);
       var pontosRealizados = totalPontos(tarefaRealizadasNoDiaTrabalho);
 
       if (pontosRealizados > 0) {
@@ -96,13 +108,13 @@ function DashboardService(requestApiService, ModuloService) {
     } 
   }
 
-   function visualizacaoPorPontosAndSemanas(burndown, funcionalidade, periodo) {
-    var dataInicio = new Date(funcionalidade.dataInicio);
-    var dataFim = new Date(funcionalidade.dataFim);
+   function visualizacaoPorPontosAndSemanas(burndown, modulo, periodo) {
+    var dataInicio = new Date(modulo.dataInicio);
+    var dataFim = new Date(modulo.dataFim);
     var dataAtual = new Date();
     var intervalo = Math.trunc(intervaloDias(dataInicio, dataFim));
     console.log("intervalo", intervalo);
-    var totalDePontos = totalPontos(funcionalidade.tarefas);
+    var totalDePontos = totalPontos(modulo.tarefas);
     var quantidadeSemana = Math.round(intervalo / 7);
     // ideal por semana
     var valorIdeal = Math.trunc(totalDePontos / quantidadeSemana) ;
@@ -121,17 +133,31 @@ function DashboardService(requestApiService, ModuloService) {
 
       burndown.esperado.push(angular.copy(resultadoSubtracao < 0 ? 0 : resultadoSubtracao));
 
+      function todasTarefasFechada(funcionalidade) {
+        funcionalidade.tarefas = modulo.tarefas.filter(function(item) {
+          return item.funcionalidade === funcionalidade._id;
+        });
+
+        var abertas = funcionalidade.tarefas.filter(function(item) {
+          return item.status.codigo !== 10;
+        });
+
+        return funcionalidade.tarefas.length > 0 && abertas.length === 0;
+      }
+
       // Busca as tarefas para o dia corrente
-      function buscarTarefaFechadaPorData(tarefa) {
-        if (tarefa.dataFim) {
-          var dataTarefa = new Date(tarefa.dataFim);
-          return (dataTrabalho.getDate() >= dataTarefa.getDate() && tarefa.status.codigo == 10);
+      function buscarTarefaFechadaPorData(funcionalidade) {
+        if (funcionalidade.dataFim) {
+          var dataFuncionalidade = new Date(funcionalidade.dataFim);
+          return (dataTrabalho.getDate() === dataFuncionalidade.getDate() && 
+                  dataFuncionalidade.getMonth() === dataTrabalho.getMonth() &&
+                  todasTarefasFechada(funcionalidade));
         } else {
           return false;
         }
       }
 
-      var tarefaRealizadasNoDiaTrabalho = funcionalidade.tarefas.filter(buscarTarefaFechadaPorData);
+      var tarefaRealizadasNoDiaTrabalho = modulo.funcionalidades.filter(buscarTarefaFechadaPorData);
       var pontosRealizados = totalPontos(tarefaRealizadasNoDiaTrabalho);
 
       if (pontosRealizados > 0) {
@@ -386,6 +412,33 @@ function DashboardService(requestApiService, ModuloService) {
 
       if(visualizacao.value === "horas" && periodo.value === "semanas") {
         visualizacaoPorHorasAndSemanas(burndown, funcionalidade, periodo);
+      }
+
+      callback(burndown);
+    }
+    
+    ModuloService.filtrar(montarBurndown, filtro);
+  };
+
+  this.criarBurndownPontos = function(callback, modulo, visualizacao, periodo) {
+    var filtro = {
+      _id: modulo._id
+    };
+
+    function montarBurndown(retorno) {
+      retorno =  retorno[0] || {};
+      var burndown = {
+        esperado:  [],
+        andamento: [],
+        periodo: []
+      };
+
+      if(visualizacao.value === "pontos" && periodo.value === "dias") {
+        visualizacaoPorPontosAndDias(burndown, retorno, periodo);
+      }
+
+      if(visualizacao.value === "pontos" && periodo.value === "semanas") {
+        visualizacaoPorPontosAndSemanas(burndown, retorno, periodo);
       }
 
       callback(burndown);

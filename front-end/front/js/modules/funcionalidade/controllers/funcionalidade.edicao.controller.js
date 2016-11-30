@@ -12,7 +12,8 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
 
   funcionalidade.dataInicio = funcionalidade.dataInicio ? new Date(funcionalidade.dataInicio) : funcionalidade.dataInicio;
   funcionalidade.dataFim = funcionalidade.dataFim ? new Date(funcionalidade.dataFim) : funcionalidade.dataFim;
-  funcionalidade.usuarios = funcionalidade.usuarios || []; 
+  funcionalidade.usuarios = funcionalidade.usuarios || [];
+   
   $scope.novaFuncionalidade = funcionalidade;
 
   FuncionalidadeService.buscarPorId(function(func) {
@@ -58,6 +59,13 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
     console.log("Historicos", historicos);
     $scope.historicos = historicos || [];
   }, funcionalidade);
+
+   $scope.converterData = function(objeto) {
+    if(objeto) {
+      objeto.dataInicio = new Date(objeto.dataInicio);
+      objeto.dataFim = new Date(objeto.dataFim);
+    }
+  };
 
   ModuloService.buscarPorId(buscarPorIdCb, SessaoService.getModulo()._id);
 }

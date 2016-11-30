@@ -7,10 +7,15 @@ var controllersModule = require('./_index');
  */
 function DashboardBurndownController($scope, DashboardService, ModuloService) {
   var mv = this;
-
-  function tiposVisualizacao() {
+  
+  function tiposVisualizacaoFuncionalidade() {
     return [
-      {display: "Pontos", value: "pontos", codigo: 1},
+      {display: "Pontos", value: "pontos", codigo: 1}
+    ];
+  }
+
+  function tiposVisualizacaoTarefa() {
+    return [
       {display: "Tarefas", value: "tarefas", codigo: 2},
       {display: "Horas", value: "horas", codigo: 3}
     ];
@@ -23,8 +28,10 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
     ];
   }
 
-  function buscarFuncionalidades(modulo) {
-     mv.funcionalidadeSelecionada = undefined;
+  function buscarFuncionalidades(modulo) {   
+    mv.tiposVisualizacao = tiposVisualizacaoFuncionalidade();
+
+    mv.funcionalidadeSelecionada = undefined;
     function buscarFuncionalidadesCb(modulo) {
       mv.funcionalidades = modulo[0].funcionalidades;
     }
@@ -52,12 +59,24 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
       mv.burndown = burndown;
     }
 
+    if(mv.funcionalidadeSelecionada && mv.tipoVisualizacaoSelecionado.codigo === 1) {
+      mv.tiposVisualizacao = tiposVisualizacaoTarefa();
+    }
+
     if(mv.moduloSelecionado &&
       mv.funcionalidadeSelecionada &&
       mv.tipoVisualizacaoSelecionado && 
       mv.tipoPeriodoSelecionado) {
 
       DashboardService.criarBurndown(criarBurndownCb, mv.moduloSelecionado, mv.funcionalidadeSelecionada, mv.tipoVisualizacaoSelecionado, mv.tipoPeriodoSelecionado);
+    }
+
+    if(mv.moduloSelecionado &&
+      !mv.funcionalidadeSelecionada &&
+      mv.tipoVisualizacaoSelecionado && 
+      mv.tipoPeriodoSelecionado) {
+
+      DashboardService.criarBurndownPontos(criarBurndownCb, mv.moduloSelecionado, mv.tipoVisualizacaoSelecionado, mv.tipoPeriodoSelecionado);
     }
   }
 
@@ -69,7 +88,7 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
     mv.tipoVisualizacaoSelecionado;
     mv.tipoPeriodoSelecionado;
 
-    mv.tiposVisualizacao = tiposVisualizacao();
+    mv.tiposVisualizacao = tiposVisualizacaoFuncionalidade();
     mv.tiposPeriodos = tiposPeriodos();
 
 

@@ -25,6 +25,13 @@ function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService
     }, funcionalidade, $scope.kanban, $scope.sectionSelecionada);
   }
 
+  $scope.converterData = function(objeto) {
+    if(objeto) {
+      objeto.dataInicio = new Date(objeto.dataInicio);
+      objeto.dataFim = new Date(objeto.dataFim);
+    }
+  };
+
   function buscarPorIdCb(modulo) {
     $scope.tarefaFuncionalidades = modulo.funcionalidades;
   }

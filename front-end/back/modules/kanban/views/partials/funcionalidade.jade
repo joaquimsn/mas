@@ -18,7 +18,8 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
             
             md-input-container.md-block(flex-gt-sm='95')
               label Funcionalidade
-              md-select(ng-model='novaFuncionalidade.funcionalidade' ng-model-options="{trackBy: '$value._id'}" required name='tarefaFuncionalidade')
+              md-select(ng-model='novaFuncionalidade.funcionalidade' ng-model-options="{trackBy: '$value._id'}" required name='tarefaFuncionalidade'
+                ng-change="converterData(novaFuncionalidade.funcionalidade)")
                 md-option(ng-repeat='tarefaFuncionalidade in tarefaFuncionalidades track by tarefaFuncionalidade._id', ng-value='tarefaFuncionalidade')
                   | {{tarefaFuncionalidade.titulo}}
 
@@ -63,15 +64,17 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
             div
             md-input-container.data(flex-gt-sm='')
               label Data início
-              md-datepicker(ng-model='novaFuncionalidade.dataInicio', required='{{novaFuncionalidade.dataFim}}' ng-disabled='novaFuncionalidade.status.codigo === 10')
+              md-datepicker(ng-model='novaFuncionalidade.dataInicio',  md-min-date='novaFuncionalidade.funcionalidade.dataInicio',
+               md-max-date='' required='{{novaFuncionalidade.dataFim}}', ng-disabled='novaFuncionalidade.status.codigo === 10')
             
             md-input-container.data(flex-gt-sm='')
               label Data fim
-              md-datepicker(ng-model='novaFuncionalidade.dataFim' ng-disabled='novaFuncionalidade.status.codigo === 10')
+              md-datepicker(ng-model='novaFuncionalidade.dataFim', md-max-date='novaFuncionalidade.funcionalidade.dataFim', 
+                ng-disabled='novaFuncionalidade.status.codigo === 10')
 
             div.left15
               md-input-container.margindown(flex-gt-sm="")
-                label Duração
+                label Duração (Horas)
                 input(name="duracao", ng-model="novaFuncionalidade.duracao" ng-pattern="/^[0-9]{2}|[0-9]{1}$/")
 
             md-input-container.md-block.left15(flex-gt-sm='' data-ng-if='false')
@@ -91,12 +94,6 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
                   md-highlight-flags='i', 
                   filter-selected='mv.filterSelected', 
                   placeholder='Usuários')
-
-              
-            div.left15
-              md-input-container.margindown(flex-gt-sm="")
-                label Severidade
-                input(name="Severidade", ng-model="novaFuncionalidade.severidade" ng-pattern="/^[0-9]{2}|[0-9]{1}$/")
             
             div.left15(data-ng-controller='TagController')
               md-input-container.margindown.fullsize
