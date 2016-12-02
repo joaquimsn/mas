@@ -21,6 +21,7 @@
     "jade": "^1.11.0",
     "nodemailer": "^2.5.0",
     "restify": "^4.0.4",
-    "stylus": "^0.54.2"
+    "stylus": "^0.54.2",
+    "nodemon": "^1.9.2"
   }
 }
