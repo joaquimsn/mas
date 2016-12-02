@@ -46,6 +46,10 @@ div.modulo-container
       label Data fim
       md-datepicker(ng-model='novoModulo.dataFim' required)
 
+    div.github(ng-if='edicao && projetoTelaModulo.github')
+      md-button.md-primary(ng-click="cadastrarGitHook(novoModulo)") Sync Github
+
+
     div.botoes
       input.botaoCadastrar(type="submit",
             value="Cadastrar",

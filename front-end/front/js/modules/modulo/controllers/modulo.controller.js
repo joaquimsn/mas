@@ -19,8 +19,15 @@ function ModuloController($scope, systemUri, $location, ModuloService, SessaoSer
     $location.path(systemUri.kanban());
   };
 
-
-  ModuloService.buscarTodosPorProjeto(buscarModulosCb);
+  function goTo(modulo) {
+    $location.path(systemUri.moduloAlteracao(modulo._id));
+  }
+  
+  function inicializar() {
+    $scope.goTo = goTo;
+    ModuloService.buscarTodosPorProjeto(buscarModulosCb);
+  }
+  inicializar();
 
 }
 

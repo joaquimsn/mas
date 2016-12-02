@@ -52,6 +52,8 @@
   require('./modules/tarefa/tarefa.routes')(server);
   require('./modules/tag/tag.routes')(server);
   require('./modules/projeto/projeto.routes')(server);
+  require('./modules/git/git.routes')(server);
+
 
   server.listen(config.port, function () {
     console.log('api server '+ config.address + ' (' + config.env + ') escutando na porta ' + config.port);

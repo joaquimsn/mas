@@ -14,6 +14,7 @@ module.exports = function (server) {
   server.put('/contas/:idConta/projetos', controller.adicionarProjeto);
   server.put('/contas/:idConta/equipes', controller.adicionarEquipe);
   server.put('/contas/:idConta/equipes/:idEquipe/membros', controller.adicionarUsuarioEquipe);
+  server.put('/contas/:idConta/configuracoes', controller.cadastrarConfiguracao);
 
 
   server.post('/contas/autorizacao', controller.requestToken);

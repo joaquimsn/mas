@@ -15,7 +15,7 @@ var SystemUrlConfig = {
   gestaoProjetoKanbanFuncionalidade: '/gestao-projeto/kanban-funcionalidade',
   gestaoProjetoModulo: '/gestao-projeto/modulos',
   gestaoProjetoModuloCadastro: '/gestao-projeto/modulo/cadastro',
-  gestaoProjetoModuloAlteracao: '/gestao-projeto/modulo/alteracao/:idModulo',
+  gestaoProjetoModuloAlteracao: '/gestao-projeto/modulo/alteracao/:id',
   gestaoProjetoTag: '/gestao-projeto/tags',
   gestaoProjetoTarefaFuncionalidade: '/gestao-projeto/funcionalidade',
   gestaoProjetoTarefaFuncionalidadeCadastro: '/gestao-projeto/funcionalidade/cadastro',

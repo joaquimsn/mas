@@ -53,7 +53,7 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
     }).
     when(SystemUriConfig.gestaoProjetoModuloAlteracao, {
       templateUrl: 'expose/modulo/modulo-formulario',
-      controller: 'ModuloAlteracaoController'
+      controller: 'ModuloEdicaoController'
     }).
     when(SystemUriConfig.gestaoProjetoTarefaFuncionalidade, {
       templateUrl: 'expose/tarefa-funcionalidade/tarefa-funcionalidade',

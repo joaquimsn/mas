@@ -111,9 +111,12 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
                 span Status
               span.status(data-ng-bind="novaFuncionalidade.status.display")
             
-            div.github(ng-if='edicao && projetoKanbanSelecionado.gitHub')
+            div.github(ng-if='edicao && projetoKanbanSelecionado.github && !novaFuncionalidade.numeroIssue')
               md-button.md-primary(ng-click="syncGitHub(novaFuncionalidade)") Sync Github
-
+            
+            div.github(ng-if='edicao && novaFuncionalidade.numeroIssue')
+              md-input-container.data(flex-gt-sm='')
+              label Github issue {{novaFuncionalidade.numeroIssue}}
 
             
   md-dialog-actions(layout='row')

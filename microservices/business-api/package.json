@@ -25,6 +25,7 @@
     "bcrypt-nodejs": "0.0.3",
     "mongoose": "^4.4.5",
     "npm": "^3.8.0",
+    "request": "^2.79.0",
     "restify": "^4.0.4"
   },
   "devDependencies": {

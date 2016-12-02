@@ -6,6 +6,10 @@
     Service.cadastrar(req, res);
   }
 
+  function cadastrarConfiguracao(req, res) {
+    Service.cadastrarConfiguracao(req, res);
+  }
+
   function alterar(req, res) {
     Service.alterar(req, res);
   }
@@ -48,6 +52,7 @@
 
   var controller = {
     cadastrar: cadastrar,
+    cadastrarConfiguracao: cadastrarConfiguracao,
     alterar: alterar,
     adicionarProjeto: adicionarProjeto,
     adicionarEquipe: adicionarEquipe,

@@ -10,7 +10,21 @@
       margin-bottom 10px
       color $primaryTextColor
 
-      > .linha
+      > .width80
+        width: 80%
+      > .width20
+        width: 20%
+
+      > .acoes
+        display: flex
+        flex-direction: row-reverse
+        > .editar
+          width: 30px
+          height: 30px
+          vertical-align: middle
+          line-height: 30px
+
+      > .col .linha
         display flex
         > .textodestaque
           font-size pt(18px)
@@ -44,6 +58,27 @@
               font-size pt(18px)
               color $darkAccentColor
               display block
+
+      > .col .comColunas
+        align-content: space-between
+        > .itemDireita
+          display: flex
+          flex-direction: row-reverse
+          .irModulos
+            display: flex
+            height: 32px 
+            > .icon
+              width: 32px
+              height: 32px
+              color: #9B3A00
+              vertical-align: middle
+              line-height: 32px
+
+            > .link
+              height: 32px
+              vertical-align: middle
+              line-height: 32px
+              color: #9B3A00
 
   > .moduloForm
     font-family 'lato light'

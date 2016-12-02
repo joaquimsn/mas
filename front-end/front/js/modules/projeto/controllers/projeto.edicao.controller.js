@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function ProjetoEdicaoController($scope, $routeParams, ProjetoService, globalMessage) {
+function ProjetoEdicaoController($scope, $routeParams, ProjetoService, SessaoService, globalMessage) {
    function alterarCb(projeto) {
     console.log('projeto alterado', projeto);
     globalMessage.info('Projeto alterado com sucesso');
@@ -54,6 +54,12 @@ function ProjetoEdicaoController($scope, $routeParams, ProjetoService, globalMes
   function inicializar() {
     $scope.cadastrar = alterar;
     $scope.edicao = true;
+    
+    var usuario = SessaoService.getUsuario();
+    
+    if(usuario.configuracoes) {
+      $scope.repositoriosFiltro = [usuario.configuracoes.github];
+    }
     
     carregarFuncionalidade($routeParams.id);
   }

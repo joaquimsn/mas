@@ -41,9 +41,9 @@ div.projeto-container
     
     md-input-container.md-block.left15(flex-gt-sm='')
       label Repositório 
-      md-select.halfpage(ng-model='novoProjeto.repositorio')
+      md-select.halfpage(ng-model='novoProjeto.github')
         md-option(ng-repeat='repo in repositoriosFiltro', ng-value='{{repo}}')
-          | {{repo.nome}}
+          | {{repo.name}}
 
       div.message-container(data-ng-messages="projetoForm.repositorio.$error", data-ng-if='projetoForm.repositorio.$touched && !submitted')
         div(ng-messages-include="partials/main/messages-validation")

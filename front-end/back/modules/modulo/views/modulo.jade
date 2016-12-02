@@ -9,12 +9,16 @@ div.page-header
 div.modulo-container
   div.lista
     div.item.cursorPointer(data-ng-repeat='projetoModulo in ::projetoModulos track by $index', data-ng-click='irParaKanban(projetoModulo.modulo)')
-      div.linha
-        span.textodestaque(data-ng-bind="projetoModulo.modulo.nome")
-      div.linha
-        div.indices
-          span.textosecundario Funcionalidades {{projetoModulo.modulo.funcionalidades.length}}
-        div.equipes
-          span.label Duração de {{projetoModulo.modulo.dataInicio | date: "dd/MM/yyyy"}} até {{projetoModulo.modulo.dataFim | date: "dd/MM/yyyy"}} 
-          div.equipe(data-ng-repeat='equipe in ::projetoModulo.modulo.equipes')
-            span.letra {{equipe.nome.charAt(0)}}
+      div.col.width80
+        div.linha.comColunas
+          span.textodestaque(data-ng-bind="projetoModulo.modulo.nome")
+        div.linha
+          div.indices
+            span.textosecundario Funcionalidades {{projetoModulo.modulo.funcionalidades.length}}
+          div.equipes
+            span.label Duração de {{projetoModulo.modulo.dataInicio | date: "dd/MM/yyyy"}} até {{projetoModulo.modulo.dataFim | date: "dd/MM/yyyy"}} 
+            div.equipe(data-ng-repeat='equipe in ::projetoModulo.modulo.equipes')
+              span.letra {{equipe.nome.charAt(0)}}
+      div.col.acoes.width20
+        div.editar.cursorPointer(data-ng-click="goTo(projetoModulo.modulo)")
+          i.material-icons mode_edit

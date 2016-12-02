@@ -34,7 +34,12 @@ module.exports = {
     }
   ],
   ativo:          {type: Boolean, default: true},
-  configuracoes:  {type: Object}
+  configuracoes:  {
+    github: {
+        name: { type: String },
+        pass: { type: String },
+        repo: { type: String }
+    }}
 };
 
 // Novo Schema

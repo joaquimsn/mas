@@ -300,8 +300,26 @@
     });
   }
 
+  function cadastrarConfiguracao(req, res) {
+    var query = {_id: req.params.idConta};
+    var configuracoes = req.body;
+
+    var promisse = Conta.update(query, {
+      $set: {configuracoes: configuracoes}
+      });
+
+    promisse.then(function (conta) {
+      res.json(conta);
+    });
+    promisse.then(null, function (error) {
+      console.log("Erro ao alterar o conta: ", error);
+      res.json(error);
+    });
+  }
+
   var service = {
     cadastrar: cadastrar,
+    cadastrarConfiguracao: cadastrarConfiguracao,
     alterar: alterar,
     vincularProjetoAoUsuario: vincularProjetoAoUsuario,
     adicionarProjeto: adicionarProjeto,

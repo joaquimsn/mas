@@ -118,7 +118,8 @@
         dataInicio: model.dataInicio,
         dataFim: model.dataFim,
         equipes: model.equipes,
-        usuarios: model.usuarios
+        usuarios: model.usuarios,
+        github: model.github,
       }
     });
 

@@ -14,6 +14,15 @@ function ModuloService(requestApiService, SessaoService) {
     requestApiService.getNo(cb, '/modulos/' + id);
   };
 
+  this.registerGitHook = function(callback, modulo, projeto) {
+      var sync = {
+          modulo: modulo,
+          gitUser: projeto.github
+      };
+
+      requestApiService.postNo(callback, sync, '/github/hooks');
+  };
+
   this.buscarPorProjeto = function(callback, projeto) {
     requestApiService.getNo(callback, '/projetos/' + projeto._id + '/modulos');
   };
