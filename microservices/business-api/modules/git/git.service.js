@@ -52,6 +52,8 @@
 
         if (webhook.action === 'closed') {
             ModuloService.buscarPorIdLocal(fecharTarefaKanban, idModulo);
+        } else {
+            res.json({ mensagem: 'não encontrado' });
         }
     }
 
