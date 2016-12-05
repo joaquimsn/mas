@@ -30,8 +30,16 @@ function HomeController($rootScope, HomeService, SessaoService) {
     HomeService.buscarProjetos(buscarProjetosCb);
   }
 
+  function buscarAndamento(projeto) {
+    HomeService.buscarAndamento(function(andamento) {
+      projeto.andamento = andamento;
+    }, projeto);
+  }
+
   function init() {
     notificarAlteracaoModoVisao();
+
+    mv.buscarAndamento = buscarAndamento;
 
     buscarFuncionalidadeProximosDias();
     buscarProjetos();

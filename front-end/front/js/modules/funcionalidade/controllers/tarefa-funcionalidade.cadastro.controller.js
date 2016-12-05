@@ -21,10 +21,14 @@ function TarefaFuncionalidadeCadastroController($scope, FuncionalidadeService, M
     if(objeto) {
       objeto.dataInicio = new Date(objeto.dataInicio);
       objeto.dataFim = new Date(objeto.dataFim);
+      console.log('modulo', objeto);
+      $scope.novaTarefaFuncionalidade.moduloSelecionado = objeto;
     }
   }
 
   function inicializar() {
+    $scope.novaTarefaFuncionalidade = {};
+    
     $scope.cadastrar = cadastrar;
     $scope.converterData = converterData;
     $scope.cadastro = true;

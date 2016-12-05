@@ -10,4 +10,5 @@ module.exports = function (server) {
   server.post('/projetos/:idProjeto/modulos', controller.adicionarModulo);
 
   server.put('/projetos/:idProjeto', controller.alterar);
+  server.del('/projetos/:idProjeto/modulos/:idModulo', controller.removerModulo);
 };

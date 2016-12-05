@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function ModuloCadastroController($scope, ModuloService, ProjetoService, globalMessage) {
+function ModuloCadastroController($scope, ModuloService, ProjetoService, SessaoService, globalMessage) {
   function cadastroCb(promisse) {
     promisse.success(function (modulo) {
       ProjetoService.adicionarModulo(modulo);
@@ -18,9 +18,30 @@ function ModuloCadastroController($scope, ModuloService, ProjetoService, globalM
     });
   }
 
+  function carregarProjeto() {
+    var projeto = SessaoService.getProjeto();
+    projeto.dataInicio = new Date(projeto.dataInicio);
+    
+    if (projeto.dataFim) {
+      projeto.dataFim = new Date(projeto.dataFim);
+    } else {
+      var data = new Date();
+      data.setFullYear(data.getFullYear() + 2);
+      projeto.dataFim = new Date(data);
+    }
+
+    $scope.projetoTelaModulo = projeto;
+  }
+
   $scope.cadastrar = function(modulo) {
     ModuloService.cadastrar(cadastroCb, modulo);
   };
+
+  function inicializar() {
+    $scope.cadastro = true;
+    carregarProjeto();
+  }
+  inicializar();
 }
 
 controllersModule.controller('ModuloCadastroController', ModuloCadastroController);

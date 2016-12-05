@@ -9,7 +9,7 @@ var SystemUrlConfig = {
   projetoAlteracao: '/projeto/alteracao/:id',
   equipe: '/equipes',
   dashboard: '/dashboard',
-  configuracao: 'configuracao',
+  configuracao: '/configuracoes',
   gestaoProjetoDashboard: '/gestao-projeto/dashboard',
   gestaoProjetoKanbanModulo: '/gestao-projeto/kanban-modulo',
   gestaoProjetoKanbanFuncionalidade: '/gestao-projeto/kanban-funcionalidade',

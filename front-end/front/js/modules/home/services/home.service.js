@@ -2,10 +2,21 @@
 
 var servicesModule = require('./_index');
 
+function _countTarefasFechadas(tarefas) {
+  var total = 0;
+  angular.forEach(tarefas, function(tarefa) {
+    if(tarefa.status.codigo == 10) {
+      total ++; 
+    }
+  });
+
+  return total;
+}
+
 /**
  * @ngInject
  */
-function HomeService(requestApiService, SessaoService, FuncionalidadeService, ProjetoService) {
+function HomeService(requestApiService, SessaoService, FuncionalidadeService, ProjetoService, ModuloService) {
   this.findHome = function (cb) {
     requestApiService.get(cb, '/home');
   };
@@ -44,6 +55,38 @@ function HomeService(requestApiService, SessaoService, FuncionalidadeService, Pr
     }
 
     ProjetoService.buscarTodosParaRelatorio(separarProjetosCb);
+  };
+
+  this.buscarAndamento = function(callback, projeto) {
+    function buscarModulos(projeto) {
+      var modulos = projeto.modulos.map(function(pm) {
+        return pm.modulo;
+      });
+
+      var filtro = {
+        _id: {$in: modulos}
+      };
+
+      function calcularAndamento(modulos) {
+        var quantidadeTotalTarefas = 0;
+        var quantidadeTarefasRealizadas = 0;
+
+        angular.forEach(modulos, function(modulo) {
+          quantidadeTotalTarefas += modulo.tarefas.length;
+          quantidadeTarefasRealizadas = _countTarefasFechadas(modulo.tarefas);
+        });
+
+        var andamento = (quantidadeTarefasRealizadas * 100) / quantidadeTotalTarefas;
+        
+        // devolve a porcentagem do andamento do projeot
+        callback(Math.round(andamento));
+      }
+
+      // Busca todas todas as tarefas dos modulos do projeto
+      ModuloService.filtrar(calcularAndamento, filtro);
+    }
+
+    ProjetoService.buscarPorId(buscarModulos, projeto._id);
   };
 }
 

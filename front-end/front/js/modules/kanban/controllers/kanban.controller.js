@@ -12,8 +12,8 @@ function intervaloDias(dataIncio, dataTermino) {
     return (diferenca / umDiaMs);
 }
 
-function _acaoFuncionalidadeMovida(FuncionalidadeService, funcionalidade, mensagem) {
-    var acao = 'Movida';
+function _acaoFuncionalidadeMovida(FuncionalidadeService, funcionalidade, mensagem, usuario) {
+    var acao = 'Movida por: ' + usuario.nome;
     var evento = {
         acao: acao,
         descricao: mensagem
@@ -22,8 +22,8 @@ function _acaoFuncionalidadeMovida(FuncionalidadeService, funcionalidade, mensag
     FuncionalidadeService.registrarEvento(evento, funcionalidade);
 }
 
-function _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, mensagem) {
-    var acao = 'Prioridade alterada';
+function _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, mensagem, usuario) {
+    var acao = 'Prioridade alterada por: ' + usuario.nome;
     var evento = {
         acao: acao,
         descricao: mensagem
@@ -165,7 +165,7 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
             // Registro de evento para o historico
             var mensagem = 'Funcionalidade movida da seção ' + secaoAnterior.nome +
                 ' para ' + secaoNova.nome;
-            _acaoFuncionalidadeMovida(FuncionalidadeService, funcionalidade, mensagem);
+            _acaoFuncionalidadeMovida(FuncionalidadeService, funcionalidade, mensagem, SessaoService.getUsuario());
         },
         orderChanged: function(event) {
             console.log("orderChange");
@@ -185,7 +185,7 @@ function KanbanController($scope, KanbanService, SessaoService, FuncionalidadeSe
             var secao = event.dest.sortableScope.$parent.modelValue;
             var mensagem = 'A prioridade foi alterada de ' + antigaPosicao + ' para ' + novaPosicao + ' na seção ' + secao.nome;
             
-            _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, mensagem);
+            _acaoFuncionalidadePriorizada(FuncionalidadeService, funcionalidade, mensagem, SessaoService.getUsuario());
         }
     };
 

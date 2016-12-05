@@ -6,6 +6,11 @@
     var FuncionalidadeService = require('./../funcionalidade/funcionalidade.service');
     var KanbanService = require('./../kanban/kanban.service');
 
+    /**
+     * Move a tarefa para seção final do kanban, removendo a da sua seção 
+     * atual
+     * 
+    */
     function _atualizarSecaoKanban(kanban, tarefa) {
         var secoes = kanban.secoes;
         var secaoFinal;
@@ -14,24 +19,31 @@
         for (var i = 0; i < secoes.length; i++) {
             if (secoes[i].estadoFinal) {
                 secaoFinal = secoes[i];
-            }
+            } else {
 
-            var encontrou = false;
-            var funcionalidades = secoes[i].funcionalidades;
+                var encontrou = false;
+                var funcionalidades = secoes[i].funcionalidades;
 
-            for (var j = 0; j < funcionalidades.length && !encontrou; j++) {
-                if (funcionalidades[j] == tarefa._id) {
-                    KanbanService.removerFuncionalidadeSecaoLocal(kanban._id, secoes[i]._id, tarefa._id);
-                    encontrou = true;
-                    break;
+                // Busca em todas as seções do kanban, pela tarefa que foi fechada no github
+                for (var j = 0; j < funcionalidades.length && !encontrou; j++) {
+                    if (funcionalidades[j] == tarefa._id + '') {
+                        KanbanService.removerFuncionalidadeSecaoLocal(kanban._id, secoes[i]._id, tarefa._id);
+                        console.log(':::::::::: achou ::::::::::::::::::');
+                        encontrou = true;
+                        break;
+                    }
                 }
             }
         }
 
+        //Adiciona a tarefa para seção final do kanban
         KanbanService.adicionarFuncionalidadeSecaoLocal(kanban._id, secaoFinal._id, tarefa);
-        console.log('Kanban para fechar tarefa', kanban);
+        console.log('git: Kanban para fechar tarefa', kanban);
     }
 
+    /**
+     * Responsável por fechar a tarefa, a partir da issue cadastrada no github
+     */
     function fecharTarefa(req, res) {
         var idModulo = req.params.idModulo;
         var webhook = req.body;
@@ -50,13 +62,18 @@
             res.json({ mensagem: 'tarefaAtualizada com sucesso' });
         }
 
+
         if (webhook.action === 'closed') {
             ModuloService.buscarPorIdLocal(fecharTarefaKanban, idModulo);
         } else {
-            res.json({ mensagem: 'não encontrado' });
+            res.json({ mensagem: 'não encontrado, status tratado apenas closed' });
         }
     }
 
+    /**
+     * Faz uma replica da tarefa cadastrada para o github, 
+     * vinculando o cadastro no github a tarefa do sistema 
+     */
     function cadastrarIssue(req, res) {
         console.log('cadastrando issue', req.body);
         var tarefa = req.body.tarefa;
@@ -91,6 +108,9 @@
         });
     }
 
+    /**
+     * Cadastra a url para recebimento do notificações do github
+     */
     function cadastrarHook(req, res) {
         console.log('cadastrando hook', req.body);
         var modulo = req.body.modulo;

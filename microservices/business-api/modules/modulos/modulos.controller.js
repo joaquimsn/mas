@@ -17,6 +17,10 @@
   function buscarPorId (req, res) {
     Service.buscarPorId(req, res);
   }
+  
+  function excluir (req, res) {
+    Service.excluir(req, res);
+  }
 
   function adicionarFuncionalidade (req, res) {
     Service.adicionarFuncionalidade(req, res);
@@ -33,6 +37,7 @@
   var controller = {
     cadastrar: cadastrar,
     alterar: alterar,
+    excluir: excluir,
     adicionarFuncionalidade: adicionarFuncionalidade,
     adicionarTarefa: adicionarTarefa,
     buscarTodos: buscarTodos,

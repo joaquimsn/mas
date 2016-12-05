@@ -31,9 +31,9 @@ div.tarefafuncionalidade-container
     md-input-container.md-block(flex-gt-sm='40', data-ng-if="cadastro")
       label Modulos
       md-select(ng-model='novaTarefaFuncionalidade.moduloSelecionado' required name='modulo' ng-change="converterData(novaTarefaFuncionalidade.moduloSelecionado)")
-        md-option(ng-repeat='projetoModulo in projetoModulos', ng-value='projetoModulo.modulo')
+        md-option(ng-repeat='projetoModulo in projetoModulos', ng-value='{{projetoModulo.modulo}}')
           | {{projetoModulo.modulo.nome}}
-
+    
     div.inputcontainer
       label.label(for='inputDescricao') Descrição
       textarea.textarea(id='inputDescricao',
@@ -48,12 +48,19 @@ div.tarefafuncionalidade-container
     
     md-input-container.data(flex-gt-sm='')
       label Data início
-      md-datepicker(ng-model='novaTarefaFuncionalidade.dataInicio', required, md-min-date='novaTarefaFuncionalidade.moduloSelecionado.dataInicio') 
+      md-datepicker(ng-model='novaTarefaFuncionalidade.dataInicio', 
+      md-min-date='novaTarefaFuncionalidade.moduloSelecionado.dataInicio',
+      md-max-date='novaTarefaFuncionalidade.moduloSelecionado.dataFim',
+      ng-disabled='!novaTarefaFuncionalidade.moduloSelecionado'
+      required) 
     
     md-input-container.data(flex-gt-sm='')
       label Data fim
-      md-datepicker(ng-model='novaTarefaFuncionalidade.dataFim' ng-disabled='!novaTarefaFuncionalidade.dataInicio', 
-      md-max-date='novaTarefaFuncionalidade.moduloSelecionado.dataFim', required)
+      md-datepicker(ng-model='novaTarefaFuncionalidade.dataFim' 
+      ng-disabled='!novaTarefaFuncionalidade.dataInicio',
+      md-min-date='novaTarefaFuncionalidade.dataInicio', 
+      md-max-date='novaTarefaFuncionalidade.moduloSelecionado.dataFim', 
+      required)
     
     md-input-container.left20(flex-gt-sm="")
       label Severidade

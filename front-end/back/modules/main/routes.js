@@ -7,6 +7,8 @@ module.exports = function (express) {
     '/login/alteracao/:id',
     '/:page',
     '/:page/cadastro',
+    '/:visaoProjeto/:page/cadastro',
+    '/:visaoProjeto/:page/alteracao/:id',
     '/:page/alteracao/:id',
     '/:page/:id'
   ];

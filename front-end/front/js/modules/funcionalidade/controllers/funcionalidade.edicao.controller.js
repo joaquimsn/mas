@@ -2,6 +2,13 @@
 
 var controllersModule = require('./_index');
 
+function _converterData(objeto) {
+    if(objeto) {
+      objeto.dataInicio = new Date(objeto.dataInicio);
+      objeto.dataFim = new Date(objeto.dataFim);
+    }
+  }
+
 /**
  * @ngInject
  */
@@ -18,7 +25,9 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
 
   FuncionalidadeService.buscarPorId(function(func) {
     $scope.novaFuncionalidade.usuarios = func.usuarios;
+    _converterData(func.funcionalidade);
     $scope.novaFuncionalidade.funcionalidade = func.funcionalidade;
+
   }, funcionalidade._id);
   
   function buscarPorIdCb(modulo) {
@@ -30,7 +39,7 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
     FuncionalidadeService.adicionarComentario(novoComentario, funcionalidade);
 
     var evento  = {
-      acao: 'Novo comentário',
+      acao: 'Novo comentário por: ' + SessaoService.getUsuario().nome,
       descricao: ' comentou ' + novoComentario.mensagem
     };
 
@@ -60,12 +69,7 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
     $scope.historicos = historicos || [];
   }, funcionalidade);
 
-   $scope.converterData = function(objeto) {
-    if(objeto) {
-      objeto.dataInicio = new Date(objeto.dataInicio);
-      objeto.dataFim = new Date(objeto.dataFim);
-    }
-  };
+   $scope.converterData = _converterData;
 
   ModuloService.buscarPorId(buscarPorIdCb, SessaoService.getModulo()._id);
 }

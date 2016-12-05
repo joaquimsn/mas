@@ -21,6 +21,10 @@ function ContaService(requestApiService) {
     requestApiService.putNo(callback, conta, '/contas/' + conta._id);
   };
 
+  this.salvarConfiguracoes = function(callback, conta) {
+    requestApiService.putNo(callback, conta.configuracoes, '/contas/' + conta._id + '/configuracoes');
+  };
+
   this.buscarPorId = function(callback, id) {
     requestApiService.getNo(callback, '/contas/' + id);
   };

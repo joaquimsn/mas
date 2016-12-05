@@ -14,6 +14,10 @@
     Service.alterar(req, res);
   }
 
+  function removerModulo(req, res) {
+    Service.removerModulo(req, res);
+  }
+
   function buscarTodos (req, res) {
     Service.buscarTodos(req, res);
   }
@@ -29,6 +33,7 @@
   var controller = {
     cadastrar: cadastrar,
     alterar: alterar,
+    removerModulo: removerModulo,
     adicionarModulo: adicionarModulo,
     buscarTodos: buscarTodos,
     buscarPorId: buscarPorId,

@@ -15,6 +15,11 @@ function TarefaFuncionalidadeEdicaoController($scope, $routeParams, Funcionalida
     FuncionalidadeService.buscarPorId(function(funcionalidade) {
       funcionalidade.dataInicio = funcionalidade.dataInicio ? new Date(funcionalidade.dataInicio) : funcionalidade.dataInicio;
       funcionalidade.dataFim = funcionalidade.dataFim ? new Date(funcionalidade.dataFim) : funcionalidade.dataFim;
+      funcionalidade.moduloSelecionado = {
+        dataInicio: angular.copy(funcionalidade.dataInicio),
+        dataFim: angular.copy(funcionalidade.dataFim)
+      };
+      
       $scope.novaTarefaFuncionalidade = funcionalidade;
     }, id);
   }

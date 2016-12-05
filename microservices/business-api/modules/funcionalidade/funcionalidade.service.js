@@ -222,7 +222,8 @@
                 dataFim: model.dataFim,
                 usuarios: model.usuarios,
                 severidade: model.severidade,
-                funcionalidade: model.funcionalidade
+                funcionalidade: model.funcionalidade,
+                duracao: model.duracao
             }
         });
 

@@ -1,7 +1,8 @@
 div.container-geral
   div.containergrafico.burndown(data-ng-controller='DashboardBurndownController as mvBurn')
     div.header
-      span Gráfico Burndown
+      span Gráfico Burndown 
+      span(data-ng-show='mvBurn.dataInicio') {{mvBurn.dataInicio | date: 'dd/MM/yyyy'}} até {{mvBurn.dataFim | date: 'dd/MM/yyyy'}}
     div.filtros-burndown
       div.filtro(layout-gt-sm="row")
         md-input-container.md-block(flex-gt-sm='30')

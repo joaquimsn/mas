@@ -9,7 +9,7 @@ div.container-geral(data-ng-controller='HomeController as mv')
       ul.items(data-ng-repeat='projeto in  ::mv.projetosUsuario.proprios track by $index')
         li.item.width70
           span(data-ng-bind='::projeto.nome')
-        li.item.width30 0%
+        li.item.width30(data-ng-init='mv.buscarAndamento(projeto)') {{projeto.andamento}}%
 
     div.projetos.vinculados
       div.titulo

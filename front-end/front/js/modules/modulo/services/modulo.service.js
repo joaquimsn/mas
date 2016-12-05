@@ -13,6 +13,10 @@ function ModuloService(requestApiService, SessaoService) {
   this.buscarPorId = function(cb, id) {
     requestApiService.getNo(cb, '/modulos/' + id);
   };
+  
+  this.excluir = function(cb, projetoId, moduloId) {
+    requestApiService.delNo(cb, '/projetos/' + projetoId +'/modulos/' + moduloId);
+  };
 
   this.registerGitHook = function(callback, modulo, projeto) {
       var sync = {

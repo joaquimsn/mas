@@ -38,6 +38,7 @@ function ProjetoCadastroController($scope, ProjetoService, globalMessage, Sessao
 
   function inicializar() {
     $scope.cadastro = true;
+
   }
   inicializar();
 }

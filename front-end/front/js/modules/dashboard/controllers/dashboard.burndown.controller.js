@@ -68,6 +68,9 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
       mv.tipoVisualizacaoSelecionado && 
       mv.tipoPeriodoSelecionado) {
 
+      mv.dataInicio = new Date(mv.funcionalidadeSelecionada.dataInicio);
+      mv.dataFim = new Date(mv.funcionalidadeSelecionada.dataFim);
+
       DashboardService.criarBurndown(criarBurndownCb, mv.moduloSelecionado, mv.funcionalidadeSelecionada, mv.tipoVisualizacaoSelecionado, mv.tipoPeriodoSelecionado);
     }
 
@@ -75,6 +78,9 @@ function DashboardBurndownController($scope, DashboardService, ModuloService) {
       !mv.funcionalidadeSelecionada &&
       mv.tipoVisualizacaoSelecionado && 
       mv.tipoPeriodoSelecionado) {
+
+      mv.dataInicio = new Date(mv.moduloSelecionado.dataInicio);
+      mv.dataFim = new Date(mv.moduloSelecionado.dataFim);
 
       DashboardService.criarBurndownPontos(criarBurndownCb, mv.moduloSelecionado, mv.tipoVisualizacaoSelecionado, mv.tipoPeriodoSelecionado);
     }

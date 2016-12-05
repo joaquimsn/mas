@@ -1,0 +1,60 @@
+div.page-header
+  div.name Configurações
+  div.options
+    div.option
+      a.link.linkselected(data-ng-href='{{systemUri.equipe()}}') Github
+
+div.configuracoes-container
+  div.titulo
+    h3 Github configurações
+
+  form.configuracaoForm(name='configuracaoForm', data-ng-submit='salvar(usuario)')
+    div.inputcontainer
+      label.label(for='inputNome') Usuário
+      input.input(type='text',
+            id='inputNome',
+            name='nome',
+            data-ng-model='usuario.configuracoes.github.name',
+            ng-minlength="3"
+            ng-maxlength="200"
+            required)
+      div.message-container(data-ng-messages="configuracaoForm.nome.$error", data-ng-if='configuracaoForm.nome.$touched && !submitted')
+        div(data-ng-message='required') Nome é obrigatorio
+        div(data-ng-message='minlength') Nome muito pequeno
+        div(data-ng-message='maxlength') Nome muito grande
+      
+    div.inputcontainer
+      label.label(for='inputSenha') Senha
+      input.input(type='password',
+            id='inputSenha',
+            name='senha',
+            data-ng-model='usuario.configuracoes.github.pass',
+            ng-minlength="3"
+            ng-maxlength="200"
+            required)
+      div.message-container(data-ng-messages="configuracaoForm.senha.$error", data-ng-if='configuracaoForm.senha.$touched && !submitted')
+        div(data-ng-message='required') Senha é obrigatorio
+        div(data-ng-message='minlength') Senha muito pequena
+        div(data-ng-message='maxlength') Senha muito grande
+      
+    div.inputcontainer
+      label.label(for='inputRepo') Repositório
+      input.input(type='text',
+            id='inputRepo',
+            name='repo',
+            data-ng-model='usuario.configuracoes.github.repo',
+            ng-minlength="3"
+            ng-maxlength="200"
+            required)
+      div.message-container(data-ng-messages="configuracaoForm.repo.$error", data-ng-if='configuracaoForm.repo.$touched && !submitted')
+        div(data-ng-message='required') Repositório é obrigatorio
+        div(data-ng-message='minlength') Repositório com poucos caracteres
+        div(data-ng-message='maxlength') Repositório com muitos caracteres
+
+
+    div.botoes
+      input.botaoCadastrar(type="submit",
+            value="Salvar",
+            data-ng-disabled='configuracaoForm.$invalid',
+            data-ng-class="{'botao_desabilitado': configuracaoForm.$invalid}")
+

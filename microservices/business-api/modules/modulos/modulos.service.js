@@ -31,6 +31,19 @@
             res.json(error);
         });
     }
+    
+    function excluir(req, res) {
+        var promisse = Modulos.findByIdAndRemove({ '_id': req.params.id }).exec();
+
+        promisse.then(function(modulo) {
+            res.json(modulo);
+        });
+        promisse.then(null, function(error) {
+            console.log("Erro ao Excluir: ", error);
+            res.status(500);
+            res.json(error);
+        });
+    }
 
     function cadastrar(req, res) {
         var modulo = req.body;
@@ -149,6 +162,7 @@
     var service = {
         cadastrar: cadastrar,
         alterar: alterar,
+        excluir: excluir,
         adicionarFuncionalidade: adicionarFuncionalidade,
         adicionarTarefa: adicionarTarefa,
         buscarTodos: buscarTodos,

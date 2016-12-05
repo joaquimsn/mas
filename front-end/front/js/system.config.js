@@ -31,7 +31,8 @@ function routerConfig($routeProvider, $locationProvider, SystemUriConfig) {
       controller: 'EquipeController'
     }).
     when(SystemUriConfig.configuracao, {
-      templateUrl: 'expose/configuracao/configuracao',
+      templateUrl: 'expose/home/configuracao',
+      controller: 'ConfiguracaoController'
     }).
     when(SystemUriConfig.gestaoProjetoDashboard, {
       templateUrl: 'expose/dashboard/dashboard',

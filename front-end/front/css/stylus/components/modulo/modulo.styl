@@ -9,6 +9,7 @@
       border-radius 2px
       margin-bottom 10px
       color $primaryTextColor
+      display: flex
 
       > .width80
         width: 80%
@@ -104,11 +105,22 @@
 
     > .botoes
       margin 20px 0
+      display: flex
       > .botaoCadastrar
         width 150px
         height 45px
         border none
         background $darkAccentColor
+        cursor pointer
+        font-size pt(18px)
+        color $textPrimaryColor
+
+      > .botaoExcluir
+        width 150px
+        height 45px
+        margin-left: 20px
+        border none
+        background $messageError
         cursor pointer
         font-size pt(18px)
         color $textPrimaryColor

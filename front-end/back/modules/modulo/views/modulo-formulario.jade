@@ -38,21 +38,32 @@ div.modulo-container
         div(data-ng-message='minlength') Descrição muito pequena
         div(data-ng-message='maxlength') Descrição muito grande
     
-     md-input-container.data(flex-gt-sm='')
+    md-input-container.data(flex-gt-sm='')
       label Data início
-      md-datepicker(ng-model='novoModulo.dataInicio', required)
+      md-datepicker(ng-model='novoModulo.dataInicio',
+        md-min-date='projetoTelaModulo.dataInicio', 
+        md-max-date='projetoTelaModulo.dataFim',
+        required)
     
     md-input-container.data(flex-gt-sm='')
       label Data fim
-      md-datepicker(ng-model='novoModulo.dataFim' required)
+      md-datepicker(ng-model='novoModulo.dataFim',
+        md-min-date='novoModulo.dataInicio',
+        md-max-date='projetoTelaModulo.dataFim',
+        ng-disabled='!novoModulo.dataInicio', required)
 
     div.github(ng-if='edicao && projetoTelaModulo.github')
-      md-button.md-primary(ng-click="cadastrarGitHook(novoModulo)") Sync Github
+      md-button.md-primary(ng-click="cadastrarGitHook(novoModulo)") Habilitar notificação Github
 
 
     div.botoes
       input.botaoCadastrar(type="submit",
-            value="Cadastrar",
+            value="{{cadastro ? 'Cadastrar' : 'Editar'}}",
             data-ng-disabled='moduloForm.$invalid',
             data-ng-class="{'botao_desabilitado': moduloForm.$invalid}")
+      
+      input.botaoExcluir(type="submit",
+            value="Excluir",
+            data-ng-if='edicao',
+            data-ng-click='excluir(novoModulo)')
 

@@ -64,13 +64,17 @@ md-dialog.funcionalidade-dialog(aria-label='Funcionalidade')
             div
             md-input-container.data(flex-gt-sm='')
               label Data início
-              md-datepicker(ng-model='novaFuncionalidade.dataInicio',  md-min-date='novaFuncionalidade.funcionalidade.dataInicio',
-               md-max-date='' required='{{novaFuncionalidade.dataFim}}', ng-disabled='novaFuncionalidade.status.codigo === 10')
+              md-datepicker(ng-model='novaFuncionalidade.dataInicio',  
+                md-min-date='novaFuncionalidade.funcionalidade.dataInicio',
+                md-max-date='novaFuncionalidade.funcionalidade.dataFim',
+                required='{{novaFuncionalidade.dataFim}}', ng-disabled='novaFuncionalidade.status.codigo === 10 || !novaFuncionalidade.funcionalidade')
             
             md-input-container.data(flex-gt-sm='')
               label Data fim
-              md-datepicker(ng-model='novaFuncionalidade.dataFim', md-max-date='novaFuncionalidade.funcionalidade.dataFim', 
-                ng-disabled='novaFuncionalidade.status.codigo === 10')
+              md-datepicker(ng-model='novaFuncionalidade.dataFim', 
+                md-min-date='novaFuncionalidade.dataInicio'
+                md-max-date='novaFuncionalidade.funcionalidade.dataFim', 
+                ng-disabled='novaFuncionalidade.status.codigo === 10 || !novaFuncionalidade.dataInicio')
 
             div.left15
               md-input-container.margindown(flex-gt-sm="")

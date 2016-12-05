@@ -34,8 +34,8 @@ function DashboardService(requestApiService, ModuloService) {
   function totalHoras(tarefas) {
     var totalHoras = 0;
 
-    angular.forEach(tarefas, function(funcionalidade) {
-      totalHoras += funcionalidade.duracao;
+    angular.forEach(tarefas, function(tarefa) {
+      totalHoras += tarefa.duracao ? tarefa.duracao : 0;
     });
 
     return totalHoras;
@@ -65,7 +65,7 @@ function DashboardService(requestApiService, ModuloService) {
       burndown.periodo.push(labelDia(dataTrabalho));
       
       resultadoSubtracao = resultadoSubtracao - valorIdeal;
-      burndown.esperado.push(angular.copy(resultadoSubtracao));
+      burndown.esperado.push(angular.copy(resultadoSubtracao < 0 ? 0 : resultadoSubtracao));
 
       function todasTarefasFechada(funcionalidade) {
         funcionalidade.tarefas = modulo.tarefas.filter(function(item) {
@@ -76,12 +76,15 @@ function DashboardService(requestApiService, ModuloService) {
           return item.status.codigo !== 10;
         });
 
-        return funcionalidade.tarefas.length > 0 && abertas.length === 0;
+        var fechada = funcionalidade.tarefas.length > 0 && abertas.length === 0;
+        funcionalidade.contabilizada = fechada;
+
+        return fechada;
       }
 
       // Busca as tarefas para o dia corrente
       function buscarTarefaFechadaPorData(funcionalidade) {
-        if (funcionalidade.dataFim) {
+        if (funcionalidade.dataFim && !funcionalidade.contabilizada) {
           var dataFuncionalidade = new Date(funcionalidade.dataFim);
           return (dataTrabalho.getDate() === dataFuncionalidade.getDate() && 
                   dataFuncionalidade.getMonth() === dataTrabalho.getMonth() &&
@@ -114,7 +117,7 @@ function DashboardService(requestApiService, ModuloService) {
     var dataAtual = new Date();
     var intervalo = Math.trunc(intervaloDias(dataInicio, dataFim));
     console.log("intervalo", intervalo);
-    var totalDePontos = totalPontos(modulo.tarefas);
+    var totalDePontos = totalPontos(modulo.funcionalidades);
     var quantidadeSemana = Math.round(intervalo / 7);
     // ideal por semana
     var valorIdeal = Math.trunc(totalDePontos / quantidadeSemana) ;
@@ -124,7 +127,7 @@ function DashboardService(requestApiService, ModuloService) {
     var dataTrabalho = angular.copy(dataInicio);
     
     burndown.esperado.push(angular.copy(resultadoSubtracao));
-    for(var index = 1; index <= quantidadeSemana; index++) {
+    for(var index = 0; index <= quantidadeSemana; index++) {
       // Label y
       burndown.periodo.push("Semana - " + index);
       
@@ -142,21 +145,25 @@ function DashboardService(requestApiService, ModuloService) {
           return item.status.codigo !== 10;
         });
 
-        return funcionalidade.tarefas.length > 0 && abertas.length === 0;
+        console.log('Verificando todas tarefas fechadas: ', funcionalidade);
+        console.log('fechadas',funcionalidade.tarefas.length > 0 && abertas.length === 0 );
+        
+        var fechada = funcionalidade.tarefas.length > 0 && abertas.length === 0;
+        funcionalidade.contabilizada = fechada;
+        return fechada;
       }
 
       // Busca as tarefas para o dia corrente
       function buscarTarefaFechadaPorData(funcionalidade) {
-        if (funcionalidade.dataFim) {
+        if (funcionalidade.dataFim && !funcionalidade.contabilizada) {
           var dataFuncionalidade = new Date(funcionalidade.dataFim);
-          return (dataTrabalho.getDate() === dataFuncionalidade.getDate() && 
-                  dataFuncionalidade.getMonth() === dataTrabalho.getMonth() &&
+          return (dataTrabalho.getTime() >= dataFuncionalidade.getTime() && 
                   todasTarefasFechada(funcionalidade));
         } else {
           return false;
         }
       }
-
+      console.log('funcionalidades por semana', modulo.funcionalidades);
       var tarefaRealizadasNoDiaTrabalho = modulo.funcionalidades.filter(buscarTarefaFechadaPorData);
       var pontosRealizados = totalPontos(tarefaRealizadasNoDiaTrabalho);
 
@@ -181,17 +188,19 @@ function DashboardService(requestApiService, ModuloService) {
     var intervalo = Math.round(intervaloDias(dataInicio, dataFim));
 
     var quantidadeDeTarefas = funcionalidade.tarefas.length;
-    var valorIdeal = Math.round(quantidadeDeTarefas / intervalo);
+    var valorIdeal = quantidadeDeTarefas / intervalo;
+    valorIdeal =  valorIdeal < 1 ? valorIdeal : Math.round(valorIdeal);
+
     var resultadoSubtracao = angular.copy(quantidadeDeTarefas);
     var dataTrabalho = angular.copy(dataInicio);
     
     burndown.esperado.push(angular.copy(resultadoSubtracao));
-    for(var index = 0; index < intervalo; index ++) {
+    for(var index = 0; index <= intervalo; index ++) {
       // Label y
       burndown.periodo.push(labelDia(dataTrabalho));
       
       resultadoSubtracao = resultadoSubtracao - valorIdeal;
-      burndown.esperado.push(angular.copy(resultadoSubtracao));
+      burndown.esperado.push(angular.copy(resultadoSubtracao < 0 ? 0 : resultadoSubtracao));
 
       // Busca as tarefas para o dia corrente
       function buscarTarefaFechadaPorData(tarefa) {
@@ -237,7 +246,7 @@ function DashboardService(requestApiService, ModuloService) {
     var dataTrabalho = angular.copy(dataInicio);
     
     burndown.esperado.push(angular.copy(resultadoSubtracao));
-    for(var index = 1; index <= quantidadeSemana; index++) {
+    for(var index = 0; index < quantidadeSemana; index++) {
       // Label y
       burndown.periodo.push("Semana - " + index);
       
@@ -250,7 +259,7 @@ function DashboardService(requestApiService, ModuloService) {
       function buscarTarefaFechadaPorData(tarefa) {
         if (tarefa.dataFim) {
           var dataTarefa = new Date(tarefa.dataFim);
-          return (dataTrabalho.getDate() >= dataTarefa.getDate() && tarefa.status.codigo == 10);
+          return (dataTrabalho.getTime() >= dataTarefa.getTime() && tarefa.status.codigo == 10);
         } else {
           return false;
         }
@@ -286,12 +295,12 @@ function DashboardService(requestApiService, ModuloService) {
     var dataTrabalho = angular.copy(dataInicio);
     
     burndown.esperado.push(angular.copy(resultadoSubtracao));
-    for(var index = 0; index < intervalo; index ++) {
+    for(var index = 0; index <= intervalo; index ++) {
       // Label y
       burndown.periodo.push(labelDia(dataTrabalho));
       
       resultadoSubtracao = resultadoSubtracao - valorIdeal;
-      burndown.esperado.push(angular.copy(resultadoSubtracao));
+      burndown.esperado.push(angular.copy(resultadoSubtracao < 0 ? 0 : resultadoSubtracao));
 
       // Busca as tarefas para o dia corrente
       function buscarTarefaFechadaPorData(tarefa) {
@@ -350,7 +359,7 @@ function DashboardService(requestApiService, ModuloService) {
       function buscarTarefaFechadaPorData(tarefa) {
         if (tarefa.dataFim) {
           var dataTarefa = new Date(tarefa.dataFim);
-          return (dataTrabalho.getDate() >= dataTarefa.getDate() && tarefa.status.codigo == 10);
+          return (dataTrabalho.getTime() >= dataTarefa.getTime() && tarefa.status.codigo == 10);
         } else {
           return false;
         }

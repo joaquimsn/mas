@@ -26,6 +26,16 @@ div.projeto-container
         div(data-ng-message='required') Nome é obrigatorio
         div(data-ng-message='minlength') Nome muito pequeno
         div(data-ng-message='maxlength') Nome muito grande
+    md-input-container.dataProjeto.leftLess15(flex-gt-sm='')
+      label Data início
+      md-datepicker(ng-model='novoProjeto.dataInicio',
+        required)
+    
+    md-input-container.dataProjeto(flex-gt-sm='')
+      label Data fim
+      md-datepicker(ng-model='novoProjeto.dataFim',
+        md-min-date='novoProjeto.dataInicio',
+        ng-disabled='!novoProjeto.dataInicio')
 
     div.inputcontainer
       label.label(for='inputDescricao') Descrição
@@ -38,12 +48,12 @@ div.projeto-container
       div.message-container(data-ng-messages="projetoForm.descricao.$error", data-ng-if='projetoForm.descricao.$touched && !submitted')
         div(data-ng-message='minlength') Descrição muito pequena
         div(data-ng-message='maxlength') Descrição muito grande
-    
+
     md-input-container.md-block.left15(flex-gt-sm='')
       label Repositório 
-      md-select.halfpage(ng-model='novoProjeto.github')
+      md-select.halfpage(ng-model='novoProjeto.github' ng-model-options="{trackBy: '$value.repo'}")
         md-option(ng-repeat='repo in repositoriosFiltro', ng-value='{{repo}}')
-          | {{repo.name}}
+          | {{repo.name}} : {{repo.repo}}
 
       div.message-container(data-ng-messages="projetoForm.repositorio.$error", data-ng-if='projetoForm.repositorio.$touched && !submitted')
         div(ng-messages-include="partials/main/messages-validation")

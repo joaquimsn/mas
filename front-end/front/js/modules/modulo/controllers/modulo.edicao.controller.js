@@ -29,17 +29,40 @@ function ModuloEdicaoController($scope, $routeParams, ModuloService, SessaoServi
     ModuloService.alterar(alterarCb, modulo, modulo._id);
   }
 
+  function excluir(modulo) {
+    ModuloService.excluir(function(retorno) {
+      globalMessage.info('Modulo removido com sucesso');
+    }, SessaoService.getProjeto()._id, modulo._id);
+  }
+
   function cadastrarGitHook(modulo) {
     ModuloService.registerGitHook(function() {
        globalMessage.info('Webhook criado com sucesso');
     }, modulo, SessaoService.getProjeto());
   }
 
+  function carregarProjeto() {
+    var projeto = SessaoService.getProjeto();
+    projeto.dataInicio = new Date(projeto.dataInicio);
+    
+    if (projeto.dataFim) {
+      projeto.dataFim = new Date(projeto.dataFim);
+    } else {
+      var data = new Date();
+      data.setFullYear(data.getFullYear() + 2);
+      projeto.dataFim = new Date(data);
+    }
+
+    $scope.projetoTelaModulo = projeto;
+  }
+
   function inicializar() {
     $scope.cadastrar = alterar;
+    $scope.excluir = excluir;
     $scope.edicao = true;
     $scope.projetoTelaModulo = SessaoService.getProjeto();
-    
+    carregarProjeto();
+
     $scope.cadastrarGitHook = cadastrarGitHook;
     
   }

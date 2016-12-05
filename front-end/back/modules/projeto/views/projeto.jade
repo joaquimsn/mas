@@ -21,10 +21,10 @@ div.projeto-container
           div.indices
             span.textosecundario Modulos {{contaProjeto.projeto.modulos.length}}
           div.indices
-            md-switch.md-warn.marginzero(data-ng-model="contaProjeto.projeto.default") 
+            md-switch.md-warn.marginzero(data-ng-model="$first") 
               span.labelPadrao Padrão
           div.indices.projeto.repositorioGitpe
-            span.textosecundario.label(data-ng-show='false') Repositorio {{projeto.repositorioGit}}
+            span.textosecundario.label Repositorio: {{contaProjeto.projeto.github.repo}}
        div.col.acoes.width20
         div.editar.cursorPointer(data-ng-click="goTo(contaProjeto.projeto)")
           i.material-icons mode_edit

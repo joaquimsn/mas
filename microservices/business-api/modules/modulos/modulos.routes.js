@@ -11,6 +11,8 @@ module.exports = function (server) {
   server.put('/modulos/:idModulo/funcionalidades', controller.adicionarFuncionalidade);
   server.put('/modulos/:idModulo/tarefas', controller.adicionarTarefa);
 
+  server.del('/modulos/:id', controller.excluir);
+
   // Filtro
   server.post('/modulos/filtro', controller.filtrar);
 };

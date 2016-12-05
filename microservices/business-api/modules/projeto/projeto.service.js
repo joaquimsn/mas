@@ -136,9 +136,30 @@
     });
   }
 
+  function removerModulo(req, res) {
+        var promisse = Projeto.findByIdAndUpdate({
+            _id: req.params.idProjeto
+        }, {
+            $pull: { modulos: { modulo: req.params.idModulo } }
+        }, {
+            safe: true
+        }).exec();
+
+        promisse.then(function() {
+            console.log("Removendo modulo: " + req.params.idComentario);
+            res.send(204);
+        });
+        promisse.then(null, function(error) {
+            console.error("Erro ao remover o modulo: " + error);
+            res.status(500);
+            res.json(error);
+        });
+    }
+
   var service = {
     cadastrar: cadastrar,
     alterar: alterar,
+    removerModulo: removerModulo,
     adicionarModulo: adicionarModulo,
     buscarTodos: buscarTodos,
     buscarPorId: buscarPorId,
