@@ -52,22 +52,22 @@ function requestApiService($http, $location, $log, ApplicationSettings) {
   }
 
    function requestGetProd (cb, route) {
-    var uri = 'http://35.160.139.101:4100/';
+    var uri = 'http://35.160.139.101:4100';
     cb($http.get(uri + route));
   }
 
   function requestDelProd (cb, route) {
-    var uri = 'http://35.160.139.101:4100/';
+    var uri = 'http://35.160.139.101:4100';
     cb($http.delete(uri + route));
   }
 
   function requestPostProd (cb, data, route) {
-    var uri = 'http://35.160.139.101:4100/';
+    var uri = 'http://35.160.139.101:4100';
     cb($http.post(uri + route, data));
   }
 
   function requestPutProd (cb, data, route) {
-    var uri = 'http://35.160.139.101:4100/';
+    var uri = 'http://35.160.139.101:4100';
     cb($http.put(uri + route, data));
   }
 
@@ -87,7 +87,7 @@ function requestApiService($http, $location, $log, ApplicationSettings) {
   }
 
   function requestGetProdNoReturn (cb, route) {
-    var uri = 'http://35.160.139.101:4100/';
+    var uri = 'http://35.160.139.101:4100';
 
     var promise = $http.get(uri + route);
     promise.then()
@@ -112,7 +112,7 @@ function requestApiService($http, $location, $log, ApplicationSettings) {
   }
 
   function requestPostProdNoReturn (cb, data, route) {
-    var uri = 'http://35.160.139.101:4100/';
+    var uri = 'http://35.160.139.101:4100';
 
     var promise = $http.post(uri + route, data);
     promise.then()
@@ -137,7 +137,7 @@ function requestApiService($http, $location, $log, ApplicationSettings) {
   }
 
   function requestPutProdNoReturn (cb, data, route) {
-    var uri = 'http://35.160.139.101:4100/';
+    var uri = 'http://35.160.139.101:4100';
 
     var promise = $http.put(uri + route, data);
     promise.then()
@@ -162,7 +162,7 @@ function requestApiService($http, $location, $log, ApplicationSettings) {
   }
 
    function requestdelProdNoReturn (cb, route) {
-    var uri = 'http://35.160.139.101:4100/';
+    var uri = 'http://35.160.139.101:4100';
 
     var promise = $http.delete(uri + route);
     promise.then()

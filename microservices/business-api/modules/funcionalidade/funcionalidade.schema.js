@@ -19,7 +19,7 @@ module.exports = {
     dataInicio: { type: Date },
     dataFim: { type: Date },
     dataFechamento: { type: Date },
-    duracao: { type: Number },
+    duracao: { type: Number, default: 0},
     usuarios: [{ type: Schema.Types.ObjectId, ref: 'Usuarios' }],
     funcionalidade: { type: Schema.Types.ObjectId, ref: 'Funcionalidades' },
     responsaveis: [{
