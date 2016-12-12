@@ -61,7 +61,11 @@ function FuncionalidadeEdicaoController(funcionalidade, $scope, FuncionalidadeSe
       globalMessage.info('Tarefa Alterada com sucesso');
       console.log('Tarefa para alterar', retorno);
     }
-    FuncionalidadeService.alterar(alterarCb, funcionalidade);
+    if(funcionalidade.dataFim && funcionalidade.dataFim < funcionalidade.dataInicio) {
+      globalMessage.warn('A data fim não pode ser menor que a data de início.');
+    } else {
+      FuncionalidadeService.alterar(alterarCb, funcionalidade);
+    }
   };
 
   FuncionalidadeService.buscarHistorico(function(historicos) {

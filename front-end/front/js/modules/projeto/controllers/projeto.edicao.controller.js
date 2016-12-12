@@ -47,8 +47,12 @@ function ProjetoEdicaoController($scope, $routeParams, ProjetoService, SessaoSer
   }
 
   function alterar(projeto) {
-    copiarUsuariosEquipe(projeto);
-    ProjetoService.alterar(alterarCb, projeto);
+     if(projeto.dataFim && projeto.dataFim < projeto.dataInicio) {
+      globalMessage.warn('A data fim não pode ser menor que a data de início.');
+    } else {
+      copiarUsuariosEquipe(projeto);
+      ProjetoService.alterar(alterarCb, projeto);
+    }
   }
 
   function inicializar() {

@@ -34,7 +34,11 @@ function ModuloCadastroController($scope, ModuloService, ProjetoService, SessaoS
   }
 
   $scope.cadastrar = function(modulo) {
-    ModuloService.cadastrar(cadastroCb, modulo);
+     if(modulo.dataFim && modulo.dataFim < modulo.dataInicio) {
+      globalMessage.warn('A data fim não pode ser menor que a data de início.');
+    } else {
+      ModuloService.cadastrar(cadastroCb, modulo);
+    }
   };
 
   function inicializar() {

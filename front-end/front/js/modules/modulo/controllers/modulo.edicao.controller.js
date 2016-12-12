@@ -26,8 +26,12 @@ function ModuloEdicaoController($scope, $routeParams, ModuloService, SessaoServi
   }
 
   function alterar(modulo) {
-    ModuloService.alterar(alterarCb, modulo, modulo._id);
-  }
+     if(modulo.dataFim && modulo.dataFim < modulo.dataInicio) {
+      globalMessage.warn('A data fim não pode ser menor que a data de início.');
+    } else {
+      ModuloService.alterar(alterarCb, modulo, modulo._id);
+    }
+}
 
   function excluir(modulo) {
     ModuloService.excluir(function(retorno) {

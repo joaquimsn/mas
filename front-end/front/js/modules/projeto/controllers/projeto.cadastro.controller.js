@@ -32,8 +32,12 @@ function ProjetoCadastroController($scope, ProjetoService, globalMessage, Sessao
   }
   
   $scope.cadastrar = function(projeto) {
-    copiarUsuariosEquipe(projeto);
-    ProjetoService.cadastrar(cadastroCb, projeto);
+    if(projeto.dataFim && projeto.dataFim < projeto.dataInicio) {
+      globalMessage.warn('A data fim não pode ser menor que a data de início.');
+    } else {
+      copiarUsuariosEquipe(projeto);
+      ProjetoService.cadastrar(cadastroCb, projeto);
+    }
   };
 
   function inicializar() {

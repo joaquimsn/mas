@@ -5,7 +5,7 @@ var controllersModule = require('./_index');
 /**
  * @ngInject
  */
-function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService, ModuloService, SessaoService) {
+function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService, ModuloService, SessaoService, globalMessage) {
   function resetVariaveis() {
     $scope.novaFuncionalidade = {usuarios: [SessaoService.getUsuario()]};
     $scope.edicao = false;
@@ -37,9 +37,13 @@ function FuncionalidadeCadastroController(section, $scope, FuncionalidadeService
   }
 
   $scope.cadastrarParaSecao = function(funcionalidade) {
-    $scope.closeModalCadastroFuncionalidade();
-    FuncionalidadeService.cadastrar(cadastroCb, funcionalidade);
-  };
+    if(funcionalidade.dataFim && funcionalidade.dataFim < funcionalidade.dataInicio) {
+      globalMessage.warn('A data fim não pode ser menor que a data de início.');
+    } else {
+      $scope.closeModalCadastroFuncionalidade();
+      FuncionalidadeService.cadastrar(cadastroCb, funcionalidade);
+    }
+};
 
   ModuloService.buscarPorId(buscarPorIdCb, SessaoService.getModulo()._id);
 }

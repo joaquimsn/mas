@@ -26,8 +26,12 @@ function TarefaFuncionalidadeEdicaoController($scope, $routeParams, Funcionalida
 
   function alterar(funcionalidade) {
     console.log('funcionalidade para alterar', funcionalidade);
-    FuncionalidadeService.alterar(alterarCb, funcionalidade);
-  }
+    if(funcionalidade.dataFim && funcionalidade.dataFim < funcionalidade.dataInicio) {
+      globalMessage.warn('A data fim não pode ser menor que a data de início.');
+    } else {
+      FuncionalidadeService.alterar(alterarCb, funcionalidade);
+    }
+}
 
   function inicializar() {
     $scope.cadastrar = alterar;

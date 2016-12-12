@@ -14,8 +14,12 @@ function TarefaFuncionalidadeCadastroController($scope, FuncionalidadeService, M
 
   function cadastrar(funcionaldiade) {
     $scope.moduloSelecionadoParaFuncionalidade = funcionaldiade.moduloSelecionado;
-    FuncionalidadeService.cadastrar(cadastroCb, funcionaldiade);
-  }
+     if(funcionaldiade.dataFim && funcionaldiade.dataFim < funcionaldiade.dataInicio) {
+      globalMessage.warn('A data fim não pode ser menor que a data de início.');
+    } else {
+      FuncionalidadeService.cadastrar(cadastroCb, funcionaldiade);
+    }
+}
 
   function converterData(objeto) {
     if(objeto) {
@@ -33,7 +37,7 @@ function TarefaFuncionalidadeCadastroController($scope, FuncionalidadeService, M
     $scope.converterData = converterData;
     $scope.cadastro = true;
 
-    ModuloService.buscarTodosPorProjeto(function(projetoModulos) {
+    ModuloService.buscarTodosPorfuncionaldiade(function(projetoModulos) {
       $scope.projetoModulos = projetoModulos;
     });
   }
